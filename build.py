@@ -24,7 +24,16 @@ for name in sorted(os.listdir(os.path.join(ROOT, "content"))):
     slug = meta["slug"].strip("/")
     body = body.replace("{{REF}}", REF + (slug.replace("/", "-") or "home"))
     html = LAYOUT
-    for k, v in {"TITLE": meta["title"], "DESC": meta["description"], "BODY": body,
+    alt = meta.get("alternate", "")
+    hreflang = ""
+    if alt:
+        here = SITE + ("/" if not slug else f"/{slug}/")
+        other = SITE + ("/" if alt.strip("/") == "" else f"/{alt.strip('/')}/")
+        lang = meta.get("lang", "en"); olang = "ru" if lang == "en" else "en"
+        hreflang = (f'<link rel="alternate" hreflang="{lang}" href="{here}">\n'
+                    f'<link rel="alternate" hreflang="{olang}" href="{other}">\n'
+                    f'<link rel="alternate" hreflang="x-default" href="{SITE}/">')
+    for k, v in {"TITLE": meta["title"], "DESC": meta["description"], "BODY": body, "LANG": meta.get("lang", "en"), "HREFLANG": hreflang,
                  "URL": SITE + ("/" if not slug else f"/{slug}/"), "DATE": meta.get("date", TODAY),
                  "JSONLD": meta.get("jsonld", ""), "YEAR": str(datetime.date.today().year)}.items():
         html = html.replace("{{" + k + "}}", v)
