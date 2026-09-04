@@ -4,7 +4,7 @@ import os, re, shutil, json, datetime
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
 SITE = "https://cryptocasinolist.io"
-REF = "https://stakebet.gg/ref/QQ6Z5TTZ?c=ccl&lp=crypto&s="
+REF = "https://stakebet.gg/ref/QQ6Z5TTZ?c=ccl&s="
 TODAY = datetime.date.today().isoformat()
 
 def read(p):
