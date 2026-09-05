@@ -17,24 +17,36 @@ def parse(src):
     return meta, m.group(2)
 
 LAYOUT = read(os.path.join(ROOT, "layout.html"))
-pages = []
+entries = []
 for name in sorted(os.listdir(os.path.join(ROOT, "content"))):
     if not name.endswith(".html"): continue
     meta, body = parse(read(os.path.join(ROOT, "content", name)))
+    entries.append((meta, body))
+
+def url_of(slug):
+    slug = slug.strip("/")
+    return SITE + ("/" if not slug else f"/{slug}/")
+
+# hreflang groups: pages sharing an `i18n:` key are translations of each other
+groups = {}
+for meta, _ in entries:
+    g = meta.get("i18n")
+    if g: groups.setdefault(g, []).append((meta.get("lang", "en"), url_of(meta["slug"])))
+
+pages = []
+for meta, body in entries:
     slug = meta["slug"].strip("/")
     body = body.replace("{{REF}}", REF + (slug.replace("/", "-") or "home"))
-    html = LAYOUT
-    alt = meta.get("alternate", "")
     hreflang = ""
-    if alt:
-        here = SITE + ("/" if not slug else f"/{slug}/")
-        other = SITE + ("/" if alt.strip("/") == "" else f"/{alt.strip('/')}/")
-        lang = meta.get("lang", "en"); olang = "ru" if lang == "en" else "en"
-        hreflang = (f'<link rel="alternate" hreflang="{lang}" href="{here}">\n'
-                    f'<link rel="alternate" hreflang="{olang}" href="{other}">\n'
-                    f'<link rel="alternate" hreflang="x-default" href="{SITE}/">')
+    g = meta.get("i18n")
+    if g and len(groups[g]) > 1:
+        links = [f'<link rel="alternate" hreflang="{l}" href="{u}">' for l, u in groups[g]]
+        default = next((u for l, u in groups[g] if l == "en"), groups[g][0][1])
+        links.append(f'<link rel="alternate" hreflang="x-default" href="{default}">')
+        hreflang = "\n".join(links)
+    html = LAYOUT
     for k, v in {"TITLE": meta["title"], "DESC": meta["description"], "BODY": body, "LANG": meta.get("lang", "en"), "HREFLANG": hreflang,
-                 "URL": SITE + ("/" if not slug else f"/{slug}/"), "DATE": meta.get("date", TODAY),
+                 "URL": url_of(slug), "DATE": meta.get("date", TODAY),
                  "JSONLD": meta.get("jsonld", ""), "YEAR": str(datetime.date.today().year)}.items():
         html = html.replace("{{" + k + "}}", v)
     out = os.path.join(DIST, slug, "index.html") if slug else os.path.join(DIST, "index.html")
@@ -42,7 +54,7 @@ for name in sorted(os.listdir(os.path.join(ROOT, "content"))):
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8") as f: f.write(html)
     if slug != "404" and meta.get("noindex") != "true":
-        pages.append((SITE + ("/" if not slug else f"/{slug}/"), meta.get("date", TODAY)))
+        pages.append((url_of(slug), meta.get("date", TODAY)))
 
 shutil.copytree(os.path.join(ROOT, "static"), DIST, dirs_exist_ok=True)
 with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
