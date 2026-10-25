@@ -28,9 +28,18 @@ def call(system, blocks, *, effort="high", schema=None, max_tokens=64000):
     output_config = {"effort": effort}
     if schema:
         output_config["format"] = {"type": "json_schema", "schema": schema}
+    import anthropic
     content = [{"type": "text", "text": b} for b in blocks]
     if len(content) > 1:
         content[-2]["cache_control"] = {"type": "ephemeral"}
+    try:
+        msg = _stream(system, content, output_config, max_tokens)
+    except anthropic.APIError as e:  # rate limits, overload, auth: the caller skips this item
+        raise LLMError(f"{type(e).__name__}: {e}") from e
+    return _finish(msg, schema)
+
+
+def _stream(system, content, output_config, max_tokens):
     with _client().beta.messages.stream(
         model=MODEL,
         max_tokens=max_tokens,
@@ -41,8 +50,10 @@ def call(system, blocks, *, effort="high", schema=None, max_tokens=64000):
         system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": content}],
     ) as stream:
-        msg = stream.get_final_message()
+        return stream.get_final_message()
 
+
+def _finish(msg, schema):
     if msg.stop_reason == "refusal":
         raise LLMError(f"refused ({getattr(msg.stop_details, 'category', None)})")
     if msg.stop_reason == "max_tokens":

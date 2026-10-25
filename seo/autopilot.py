@@ -204,6 +204,9 @@ def main():
     if MODE == "off":
         print("autopilot is off (repo variable AUTOPILOT=off)")
         return
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        print("::warning::ANTHROPIC_API_KEY secret is not set; autopilot skipped")
+        return
     monday = datetime.date.today().weekday() == 0
     log = jload("data/autopilot-log.json", [])
     build()
