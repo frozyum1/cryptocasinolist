@@ -1,0 +1,32 @@
+name: Monthly facts review
+on:
+  schedule:
+    - cron: "0 7 1 * *"  # 1st of each month, 07:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Open a checklist issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'EOF' > body.md
+          import json, datetime
+          d = json.load(open("data/casinos.json"))
+          today = datetime.date.today()
+          print(f"Monthly check for {today:%B %Y}. Open each casino in a normal browser from a country it serves, then update `data/casinos.json` and set `verified_at` (and `bonus.verified_at`) to today.\n")
+          for c in d["casinos"]:
+              b = c.get("bonus") or {}
+              print(f"- [ ] **{c['name']}** ({c['url']}): facts verified {c.get('verified_at') or 'never'}, bonus verified {b.get('verified_at') or 'never'}")
+              print(f"  - Welcome offer / promotions still: {b.get('summary', {}).get('en', '-')}")
+              print(f"  - KYC policy, withdrawal speed, coins, slot count still accurate")
+              if not c.get("test_log"):
+                  print(f"  - Add any real test from this month to `test_log` (date, deposit, withdrawal, withdrawal_time, kyc_asked)")
+          print("\nThe bonuses page title already shows the new month; an offer not re-verified this month is labelled 'not verified this month' automatically.")
+          EOF
+          gh issue create --title "Facts review: $(date +'%B %Y')" --body-file body.md

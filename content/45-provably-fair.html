@@ -1,0 +1,47 @@
+---
+slug: provably-fair-casinos
+cluster: lists
+type: list
+title: Provably Fair Crypto Casinos: Which Games You Can Verify
+description: Provably fair crypto casinos compared, how the seed-and-hash system lets you check every round yourself, and which games it does and does not cover.
+---
+<div class="eyebrow">Provably fair · Compared</div>
+<h1>Provably fair crypto casinos</h1>
+<p class="lede">Provably fair is the one thing a crypto casino can offer that a traditional one cannot: proof, round by round, that the result was fixed before you bet and not changed afterwards. Every casino we rank has provably fair originals. None of them can make third-party slots provably fair.</p>
+
+{{TABLE:fair}}
+
+<h2>How provably fair works</h2>
+<p>Each round's result comes from three inputs:</p>
+<ul>
+  <li><strong>A server seed</strong> chosen by the casino. Before you play, the casino shows you only its hash, a fingerprint that commits it to that seed without revealing it.</li>
+  <li><strong>A client seed</strong> that you can see and change, so the casino cannot pick a seed that is bad for you specifically.</li>
+  <li><strong>A nonce</strong>, a counter that goes up by one with every bet, so each round uses a different input.</li>
+</ul>
+<p>The game combines them with HMAC-SHA256 and turns the output into a result: a dice roll, a crash point, mine positions. When you rotate seeds, the casino reveals the old server seed. You can then hash it yourself, confirm it matches the fingerprint you were shown, and recompute every result you played.</p>
+
+<h2>Verifying a round yourself</h2>
+<ol>
+  <li>Note your client seed and the server seed hash before playing.</li>
+  <li>Play, then rotate your seed in the fairness settings. The casino reveals the previous server seed.</li>
+  <li>Check that SHA-256 of the revealed seed equals the hash you noted.</li>
+  <li>Enter the seeds and nonce in the casino's verifier, or in an independent one, and compare the result with your bet history.</li>
+</ol>
+
+<h2>What provably fair does not cover</h2>
+<ul>
+  <li><strong>Third-party slots and live dealer games.</strong> These run on the provider's certified random number generator, audited by testing labs, not on seeds you can check.</li>
+  <li><strong>House edge.</strong> A provably fair game can still have a high edge. Fair means unmanipulated, not favourable. StakeBet publishes its edges: 1% on Coinflip, 2% on Dice, Mines, Plinko and Limbo, and 3% on Crash.</li>
+  <li><strong>Withdrawals and account decisions.</strong> Proof of fair results says nothing about whether a casino pays out reliably.</li>
+</ul>
+
+{{CTA}}
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Are provably fair games really fair?</summary><p>They prove the result was not changed after you bet, as long as you check. They do not change the house edge, which is built into the payout table.</p></details>
+  <details><summary>Can a casino cheat with provably fair games?</summary><p>Not on individual results once you can verify them. That is why changing your client seed and checking a few rounds is worth doing once at any new casino.</p></details>
+  <details><summary>Are slots provably fair?</summary><p>No. Slots from external providers use certified random number generators instead. Only casino-built originals use the seed system.</p></details>
+</div>
+
+{{RELATED}}

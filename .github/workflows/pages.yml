@@ -2,6 +2,10 @@ name: Build and deploy
 on:
   push:
     branches: [main]
+  schedule:
+    # Daily rebuild: rolls month-dated titles over on the 1st, re-reads the live
+    # StakeBet offer, and refreshes data-driven tables. Only changed URLs are pinged.
+    - cron: "17 5 * * *"
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,11 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }  # full history: lastmod comes from each file's last commit
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: python3 build.py
+      - name: Quality gate
+        run: python3 seo/check.py
       - uses: actions/upload-pages-artifact@v3
         with: { path: dist }
+      - uses: actions/upload-artifact@v4
+        with: { name: build-manifest, path: build-manifest.json }
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -29,3 +38,11 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: build-manifest }
+      - run: python3 seo/indexnow.py
