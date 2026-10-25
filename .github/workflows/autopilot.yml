@@ -1,0 +1,43 @@
+name: SEO autopilot
+on:
+  schedule:
+    - cron: "30 3 * * *"  # daily 03:30 UTC; Mondays also run discovery and the weekly report
+  workflow_dispatch:
+    inputs:
+      discover:
+        description: "Run keyword discovery now"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: write
+concurrency:
+  group: autopilot
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install anthropic google-auth requests
+      - name: Git identity
+        run: |
+          git config user.name "seo-autopilot"
+          git config user.email "seo-autopilot@users.noreply.github.com"
+      - name: Autopilot
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BING_WEBMASTER_API_KEY: ${{ secrets.BING_WEBMASTER_API_KEY }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GH_TOKEN: ${{ github.token }}
+          AUTOPILOT: ${{ vars.AUTOPILOT || 'on' }}
+          AUTOPILOT_NEW_PER_RUN: ${{ vars.AUTOPILOT_NEW_PER_RUN || '1' }}
+          AUTOPILOT_REFRESH_PER_RUN: ${{ vars.AUTOPILOT_REFRESH_PER_RUN || '1' }}
+          AUTOPILOT_MIN_SCORE: ${{ vars.AUTOPILOT_MIN_SCORE || '8' }}
+        run: python3 seo/autopilot.py ${{ inputs.discover && '--discover' || '' }}
