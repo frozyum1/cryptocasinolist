@@ -22,6 +22,8 @@ jobs:
         with: { fetch-depth: 0 }  # full history: lastmod comes from each file's last commit
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - name: Verifier and calculator match the casino's formulas
+        run: node seo/test_pf.js
       - run: python3 build.py
       - name: Quality gate
         run: python3 seo/check.py

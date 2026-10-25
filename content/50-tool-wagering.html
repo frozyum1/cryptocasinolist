@@ -1,0 +1,91 @@
+---
+slug: tools/wagering-calculator
+cluster: tools
+type: article
+title: Casino Bonus Wagering Calculator: Is This Bonus Worth It?
+description: Enter a bonus's match, cap and wagering requirement, pick a game, and see the turnover you need, the expected cost and what the bonus is really worth.
+---
+<div class="eyebrow">Tool · Bonus maths</div>
+<h1>Bonus wagering calculator</h1>
+<p class="lede">A casino bonus is worth its size minus what it costs you to clear the wagering requirement. That cost depends on the game you play. Enter the terms of any bonus below and the calculator works out the turnover, the expected cost and what the bonus is worth on average.</p>
+
+<form class="tool" id="wager-form" onsubmit="return false">
+  <div class="grid">
+    <label>Your deposit<input name="deposit" type="number" min="0" step="any" value="100" inputmode="decimal"></label>
+    <label>Currency<input name="currency" type="text" value="USDT" maxlength="8"></label>
+    <label>Match %<input name="match" type="number" min="0" step="any" value="100" inputmode="decimal"></label>
+    <label>Maximum bonus (0 = no cap)<input name="maxBonus" type="number" min="0" step="any" value="0" inputmode="decimal"></label>
+    <label>Wagering multiplier (x)<input name="multiplier" type="number" min="0" step="any" value="30" inputmode="decimal"></label>
+    <label>Wagering applies to
+      <select name="base"><option value="bonus">Bonus only</option><option value="deposit+bonus">Deposit + bonus</option></select></label>
+    <label>Game you will play
+      <select name="game">
+        <option value="1">Coinflip-style originals (1%)</option>
+        <option value="2" selected>Dice, Limbo, Mines, Plinko (2%)</option>
+        <option value="3">Crash (3%)</option>
+        <option value="4">Typical slot, 96% RTP (4%)</option>
+        <option value="5">Low-RTP slot, 95% (5%)</option>
+        <option value="custom">Custom house edge</option>
+      </select></label>
+    <label data-custom-edge hidden>House edge %<input name="customEdge" type="number" min="0" step="any" value="2.5" inputmode="decimal"></label>
+    <label>Game counts towards wagering %<input name="contribution" type="number" min="1" max="100" step="any" value="100" inputmode="decimal"></label>
+    <label>Your usual bet size<input name="betSize" type="number" min="0" step="any" value="1" inputmode="decimal"></label>
+    <label>Max bet while wagering (0 = none)<input name="maxBet" type="number" min="0" step="any" value="0" inputmode="decimal"></label>
+    <label>Days to complete<input name="days" type="number" min="0" step="1" value="7" inputmode="numeric"></label>
+    <label>Max cashout from bonus (0 = none)<input name="maxCashout" type="number" min="0" step="any" value="0" inputmode="decimal"></label>
+  </div>
+  <div class="actions">
+    <button type="button" data-fill data-match="{{FACT:stakebet.bonus.percent}}" data-maxbonus="{{FACT:stakebet.bonus.max}}" data-multiplier="{{FACT:stakebet.bonus.wagering}}" data-maxbet="{{FACT:stakebet.bonus.max_bet}}" data-days="{{FACT:stakebet.bonus.days}}" data-mindeposit="{{FACT:stakebet.bonus.min_deposit}}" data-base="bonus">Fill in the StakeBet welcome bonus</button>
+    <button type="reset" onclick="setTimeout(function(){document.getElementById('wager-form').dispatchEvent(new Event('input'))})">Reset</button>
+  </div>
+</form>
+
+<div class="tool" id="wager-out" aria-live="polite">
+  <div class="results">
+    <div><b>Bonus you receive</b><span data-bonus>–</span></div>
+    <div><b>Wagering target</b><span data-target>–</span></div>
+    <div><b>Bets you actually place</b><span data-stake>–</span></div>
+    <div><b>Expected cost of those bets</b><span data-cost>–</span></div>
+    <div><b>Average value of the bonus</b><span data-value>–</span></div>
+    <div><b>Number of bets</b><span data-bets>–</span></div>
+    <div><b>Break-even house edge</b><span data-breakeven>–</span></div>
+  </div>
+  <p class="verdict" data-verdict></p>
+  <p class="verdict bad" data-warn hidden>Your bet size is above the maximum bet allowed while wagering. At most casinos a single bet over the limit voids the bonus and its winnings.</p>
+</div>
+
+<script src="/js/wager.js"></script>
+<script>Wager.bind(document.getElementById("wager-form"), document.getElementById("wager-out"));</script>
+
+<h2>How the calculator works</h2>
+<p>Every bet you place loses, on average, the house edge of the game. A wagering requirement forces you to place a fixed amount of bets before the bonus can be withdrawn, so its average cost is simply the turnover multiplied by the house edge. The bonus is worth taking when it is larger than that cost.</p>
+<ol>
+  <li><strong>Bonus:</strong> your deposit times the match percentage, capped at the maximum bonus.</li>
+  <li><strong>Wagering target:</strong> the multiplier times the bonus, or times deposit plus bonus if the terms say so. Read this carefully: "30x deposit plus bonus" is twice the work of "30x bonus" on a 100% match.</li>
+  <li><strong>Bets you actually place:</strong> if a game counts only 50% towards wagering, you need to bet twice the target on it.</li>
+  <li><strong>Expected cost:</strong> those bets times the house edge.</li>
+  <li><strong>Average value:</strong> the bonus minus the expected cost, capped by any maximum cashout.</li>
+</ol>
+<p>The <strong>break-even house edge</strong> is the highest edge at which the bonus still pays for itself. Any game with a lower edge makes the bonus worth taking on average; any game above it makes the bonus a cost.</p>
+
+<h2>What the average hides</h2>
+<p>This is an expected value, the result you would get averaged over many attempts. A single attempt can end very differently. Large wagering requirements on volatile games often bust: the balance hits zero before the target is reached, and the bonus is lost. Small, steady bets on low-edge games finish more often but take many more bets, which is why the time limit matters. If the number of bets per day looks unrealistic for how you play, the bonus is worth less to you than the calculator shows.</p>
+
+<h2>Reading real bonus terms</h2>
+<ul>
+  <li><strong>Game weighting.</strong> Many casinos count slots at 100% and table games, live dealer or originals at 10–50%, or exclude them. Enter that figure in "Game counts towards wagering".</li>
+  <li><strong>Maximum bet.</strong> A cap on bet size while wagering is common. Breaking it once can void everything.</li>
+  <li><strong>Withdrawals during wagering.</strong> Some casinos block all withdrawals until the bonus is cleared or forfeited, including your own deposit. StakeBet works this way.</li>
+  <li><strong>Maximum cashout.</strong> A low cap on winnings from a bonus can make a big match pointless.</li>
+</ul>
+<p>Our <a href="/bonuses/">monthly bonus comparison</a> lists current offers with their wagering terms, so you can copy them straight into the calculator. We run this site and StakeBet; the button above fills in StakeBet's current published terms.</p>
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>What is a good wagering requirement?</summary><p>It depends on the game. On a 1% edge game a 30x requirement on the bonus costs 30% of the bonus on average; on a 4% slot it costs 120%, more than the bonus itself. Lower multipliers and games that count fully are what make a bonus good.</p></details>
+  <details><summary>Does a higher match percentage mean a better bonus?</summary><p>No. A 250% match with heavy wagering can be worth less than a 50% match with light wagering. Compare the average value, not the headline.</p></details>
+  <details><summary>Can I lower the house edge to beat the bonus?</summary><p>Choosing low-edge games that count fully towards wagering is the main legitimate lever. Betting patterns do not change the house edge.</p></details>
+  <details><summary>Is the calculator's result guaranteed?</summary><p>No. It is an average. Individual results vary widely, and gambling can be addictive; only play with money you can afford to lose.</p></details>
+</div>
+
+{{RELATED}}

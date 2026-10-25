@@ -50,3 +50,20 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .updated{font-size:13px;color:var(--muted)}
 code{background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:14px}
 @media (max-width:640px){.card{grid-template-columns:1fr}.card .side{text-align:left}.nav nav{gap:12px;font-size:14px}}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:18px 0 28px}
+.tool .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 18px}
+.tool label{display:block;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.tool input,.tool select,.tool textarea{display:block;width:100%;margin-top:6px;font:inherit;font-size:16px;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;min-height:46px;resize:vertical}
+.tool input:focus,.tool select:focus,.tool textarea:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
+.tool .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.tool button{font:inherit;font-weight:600;font-size:15px;cursor:pointer;border-radius:8px;padding:9px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.tool button.primary{background:var(--pick);color:var(--pick-ink);border-color:var(--pick)}
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:18px}
+.results div{background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.results b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.results span{font-family:Outfit,sans-serif;font-size:20px;font-weight:600;word-break:break-all}
+.verdict{margin-top:16px;padding:12px 16px;border-radius:8px;font-weight:600}
+.verdict.good{background:var(--good-soft);color:var(--good)}.verdict.bad{background:var(--accent-soft);color:var(--accent-ink)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;word-break:break-all}
+.ok{color:var(--good);font-weight:600}.bad-text{color:#b42318;font-weight:600}
