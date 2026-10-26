@@ -493,23 +493,6 @@
       "slug": "reviews/lumenbet",
       "status": "live",
       "priority": 1
-    },
-    {
-      "q": "stakebet",
-      "lang": "en",
-      "tier": "brand",
-      "slug": "stakebet",
-      "status": "live",
-      "priority": 1,
-      "note": "Old brand name: the page explains the rename and links to Lumenbet."
-    },
-    {
-      "q": "stakebet casino",
-      "lang": "en",
-      "tier": "brand",
-      "slug": "stakebet",
-      "status": "live",
-      "priority": 1
     }
   ]
 }

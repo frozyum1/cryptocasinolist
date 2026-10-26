@@ -33,7 +33,7 @@ DIST = os.path.join(ROOT, "dist")
 SITE = "https://cryptocasinolist.io"
 SITE_NAME = "Crypto Casino List"
 REF = "https://lumenbet.io/ref/QQ6Z5TTZ?c=ccl&s="
-LUMENBET_BONUS_API = "https://api.stakebet.gg/api/public/promotions/welcome-bonus/active"
+LUMENBET_BONUS_API = "https://api.lumenbet.io/api/public/promotions/welcome-bonus/active"
 TODAY = datetime.date.today()
 
 MONTHS = {

@@ -35,7 +35,7 @@
         "limited": {"total": 131, "remaining": 40},
         "summary": {"en": "250% up to 250 USDT, 30x wagering", "ru": "250% до 250 USDT, вейджер x30", "pt": "250% até 250 USDT, rollover 30x", "es": "250% hasta 250 USDT, rollover 30x"},
         "verified_at": "2026-10-25",
-        "verified_source": "https://api.stakebet.gg/api/public/promotions/welcome-bonus/active"
+        "verified_source": "https://api.lumenbet.io/api/public/promotions/welcome-bonus/active"
       },
       "verified_at": "2026-10-25",
       "test_log": []
