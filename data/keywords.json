@@ -107,10 +107,10 @@
       "priority": 7
     },
     {
-      "q": "stakebet vs stake",
+      "q": "lumenbet vs stake",
       "lang": "en",
       "tier": "brand",
-      "slug": "compare/stakebet-vs-stake",
+      "slug": "compare/lumenbet-vs-stake",
       "status": "live",
       "priority": 8
     },
@@ -155,18 +155,18 @@
       "priority": 12
     },
     {
-      "q": "is stakebet legit",
+      "q": "is lumenbet legit",
       "lang": "en",
       "tier": "brand",
-      "slug": "stakebet/is-stakebet-legit",
+      "slug": "lumenbet/is-lumenbet-legit",
       "status": "live",
       "priority": 1
     },
     {
-      "q": "stakebet bonus code",
+      "q": "lumenbet bonus code",
       "lang": "en",
       "tier": "brand",
-      "slug": "stakebet/bonus",
+      "slug": "lumenbet/bonus",
       "status": "live",
       "priority": 1
     },
@@ -477,6 +477,39 @@
         "ripple casino deposits"
       ],
       "found": "2026-10-26"
+    },
+    {
+      "q": "lumenbet",
+      "lang": "en",
+      "tier": "brand",
+      "slug": "lumenbet",
+      "status": "live",
+      "priority": 1
+    },
+    {
+      "q": "lumenbet review",
+      "lang": "en",
+      "tier": "brand",
+      "slug": "reviews/lumenbet",
+      "status": "live",
+      "priority": 1
+    },
+    {
+      "q": "stakebet",
+      "lang": "en",
+      "tier": "brand",
+      "slug": "stakebet",
+      "status": "live",
+      "priority": 1,
+      "note": "Old brand name: the page explains the rename and links to Lumenbet."
+    },
+    {
+      "q": "stakebet casino",
+      "lang": "en",
+      "tier": "brand",
+      "slug": "stakebet",
+      "status": "live",
+      "priority": 1
     }
   ]
 }

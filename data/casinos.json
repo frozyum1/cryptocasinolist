@@ -1,11 +1,11 @@
 {
-  "_readme": "Single source of truth for every casino fact the site prints. Text values may be a string or {\"en\":..,\"ru\":..,\"pt\":..,\"es\":..}. verified_at = the day a human last checked the facts on the casino itself; the build warns when it is older than 60 days. test_log entries are rendered on reviews and comparison pages: only add tests that really happened. bonus.source = 'stakebet-api' means the build refreshes it from the live StakeBet API (falls back to these values when the API is unreachable, e.g. from geo-blocked CI runners).",
+  "_readme": "Single source of truth for every casino fact the site prints. Text values may be a string or {\"en\":..,\"ru\":..,\"pt\":..,\"es\":..}. verified_at = the day a human last checked the facts on the casino itself; the build warns when it is older than 60 days. test_log entries are rendered on reviews and comparison pages: only add tests that really happened. bonus.source = 'lumenbet-api' means the build refreshes it from the live Lumenbet API (falls back to these values when the API is unreachable, e.g. from geo-blocked CI runners).",
   "casinos": [
     {
-      "id": "stakebet",
-      "name": "StakeBet",
-      "url": "https://stakebet.gg",
-      "review": "/reviews/stakebet/",
+      "id": "lumenbet",
+      "name": "Lumenbet",
+      "url": "https://lumenbet.io",
+      "review": "/reviews/lumenbet/",
       "referral": true,
       "rating": 8.7,
       "launched": 2026,
@@ -23,7 +23,7 @@
       "withdrawal": {"en": "Minutes to a few hours (staff-approved)", "ru": "От минут до нескольких часов (одобряет сотрудник)", "pt": "Minutos a algumas horas (aprovação manual)", "es": "De minutos a pocas horas (aprobación manual)"},
       "withdrawal_rank": 3,
       "bonus": {
-        "source": "stakebet-api",
+        "source": "lumenbet-api",
         "kind": "match",
         "percent": 250,
         "max": 250,

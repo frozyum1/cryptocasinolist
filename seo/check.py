@@ -21,7 +21,7 @@ EXEMPT_THIN = {"privacy", "404", "responsible-gambling", "about"}
 
 
 def committed(path):
-    r = subprocess.run(["git", "log", "-1", "--format=%H", "--", path], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run(["git", "log", "--follow", "-1", "--format=%H", "--", path], cwd=ROOT, capture_output=True, text=True)
     return bool(r.stdout.strip())
 
 
@@ -31,6 +31,11 @@ def main():
     pages = manifest["pages"]
     errors, warnings = [], []
     known = {"/" + p["slug"] + "/" if p["slug"] else "/" for p in pages}
+    for p in pages:
+        if p.get("redirect"):
+            target = "/" + p["redirect"].strip("/") + "/"
+            if target not in known:
+                errors.append(f"{p['file']}: redirect target {target} does not exist")
     static_files = set()
     for base, _, files in os.walk(os.path.join(ROOT, "static")):
         for f in files:

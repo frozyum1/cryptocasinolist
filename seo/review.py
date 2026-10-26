@@ -30,9 +30,9 @@ REVIEW_SYSTEM = """You are the last check before a page on a gambling comparison
 You receive the casino data file (the only allowed source of casino-specific facts) and a page. Shortcodes like {{TABLE:...}}, {{FACT:...}}, {{VERSUS:...}} are filled from that data at build time and are always fine.
 
 Flag as unsupported: any casino-specific fact typed in prose that is not in the data or contradicts it (bonus sizes, licences, coin counts, game counts, withdrawal times, KYC rules, dates, rankings by others, awards, user counts); any claim of testing, deposits or screenshots; any invented statistic, quote, testimonial or study; any promise of winning or strategy claimed to beat the house edge.
-Allowed without data: general explanations of how gambling, wagering, provably fair hashing, blockchains and house edge work, and StakeBet's published house edges (Coinflip 1%; Dice, Mines, Plinko, Limbo 2%; Crash 3%; Keno 4%).
+Allowed without data: general explanations of how gambling, wagering, provably fair hashing, blockchains and house edge work, and Lumenbet's published house edges (Coinflip 1%; Dice, Mines, Plinko, Limbo 2%; Crash 3%; Keno 4%).
 
-Score 0-10 for how well the page serves someone who searched its title's topic (depth, accuracy, clarity, honesty about StakeBet's weaknesses where relevant, disclosure that the site is run by StakeBet's team when it recommends StakeBet). verdict: publish only if there is nothing unsupported and the score is 8 or more; revise if fixable; reject if the topic itself is a problem."""
+Score 0-10 for how well the page serves someone who searched its title's topic (depth, accuracy, clarity, honesty about Lumenbet's weaknesses where relevant, disclosure that the site is run by Lumenbet's team when it recommends Lumenbet). verdict: publish only if there is nothing unsupported and the score is 8 or more; revise if fixable; reject if the topic itself is a problem."""
 
 SCHEMA = {
     "type": "object",

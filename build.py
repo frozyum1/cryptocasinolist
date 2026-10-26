@@ -9,11 +9,11 @@ place and every page that prints it follows on the next build:
   {{DATA_MONTH}}                   localised month the casino data last changed (honest "updated" label)
   {{TABLE:<preset>}}               data table (home, bonuses, nokyc, withdrawal, usdt, fair, alternatives)
   {{VERSUS:<id>,<id>}}             two-casino fact comparison
-  {{FACT:<id>.<path>}}             one fact, e.g. {{FACT:stakebet.bonus.summary}}
+  {{FACT:<id>.<path>}}             one fact, e.g. {{FACT:lumenbet.bonus.summary}}
   {{TESTLOG:<id>}}                 the casino's dated test log (renders nothing when empty)
-  {{CTA}}                          StakeBet referral button
+  {{CTA}}                          Lumenbet referral button
   {{RELATED}}                      links to other pages in the same cluster and language
-  {{REF}}                          StakeBet referral URL tagged with this page's slug
+  {{REF}}                          Lumenbet referral URL tagged with this page's slug
 
 Front-matter keys: slug, title, description, lang, i18n (translation group),
 cluster (related-links group), type (article|list|page), date (fixed lastmod),
@@ -32,8 +32,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
 SITE = "https://cryptocasinolist.io"
 SITE_NAME = "Crypto Casino List"
-REF = "https://stakebet.gg/ref/QQ6Z5TTZ?c=ccl&s="
-STAKEBET_BONUS_API = "https://api.stakebet.gg/api/public/promotions/welcome-bonus/active"
+REF = "https://lumenbet.io/ref/QQ6Z5TTZ?c=ccl&s="
+LUMENBET_BONUS_API = "https://api.stakebet.gg/api/public/promotions/welcome-bonus/active"
 TODAY = datetime.date.today()
 
 MONTHS = {
@@ -48,28 +48,28 @@ L = {
            "sportsbook": "Sportsbook", "kyc": "KYC to withdraw", "withdrawal": "Withdrawal speed", "licence": "Licence",
            "offer": "Current offer", "wagering": "Wagering", "min_dep": "Min. deposit", "checked": "Last checked",
            "usdt": "USDT on TRON", "launched": "Launched", "pm": "Prediction markets", "yes": "Yes", "no": "No",
-           "unverified": "not verified this month", "play": "Play at StakeBet", "review": "Review", "related": "Related",
+           "unverified": "not verified this month", "play": "Play at Lumenbet", "review": "Review", "related": "Related",
            "spots": "{r} of {t} spots left", "test": "Our tests", "test_date": "Date", "test_dep": "Deposit",
            "test_wd": "Withdrawal", "test_time": "Time to arrive", "test_kyc": "ID asked?", "home": "Rankings", "fact": "Fact"},
     "ru": {"casino": "Казино", "rating": "Оценка", "coins": "Монеты", "originals": "Provably fair игры", "slots": "Слоты",
            "sportsbook": "Ставки на спорт", "kyc": "KYC для вывода", "withdrawal": "Скорость вывода", "licence": "Лицензия",
            "offer": "Текущее предложение", "wagering": "Вейджер", "min_dep": "Мин. депозит", "checked": "Проверено",
            "usdt": "USDT в сети TRON", "launched": "Запуск", "pm": "Рынки предсказаний", "yes": "Да", "no": "Нет",
-           "unverified": "не проверено в этом месяце", "play": "Играть в StakeBet", "review": "Обзор", "related": "Читайте также",
+           "unverified": "не проверено в этом месяце", "play": "Играть в Lumenbet", "review": "Обзор", "related": "Читайте также",
            "spots": "осталось {r} из {t} мест", "test": "Наши тесты", "test_date": "Дата", "test_dep": "Депозит",
            "test_wd": "Вывод", "test_time": "Время зачисления", "test_kyc": "Просили документы?", "home": "Рейтинг", "fact": "Параметр"},
     "pt": {"casino": "Cassino", "rating": "Nota", "coins": "Moedas", "originals": "Originais provably fair", "slots": "Slots",
            "sportsbook": "Apostas esportivas", "kyc": "KYC para sacar", "withdrawal": "Velocidade de saque", "licence": "Licença",
            "offer": "Oferta atual", "wagering": "Rollover", "min_dep": "Depósito mín.", "checked": "Verificado em",
            "usdt": "USDT na TRON", "launched": "Lançamento", "pm": "Mercados de previsão", "yes": "Sim", "no": "Não",
-           "unverified": "não verificado este mês", "play": "Jogar no StakeBet", "review": "Análise", "related": "Veja também",
+           "unverified": "não verificado este mês", "play": "Jogar no Lumenbet", "review": "Análise", "related": "Veja também",
            "spots": "restam {r} de {t} vagas", "test": "Nossos testes", "test_date": "Data", "test_dep": "Depósito",
            "test_wd": "Saque", "test_time": "Tempo até chegar", "test_kyc": "Pediram documento?", "home": "Ranking", "fact": "Item"},
     "es": {"casino": "Casino", "rating": "Nota", "coins": "Monedas", "originals": "Originales provably fair", "slots": "Slots",
            "sportsbook": "Apuestas deportivas", "kyc": "KYC para retirar", "withdrawal": "Velocidad de retiro", "licence": "Licencia",
            "offer": "Oferta actual", "wagering": "Rollover", "min_dep": "Depósito mín.", "checked": "Verificado",
            "usdt": "USDT en TRON", "launched": "Lanzamiento", "pm": "Mercados de predicción", "yes": "Sí", "no": "No",
-           "unverified": "no verificado este mes", "play": "Jugar en StakeBet", "review": "Reseña", "related": "Ver también",
+           "unverified": "no verificado este mes", "play": "Jugar en Lumenbet", "review": "Reseña", "related": "Ver también",
            "spots": "quedan {r} de {t} plazas", "test": "Nuestras pruebas", "test_date": "Fecha", "test_dep": "Depósito",
            "test_wd": "Retiro", "test_time": "Tiempo de llegada", "test_kyc": "¿Pidieron ID?", "home": "Ranking", "fact": "Dato"},
 }
@@ -106,13 +106,13 @@ CASINOS = {c["id"]: c for c in DATA["casinos"]}
 DATA_DATE = git_date("data/casinos.json") or TODAY.isoformat()
 
 
-def refresh_stakebet_bonus():
+def refresh_lumenbet_bonus():
     """Pull the live welcome bonus. Falls back silently: CI runners in some regions are geo-blocked."""
-    b = CASINOS["stakebet"]["bonus"]
-    if b.get("source") != "stakebet-api":
+    b = CASINOS["lumenbet"]["bonus"]
+    if b.get("source") != "lumenbet-api":
         return "manual"
     try:
-        req = urllib.request.Request(STAKEBET_BONUS_API, headers={"User-Agent": "cryptocasinolist-build"})
+        req = urllib.request.Request(LUMENBET_BONUS_API, headers={"User-Agent": "cryptocasinolist-build"})
         with urllib.request.urlopen(req, timeout=8) as r:
             live = json.load(r)
     except Exception as e:  # noqa: BLE001 - any failure means "use the data file"
@@ -134,7 +134,7 @@ def refresh_stakebet_bonus():
     return "live"
 
 
-BONUS_STATUS = refresh_stakebet_bonus()
+BONUS_STATUS = refresh_lumenbet_bonus()
 
 
 def t(value, lang):
@@ -360,12 +360,12 @@ def main():
 
     groups = {}
     for meta, _ in entries:
-        if meta.get("i18n"):
+        if meta.get("i18n") and not meta.get("redirect"):
             groups.setdefault(meta["i18n"], []).append((meta.get("lang", "en"), url_of(meta["slug"])))
 
     clusters = {}
     for meta, _ in entries:
-        if meta.get("cluster") and meta.get("noindex") != "true":
+        if meta.get("cluster") and meta.get("noindex") != "true" and not meta.get("redirect"):
             clusters.setdefault((meta["cluster"], meta.get("lang", "en")), []).append(meta)
 
     if os.path.isdir(DIST):
@@ -374,6 +374,21 @@ def main():
     for meta, body in entries:
         slug = meta["slug"].strip("/")
         lang = meta.get("lang", "en")
+        if meta.get("redirect"):
+            # A moved page. GitHub Pages cannot send a 301, so the old URL serves
+            # an instant meta refresh plus a canonical to the new one, which
+            # Google treats as a permanent redirect. Never listed in the sitemap.
+            target = url_of(meta["redirect"])
+            out = os.path.join(DIST, slug, "index.html")
+            os.makedirs(os.path.dirname(out), exist_ok=True)
+            with open(out, "w", encoding="utf-8") as f:
+                f.write(f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><title>{html.escape(meta.get("title", "Moved"))}</title>'
+                        f'<link rel="canonical" href="{target}"><meta http-equiv="refresh" content="0; url={target}"></head>'
+                        f'<body><p>This page has moved to <a href="{target}">{target}</a>.</p></body></html>')
+            manifest.append({"slug": slug, "url": url_of(slug), "file": meta["_file"], "lang": lang, "title": meta.get("title", ""),
+                             "description": "", "lastmod": TODAY.isoformat(), "words": 0, "cluster": None, "type": "redirect",
+                             "indexable": False, "links": [], "unexpanded": [], "redirect": meta["redirect"]})
+            continue
         ctx = {}
         title = expand(meta["title"], meta, lang, slug, ctx)
         desc = expand(meta["description"], meta, lang, slug, ctx)
@@ -435,8 +450,8 @@ def main():
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     with open(os.path.join(ROOT, "build-manifest.json"), "w", encoding="utf-8") as f:
-        json.dump({"built": TODAY.isoformat(), "stakebet_bonus": BONUS_STATUS, "pages": manifest}, f, ensure_ascii=False, indent=1)
-    print(f"built {sum(p['indexable'] for p in manifest)} indexable pages -> dist/ (StakeBet bonus: {BONUS_STATUS})")
+        json.dump({"built": TODAY.isoformat(), "lumenbet_bonus": BONUS_STATUS, "pages": manifest}, f, ensure_ascii=False, indent=1)
+    print(f"built {sum(p['indexable'] for p in manifest)} indexable pages -> dist/ (Lumenbet bonus: {BONUS_STATUS})")
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ description: Paste your server seed, client seed and nonce to check the seed com
 <div class="eyebrow">Tool · Provably fair</div>
 <h1>Provably fair verifier</h1>
 <p class="lede">Check that a casino did not change a result after you bet. Paste the revealed server seed, your client seed and the nonce: the verifier confirms the seed matches the hash you were shown before playing, then recomputes the result. Everything runs in your browser; nothing is sent anywhere.</p>
-<p class="meta">Result formulas match StakeBet's originals and were checked against its server code. Other casinos use the same seed system but their own formulas, so the commitment and HMAC checks below work for any casino, while the game results apply to StakeBet.</p>
+<p class="meta">Result formulas match Lumenbet's originals and were checked against its server code. Other casinos use the same seed system but their own formulas, so the commitment and HMAC checks below work for any casino, while the game results apply to Lumenbet.</p>
 
 <form class="tool" id="pf-form" onsubmit="return false">
   <div class="grid">
@@ -55,7 +55,7 @@ description: Paste your server seed, client seed and nonce to check the seed com
   <li><strong>The result.</strong> The hash is turned into a game outcome with a fixed formula. Re-running it must give exactly the result in your bet history.</li>
 </ol>
 
-<h2>How each StakeBet game turns the hash into a result</h2>
+<h2>How each Lumenbet game turns the hash into a result</h2>
 <div class="tbl"><table>
   <tr><th>Game</th><th>Formula</th><th class="n">House edge</th></tr>
   <tr><td>Dice</td><td>First 13 hex characters as a number, modulo 10,000, divided by 100: a roll from 0.00 to 99.99</td><td class="n">2%</td></tr>
@@ -79,7 +79,7 @@ description: Paste your server seed, client seed and nonce to check the seed com
 
 <h2>FAQ</h2>
 <div class="faq">
-  <details><summary>Does this verifier work for Stake or BC.Game?</summary><p>The seed commitment and HMAC checks work for any casino using SHA-256 and HMAC-SHA256. The game results use StakeBet's formulas; other casinos convert the hash into results differently, so use their own verifier for those.</p></details>
+  <details><summary>Does this verifier work for Stake or BC.Game?</summary><p>The seed commitment and HMAC checks work for any casino using SHA-256 and HMAC-SHA256. The game results use Lumenbet's formulas; other casinos convert the hash into results differently, so use their own verifier for those.</p></details>
   <details><summary>Is it safe to paste my seeds here?</summary><p>Yes. Revealed seeds are no longer secret, and the verifier runs entirely in your browser without sending anything. Never paste a seed that is still active.</p></details>
   <details><summary>Does a passed check mean the game is fair to me?</summary><p>It proves the result was fixed before you bet and not changed. It does not change the house edge, which is built into each game's payouts.</p></details>
 </div>

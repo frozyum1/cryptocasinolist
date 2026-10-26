@@ -1,4 +1,4 @@
-/* Provably fair verification for StakeBet originals. No dependencies, runs offline.
+/* Provably fair verification for Lumenbet originals. No dependencies, runs offline.
  *
  * Mirrors the casino's server code exactly (checked against golden vectors
  * generated from it, see seo/test_pf.js):
