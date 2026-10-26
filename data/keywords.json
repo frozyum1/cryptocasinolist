@@ -341,6 +341,142 @@
       "status": "planned",
       "priority": 30,
       "note": "Turkish home needs a translated rankings page; check geoblock list first."
+    },
+    {
+      "q": "stake us",
+      "lang": "en",
+      "tier": "head",
+      "slug": "compare/stake-us-vs-stake",
+      "status": "drafted",
+      "priority": 40,
+      "impressions": 23808,
+      "related": [
+        "stake.us",
+        "stakeus",
+        "stake usa",
+        "stake us casino",
+        "stake us vs stake com"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "fake stake",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/fake-casino-sites",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 1186,
+      "related": [
+        "fake stake site",
+        "clone casino sites",
+        "how to spot a fake crypto casino"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "mines game",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/how-mines-works",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 986,
+      "related": [
+        "mines",
+        "mines casino game",
+        "how to play mines"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "plinko game",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/how-plinko-works",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 720,
+      "related": [
+        "plinko",
+        "crypto plinko",
+        "how plinko works"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "online casino games",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/crypto-casino-games",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 1527,
+      "related": [
+        "crypto casino games",
+        "best games at crypto casinos"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "simpleswap crypto",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/swap-crypto-no-account",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 11957,
+      "related": [
+        "simpleswap swap crypto",
+        "changelly crypto",
+        "changenow crypto",
+        "swap crypto to fund casino account"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "crypto wallet",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/crypto-wallets-for-casinos",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 674,
+      "related": [
+        "best crypto wallet for casino deposits",
+        "wallet for gambling crypto"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "what is bitcoin",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/bitcoin-gambling-explained",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 941,
+      "related": [
+        "bitcoin gambling",
+        "how to gamble with bitcoin",
+        "using btc at casinos"
+      ],
+      "found": "2026-10-26"
+    },
+    {
+      "q": "xrp crypto",
+      "lang": "en",
+      "tier": "long",
+      "slug": "xrp-casinos",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 1115,
+      "related": [
+        "xrp casino",
+        "casinos that accept xrp",
+        "ripple casino deposits"
+      ],
+      "found": "2026-10-26"
     }
   ]
 }

@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2026-10-26",
+    "action": "new",
+    "q": "stake us",
+    "file": "content/52-compare-stake-us-vs-stake.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/1",
+    "score": 7,
+    "attempts": 2
+  },
+  {
+    "date": "2026-10-26",
+    "action": "refresh",
+    "file": "content/11-review-stake.html",
+    "reason": "also cover these searches: stake casino; stake online casino; stakes; stake crypto casino",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/2",
+    "score": 7,
+    "attempts": 2
+  }
+]
