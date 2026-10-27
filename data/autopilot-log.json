@@ -16,5 +16,23 @@
     "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/2",
     "score": 7,
     "attempts": 2
+  },
+  {
+    "date": "2026-10-27",
+    "action": "new",
+    "q": "stake us",
+    "file": "content/52-compare-stake-us-vs-stake.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/4",
+    "score": 7,
+    "attempts": 2
+  },
+  {
+    "date": "2026-10-27",
+    "action": "refresh",
+    "file": "content/40-bonuses.html",
+    "reason": "also cover these searches: online casino bonus; casino bonus offers; crypto casino bonus",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
