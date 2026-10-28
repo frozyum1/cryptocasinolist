@@ -83,7 +83,11 @@ def deterministic(path, original=None):
             if sim > MAX_SIMILARITY:
                 problems.append(f"{sim:.0%} similar to {other} (duplicate content)")
 
-    subprocess.run([sys.executable, "build.py"], cwd=ROOT, check=True, capture_output=True)
+    # A draft that breaks the build (bad shortcode, unknown fact path) is a rejected draft, not a crash.
+    built = subprocess.run([sys.executable, "build.py"], cwd=ROOT, capture_output=True, text=True)
+    if built.returncode != 0:
+        tail = (built.stderr or built.stdout).strip().splitlines()[-1:] or ["no output"]
+        return problems + [f"site build fails with this page: {tail[0]}"]
     gate = json.loads(subprocess.run([sys.executable, "seo/check.py", "--json"], cwd=ROOT,
                                      capture_output=True, text=True).stdout)
     problems += [e for e in gate["errors"] if e.startswith(path)]
