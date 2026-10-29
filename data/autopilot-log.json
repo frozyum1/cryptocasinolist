@@ -34,5 +34,23 @@
     "outcome": "published",
     "score": 9,
     "attempts": 2
+  },
+  {
+    "date": "2026-10-29",
+    "action": "new",
+    "q": "simpleswap crypto",
+    "file": "content/52-guides-swap-crypto-no-account.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/5",
+    "score": 8,
+    "attempts": 2
+  },
+  {
+    "date": "2026-10-29",
+    "action": "refresh",
+    "file": "content/20-tazzoro.html",
+    "reason": "thin content: 235 words",
+    "outcome": "published",
+    "score": 8,
+    "attempts": 2
   }
 ]
