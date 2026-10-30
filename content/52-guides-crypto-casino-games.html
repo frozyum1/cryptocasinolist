@@ -1,0 +1,80 @@
+---
+slug: guides/crypto-casino-games
+cluster: guides
+type: article
+title: Crypto Casino Games: Which Online Casino Games to Play
+description: Originals, slots and live dealer tables compared — how each game works, the house edge behind it, and which online casino games you can actually verify yourself.
+---
+<div class="eyebrow">Games · Explained</div>
+<h1>Crypto casino games</h1>
+<p class="lede">Online casino games at a crypto site split into two families: in-house "originals" like dice, crash, mines, plinko, limbo, keno and coinflip, which run on a provably fair seed you can check yourself, and third-party games — slots, live dealer tables, game shows — which run on the provider's RNG and cannot be verified by you. The best game for you depends on which of those two things you care about more: a transparent, low-edge bet you control, or a big catalogue with jackpots and real croupiers.</p>
+<p>Every casino-specific number on this page is printed from our data file through the table and shortcodes below. The house edge figures in the table further down are Lumenbet's published values for its own originals; other casinos set their own.</p>
+
+{{TABLE:fair}}
+
+{{CTA}}
+
+<h2>The two families, and why the difference matters</h2>
+<p>Originals are built by the casino itself. The round is usually a single number — a crash multiplier, a dice roll, a mine position — generated from a server seed, your client seed and a nonce. Because the hashed server seed is published before you bet, you can check afterwards that the result was not changed to beat you. Lumenbet lists {{FACT:lumenbet.originals}} originals; Stake lists {{FACT:stake.originals}}.</p>
+<p>Provider games are licensed from studios like Pragmatic, Hacksaw or Evolution. The casino does not generate the result and cannot show you a seed. Fairness there rests on the studio's RNG certification and the regulator behind it, not on anything you can verify at home. The catalogues are far bigger: Lumenbet lists {{FACT:lumenbet.slots}} slots, while BC.Game lists {{FACT:bc-game.slots}}. Counts differ a lot between sites, so read them from the table rather than assuming they are similar.</p>
+
+<h2>How the main originals work</h2>
+<ul>
+  <li><strong>Crash.</strong> A multiplier climbs from 1.00x and stops at a random point. You cash out before it stops or lose the bet. Auto-cashout lets you set the exit in advance. We cover the mechanics in detail in <a href="/guides/how-crash-works/">how crash works</a>.</li>
+  <li><strong>Dice.</strong> You pick a target number and whether the roll must go over or under it. Your chosen win chance sets the payout; shifting the slider changes variance, not the edge.</li>
+  <li><strong>Mines.</strong> A grid with hidden bombs. Each safe tile raises the multiplier; one bomb ends the round. More bombs means fewer, bigger steps.</li>
+  <li><strong>Plinko.</strong> A ball drops through pegs into payout buckets. Row count and risk level change how often you hit the edges versus the middle.</li>
+  <li><strong>Limbo.</strong> You set a target multiplier and the round either reaches it or does not. The simplest risk dial of the lot.</li>
+  <li><strong>Keno.</strong> You pick numbers, the game draws a set, and payouts scale with how many you matched.</li>
+  <li><strong>Coinflip.</strong> A near-even bet with the smallest edge on most menus.</li>
+</ul>
+
+<h2>House edge: the only number that follows you everywhere</h2>
+<p>The house edge is the share of every wagered amount the casino expects to keep over the long run. These are Lumenbet's published edges for its originals:</p>
+
+<div class="tbl">
+<table>
+  <thead><tr><th>Game</th><th>House edge</th><th>Expected return per 100 staked</th></tr></thead>
+  <tbody>
+    <tr><td>Coinflip</td><td>1%</td><td>99</td></tr>
+    <tr><td>Dice</td><td>2%</td><td>98</td></tr>
+    <tr><td>Mines</td><td>2%</td><td>98</td></tr>
+    <tr><td>Plinko</td><td>2%</td><td>98</td></tr>
+    <tr><td>Limbo</td><td>2%</td><td>98</td></tr>
+    <tr><td>Crash</td><td>3%</td><td>97</td></tr>
+    <tr><td>Keno</td><td>4%</td><td>96</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The edge applies to turnover, not to your deposit. Suppose you stake a 100 USDT bankroll twenty times over — 2,000 USDT of total turnover. At a 2% edge, expectation is 0.98<sup>20</sup> ≈ 67% of the bankroll left, roughly 67 USDT. At 1% it is about 82 USDT; at 4%, about 44 USDT. Those are long-run expectations across many bets, not a forecast for your session: short runs are dominated by variance, which is why people both bust and double up at every edge on that list.</p>
+<p>Two practical conclusions. First, picking a 1–2% game over a 4% game roughly halves or quarters your expected cost for the same turnover. Second, no bet pattern, martingale or "low-risk" plinko setting changes any of those numbers — the edge is per bet, and stacking bets just stacks the edge. Gambling can be addictive; set a loss limit before you open a game and read our notes on <a href="/responsible-gambling/">responsible gambling</a> if the limit keeps moving.</p>
+
+<h2>What you can actually verify</h2>
+<p>For originals, verification is a three-step job: the casino publishes a hashed server seed before play, you set or accept a client seed, and after you rotate the seed the casino reveals the original server seed. Hash the revealed seed and it must match the hash you were shown. Then recompute the results from seed plus nonce.</p>
+<p>You can do that check on our <a href="/tools/provably-fair-verifier/">provably fair verifier</a> for crash, dice and mines rounds. Which casinos expose the seeds, and for which games, is in the comparison above and on <a href="/provably-fair-casinos/">provably fair crypto casinos</a>.</p>
+<p>For slots and live tables, you cannot do this. The honest framing is: you are trusting the studio's certified RNG and whatever licence stands behind the operator. That is a different kind of trust, not a worse one by definition — but it is not maths you can run yourself.</p>
+
+<h2>Live dealer and table games</h2>
+<p>Live blackjack, roulette, baccarat and game shows are streamed from studios with real cards and wheels. The appeal is that the physical process is visible. The trade-offs are fixed table limits, slower rounds, and house edges set by the rules of the table — European roulette's single zero versus American's double zero is the classic example, and blackjack's edge swings with the rule set and how well you play the basic strategy chart.</p>
+<p>Live tables are also usually the worst fit for bonus wagering, because many promotions exclude them or count them at a low weight.</p>
+
+<h2>Games and bonus wagering</h2>
+<p>If you play with a welcome bonus, the game you choose is a terms question, not just a taste question. Most offers weight games differently, cap the bet size while wagering is open, and set a deadline. Lumenbet's current offer is {{FACT:lumenbet.bonus.summary}}, with a max bet of {{FACT:lumenbet.bonus.max_bet}} {{FACT:lumenbet.bonus.currency}} and {{FACT:lumenbet.bonus.days}} days to clear it. Run the numbers in the <a href="/tools/wagering-calculator/">wagering calculator</a> before you accept, and compare terms across sites on our <a href="/bonuses/">bonus comparison</a>.</p>
+<p>A low-edge game clears turnover more cheaply in expectation, but high-variance games can clear it faster or kill the balance sooner. Neither approach beats the edge; they only change how the cost is distributed.</p>
+
+<h2>Where we stand on Lumenbet</h2>
+<p>This site is run by the team behind Lumenbet, so treat our view as interested. Lumenbet's originals are the part we would point a games-focused reader at: the published edges above are competitive, and the seeds are verifiable. The weaknesses are real and worth repeating — it holds no gambling licence, it launched in 2026 so it has no long track record, there is no sportsbook, and every withdrawal is approved by a person rather than automatically. Our full write-up is in the <a href="/reviews/lumenbet/">Lumenbet review</a>.</p>
+
+{{CTA}}
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Which crypto casino game has the best odds?</summary><p>Among Lumenbet's originals, coinflip has the lowest published edge at 1%, with dice, mines, plinko and limbo at 2%. Blackjack played with perfect basic strategy can be lower still at some tables, depending on the rule set. None of them has a positive expectation for the player.</p></details>
+  <details><summary>Are crypto casino games rigged?</summary><p>For provably fair originals you do not have to take anyone's word: check the hashed server seed against the revealed one and recompute the rounds. For slots and live games you cannot verify anything yourself; you are relying on the game studio's RNG certification and the casino's licence, where one exists.</p></details>
+  <details><summary>Can I count cards in live blackjack at a crypto casino?</summary><p>In practice, no. Most live tables shuffle frequently or use continuous shuffling machines, which removes the edge counting depends on, and table limits and bet-timing rules make big spreads impractical.</p></details>
+  <details><summary>Do all games count the same toward bonus wagering?</summary><p>Usually not. Slots often count at 100%, while live dealer and some low-edge originals count at a reduced rate or are excluded. Check the specific promotion's terms before you start, because playing an excluded game can void the bonus.</p></details>
+  <details><summary>Originals or slots — which should a beginner start with?</summary><p>Originals are easier to understand: one number, one decision, a visible house edge. Slots hide their maths in the paytable and RTP line. If you want to learn how your money behaves, start with a low-edge original at small stakes.</p></details>
+</div>
+
+{{RELATED}}
