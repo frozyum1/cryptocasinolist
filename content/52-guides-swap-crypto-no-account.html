@@ -1,0 +1,74 @@
+---
+slug: guides/swap-crypto-no-account
+cluster: guides
+type: article
+title: No-Account Crypto Swaps (SimpleSwap etc.) for Casino Deposits
+description: How no-account swap services like SimpleSwap, Changelly and ChangeNOW work, where the costs hide, and how to use one to turn any coin into a casino deposit.
+---
+<div class="eyebrow">Guides · Funding</div>
+<h1>Swapping crypto without an account</h1>
+<p class="lede">SimpleSwap, Changelly and ChangeNOW are swap services that exchange one coin for another straight between wallets — you pick a pair, they give you a deposit address, you send coin A and they send coin B to the address you supplied. Most swaps of this type need no registration, which is why players use them to turn a coin a casino does not accept into one it does, usually USDT on TRON.</p>
+
+<p><strong>Up front:</strong> we do not run any of these services and we have not tested them. Everything below about a specific swap provider — rates, fees, limits, supported pairs, refund handling, verification policy — can change, differs between providers, and should be read on the provider's own site before you send anything. Treat this page as an explanation of the mechanism, not a verified comparison of companies.</p>
+
+<h2>How a no-account swap works</h2>
+<p>The mechanics are the same almost everywhere, because they have to be:</p>
+<ol>
+  <li>You choose the pair (for example BTC → USDT on TRON) and the amount.</li>
+  <li>You paste the <strong>destination address</strong> — where the output coin should land. For a casino deposit that is the deposit address the casino shows you, on the exact network the casino names.</li>
+  <li>The service shows a quote and gives you a one-time deposit address plus an order ID.</li>
+  <li>You send the input coin from your own wallet or exchange.</li>
+  <li>After the input confirms on its chain, the service sends the output coin to your destination address.</li>
+</ol>
+<p>There is no account, no password and no balance held for you. The order ID is usually your only handle on the transaction, so save it — if something goes wrong, that string is what support will ask for.</p>
+
+<h2>Fixed rate vs floating rate</h2>
+<p>Swap services generally offer two pricing modes, and the exact behaviour is defined in each service's own terms rather than by any shared standard:</p>
+<ul>
+  <li><strong>Floating:</strong> you get whatever the market gives when your deposit confirms. Usually the cheaper headline rate, but the final amount is not known until the swap executes.</li>
+  <li><strong>Fixed:</strong> the quoted rate is held for a short window. The spread is typically wider, and services normally state what happens if your deposit arrives after the window closes or the amount does not match the quote.</li>
+</ul>
+<p>If the output has to cover an exact figure — a bonus minimum, say — read the fixed-rate terms carefully, because a few cents short is still short.</p>
+
+<h2>The refund address matters</h2>
+<p>Most of these services ask for a refund address, and some make it optional. It is worth filling in anyway. If a swap cannot be completed — wrong amount, expired quote, a pair that becomes unavailable — the refund address is generally how the input coin gets back to you. Check what your chosen service does if you leave it blank. We have not tested how any individual service handles this, so check the wording on the order page before you send.</p>
+<p>The same applies to the chain you pick. USDT exists on TRON, Ethereum, BNB Chain and others, and those are different assets as far as the network is concerned. Sending TRC-20 USDT to an ERC-20 address is not something a swap service can undo for you.</p>
+
+<h2>Why players swap before funding a casino</h2>
+<p>Casinos support a limited set of coins, and the list is shorter than the list of coins people actually hold. Lumenbet, for example, accepts {{FACT:lumenbet.coins}} — {{FACT:lumenbet.coin_count}} assets in total. If your holdings are in something outside that list, a swap is the bridge. Even inside the list, players often convert volatile coins to USDT before depositing so that the balance they play with is not also moving against them.</p>
+
+{{TABLE:usdt}}
+
+<p>Our walkthrough of the withdrawal side is at <a href="/guides/withdraw-usdt-in-minutes/">withdrawing USDT in minutes</a>, and the wider list of Tether-friendly sites is at <a href="/usdt-casinos/">USDT casinos</a>.</p>
+
+<h2>Step by step: swap, then deposit</h2>
+<ol>
+  <li>Open the casino cashier first and copy the deposit address <em>and</em> the network label. Do not work from memory.</li>
+  <li>Check the casino's minimum deposit before you quote the swap. Lumenbet's welcome offer, for instance, is {{FACT:lumenbet.bonus.summary}} with a minimum deposit of {{FACT:lumenbet.bonus.min_deposit}} USDT and {{FACT:lumenbet.bonus.days}} days to complete the wagering; landing under the minimum is a wasted swap. Full terms are on our <a href="/lumenbet/bonus/">bonus page</a>.</li>
+  <li>Quote the swap with a small buffer above the minimum so that spread and fees do not leave you short.</li>
+  <li>Send a test amount first if the sum is meaningful to you. Two network fees beat one lost deposit.</li>
+  <li>Keep the order ID and the transaction hash until the casino credits the balance.</li>
+</ol>
+
+<h2>Where the cost hides</h2>
+<p>The quoted rate is rarely the whole price. Three things sit between you and the output amount: the network fee you pay to send the input coin, the service's spread versus the market rate, and whatever the service charges or deducts on the payout side. How that last one is presented — deducted from your output, added to your input, or shown as a separate line — varies by provider and by pair, so compare the final receive figure rather than the advertised percentage. Quoting the same pair on two or three services takes a minute and is the only honest way to see who is cheaper on that day.</p>
+
+<h2>"No account" is not the same as anonymous</h2>
+<p>A swap without registration still leaves a chain of public transactions, and providers typically reserve the right in their terms to run compliance checks and hold funds when an order is flagged. That is a policy question for each service, not a technical guarantee. The casino side has its own rules: see <a href="/no-kyc-casinos/">no-KYC crypto casinos</a> for how different operators handle identity checks, and note that Lumenbet's stated position is {{FACT:lumenbet.kyc_note}}.</p>
+
+<h2>If you are using this to fund a Lumenbet deposit</h2>
+<p>Being open about it: this site is run by the team behind Lumenbet, so treat what follows as our own product, not a neutral pick. Lumenbet launched in {{FACT:lumenbet.launched}} and has no sportsbook. Gambling licence: {{FACT:lumenbet.licence}}. Payouts are {{FACT:lumenbet.withdrawal}} — a human signs off every withdrawal, which is a deliberate trade-off against instant automation. A swap service is a reasonable way to get USDT in; the full picture of what you are depositing into is in the <a href="/reviews/lumenbet/">Lumenbet review</a>.</p>
+<p>One more thing worth saying plainly on a page about moving money: gambling can be addictive, and a swap makes funding fast enough that it is easy to skip the pause where you would normally think about it. Decide the amount before you quote the swap, not after. If any of that feels uncomfortable, read <a href="/responsible-gambling/">responsible gambling</a> first. If a bonus is part of the plan, run the numbers through the <a href="/tools/wagering-calculator/">wagering calculator</a> before you commit a deposit to it.</p>
+
+{{CTA}}
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Can I swap crypto straight into a casino deposit address?</summary><p>Technically yes — you set the casino's address as the swap destination. The safer habit is to swap into a wallet you control, confirm the amount and network, then deposit. If a swap arrives late or short, a wallet you control gives you room to fix it; a casino address does not.</p></details>
+  <details><summary>Do SimpleSwap, Changelly and ChangeNOW require ID?</summary><p>They advertise swaps without registration, and each publishes its own compliance policy covering when checks may apply. We have not verified those policies, so read the current terms on the provider's site before you send funds.</p></details>
+  <details><summary>Which network should I choose for a USDT deposit?</summary><p>Whatever the casino's cashier specifies. TRON (TRC-20) is widely used because fees are low and confirmations are quick; the "USDT on TRON" column in our table shows which casinos accept it. Always match the network label exactly.</p></details>
+  <details><summary>What if the swap sends less than I expected?</summary><p>With a floating rate, a smaller output after a price move is normal behaviour rather than an error. If the shortfall is large or the output never arrives, contact the service with the order ID and the input transaction hash. There is no account to log into, so those two strings are your case.</p></details>
+  <details><summary>Is swapping cheaper than buying the coin on an exchange?</summary><p>It depends on the pair, the amount and the day. Exchanges often have tighter spreads but need an account and verification; no-account swaps charge for the convenience. The gap varies by pair and amount, so compare the final receive amount, not the headline rate.</p></details>
+</div>
+
+{{RELATED}}
