@@ -52,5 +52,23 @@
     "outcome": "published",
     "score": 8,
     "attempts": 2
+  },
+  {
+    "date": "2026-10-30",
+    "action": "new",
+    "q": "online casino games",
+    "file": "content/52-guides-crypto-casino-games.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
+  },
+  {
+    "date": "2026-10-30",
+    "action": "refresh",
+    "file": "content/13-review-shuffle.html",
+    "reason": "thin content: 262 words",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
