@@ -13,6 +13,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import llm  # noqa: E402
+import intent  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXAMPLE_PAGE = "content/41-no-kyc.html"
@@ -67,8 +68,9 @@ def pick(keywords, pages, slug=None):
     rows = keywords["keywords"]
     if slug:
         return next((k for k in rows if k["slug"] == slug), None)
+    # Rank by casino-intent-weighted volume, not raw volume (see seo/intent.py).
     todo = sorted((k for k in rows if k["status"] == "planned" and k["slug"] not in have),
-                  key=lambda k: (-(k.get("impressions") or 0), k["priority"]))
+                  key=lambda k: (-intent.score(k), k["priority"]))
     return todo[0] if todo else None
 
 

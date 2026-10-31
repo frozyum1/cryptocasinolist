@@ -136,7 +136,13 @@ reformulations go into the same page as 'related'. Prefer extending an existing 
 covers the intent. Drop queries that are navigational for another brand's login, illegal, about sports betting
 odds (we have no sportsbook), adult, or would need facts we cannot verify (e.g. a named casino we do not list,
 country-specific law). Slugs: lowercase, hyphens, prefixed by language for non-English (ru/, pt/, es/), with
-guides/ for how-to and explainer topics and compare/ for X vs Y."""
+guides/ for how-to and explainer topics and compare/ for X vs Y.
+
+Tag each page with the searcher's intent: choose_casino (picking, comparing, reviewing a casino), bonus,
+play (depositing, withdrawing, getting started at a crypto casino), game_guide (how a casino game works),
+general_crypto (crypto with no gambling angle: prices, wallets, "what is bitcoin"), or other. Drop
+general_crypto queries entirely unless the page can genuinely answer them for a gambler (e.g. "best crypto for
+casino deposits" is play, "xrp price" is dropped)."""
 
 TRIAGE_SCHEMA = {
     "type": "object",
@@ -145,9 +151,10 @@ TRIAGE_SCHEMA = {
         "properties": {
             "q": {"type": "string"}, "lang": {"type": "string"}, "slug": {"type": "string"},
             "tier": {"type": "string", "enum": ["head", "mid", "long"]},
+            "intent": {"type": "string", "enum": ["choose_casino", "bonus", "play", "game_guide", "general_crypto", "other"]},
             "merge_into": {"type": "string"}, "related": {"type": "array", "items": {"type": "string"}},
         },
-        "required": ["q", "lang", "slug", "tier", "merge_into", "related"],
+        "required": ["q", "lang", "slug", "tier", "intent", "merge_into", "related"],
         "additionalProperties": False}}},
     "required": ["pages"], "additionalProperties": False,
 }
@@ -172,9 +179,12 @@ def triage(candidates, keywords, pages):
         total = imp.get(p["q"].lower(), 0) + sum(imp.get(r.lower(), 0) for r in p["related"])
         if p["merge_into"]:
             merges.append({"slug": p["merge_into"].strip("/"), "queries": [p["q"]] + p["related"], "impressions": total})
+        elif p["intent"] == "general_crypto":
+            continue  # no gambling angle: not worth a page on this site
         elif p["slug"].strip("/") not in have_slugs:
             new_rows.append({"q": p["q"], "lang": p["lang"], "tier": p["tier"], "slug": p["slug"].strip("/"),
                              "status": "planned", "priority": 40, "impressions": total, "related": p["related"],
+                             "intent": p["intent"],
                              "found": datetime.date.today().isoformat()})
     return new_rows, merges
 

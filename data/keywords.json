@@ -192,7 +192,8 @@
       "tier": "long",
       "slug": "guides/wagering-requirements",
       "status": "planned",
-      "priority": 13
+      "priority": 13,
+      "intent": "bonus"
     },
     {
       "q": "how provably fair works",
@@ -200,7 +201,8 @@
       "tier": "long",
       "slug": "guides/provably-fair-explained",
       "status": "planned",
-      "priority": 14
+      "priority": 14,
+      "intent": "game_guide"
     },
     {
       "q": "best crypto for gambling fees",
@@ -208,7 +210,8 @@
       "tier": "long",
       "slug": "guides/cheapest-crypto-for-casino-deposits",
       "status": "planned",
-      "priority": 15
+      "priority": 15,
+      "intent": "choose_casino"
     },
     {
       "q": "new crypto casinos",
@@ -217,7 +220,8 @@
       "slug": "new-crypto-casinos",
       "status": "planned",
       "priority": 16,
-      "note": "Needs more than two casinos launched in the last 3 years to avoid a thin list."
+      "note": "Needs more than two casinos launched in the last 3 years to avoid a thin list.",
+      "intent": "choose_casino"
     },
     {
       "q": "crypto casino no deposit bonus",
@@ -226,7 +230,8 @@
       "slug": "no-deposit-bonus",
       "status": "planned",
       "priority": 17,
-      "note": "Only if at least two listed casinos offer one; else skip."
+      "note": "Only if at least two listed casinos offer one; else skip.",
+      "intent": "bonus"
     },
     {
       "q": "mines game strategy",
@@ -234,7 +239,8 @@
       "tier": "long",
       "slug": "guides/mines-strategy",
       "status": "planned",
-      "priority": 18
+      "priority": 18,
+      "intent": "game_guide"
     },
     {
       "q": "plinko odds",
@@ -242,7 +248,8 @@
       "tier": "long",
       "slug": "guides/plinko-odds",
       "status": "planned",
-      "priority": 19
+      "priority": 19,
+      "intent": "game_guide"
     },
     {
       "q": "dice gambling strategy",
@@ -250,7 +257,8 @@
       "tier": "long",
       "slug": "guides/dice-strategy",
       "status": "planned",
-      "priority": 20
+      "priority": 20,
+      "intent": "game_guide"
     },
     {
       "q": "prediction markets with crypto",
@@ -266,7 +274,8 @@
       "tier": "mid",
       "slug": "compare/stake-vs-bc-game",
       "status": "planned",
-      "priority": 22
+      "priority": 22,
+      "intent": "choose_casino"
     },
     {
       "q": "stake vs roobet",
@@ -274,7 +283,8 @@
       "tier": "mid",
       "slug": "compare/stake-vs-roobet",
       "status": "planned",
-      "priority": 23
+      "priority": 23,
+      "intent": "choose_casino"
     },
     {
       "q": "stake vs shuffle",
@@ -282,7 +292,8 @@
       "tier": "mid",
       "slug": "compare/stake-vs-shuffle",
       "status": "planned",
-      "priority": 24
+      "priority": 24,
+      "intent": "choose_casino"
     },
     {
       "q": "is crypto gambling anonymous",
@@ -290,7 +301,8 @@
       "tier": "long",
       "slug": "guides/is-crypto-gambling-anonymous",
       "status": "planned",
-      "priority": 25
+      "priority": 25,
+      "intent": "choose_casino"
     },
     {
       "q": "casino tax on crypto winnings",
@@ -307,7 +319,8 @@
       "tier": "mid",
       "slug": "pt/bonus",
       "status": "planned",
-      "priority": 26
+      "priority": 26,
+      "intent": "bonus"
     },
     {
       "q": "mejores bonos casino cripto",
@@ -315,7 +328,8 @@
       "tier": "mid",
       "slug": "es/bonos",
       "status": "planned",
-      "priority": 27
+      "priority": 27,
+      "intent": "choose_casino"
     },
     {
       "q": "кэш-аут в краш как работает",
@@ -323,7 +337,8 @@
       "tier": "long",
       "slug": "ru/guides/crash",
       "status": "planned",
-      "priority": 28
+      "priority": 28,
+      "intent": "game_guide"
     },
     {
       "q": "вывод usdt из казино",
@@ -331,7 +346,8 @@
       "tier": "long",
       "slug": "ru/guides/usdt",
       "status": "planned",
-      "priority": 29
+      "priority": 29,
+      "intent": "choose_casino"
     },
     {
       "q": "kripto casino",
@@ -340,7 +356,8 @@
       "slug": "tr",
       "status": "planned",
       "priority": 30,
-      "note": "Turkish home needs a translated rankings page; check geoblock list first."
+      "note": "Turkish home needs a translated rankings page; check geoblock list first.",
+      "intent": "choose_casino"
     },
     {
       "q": "stake us",
@@ -388,7 +405,8 @@
         "mines casino game",
         "how to play mines"
       ],
-      "found": "2026-10-26"
+      "found": "2026-10-26",
+      "intent": "game_guide"
     },
     {
       "q": "plinko game",
@@ -403,7 +421,8 @@
         "crypto plinko",
         "how plinko works"
       ],
-      "found": "2026-10-26"
+      "found": "2026-10-26",
+      "intent": "game_guide"
     },
     {
       "q": "online casino games",
@@ -440,21 +459,22 @@
       "lang": "en",
       "tier": "mid",
       "slug": "guides/crypto-wallets-for-casinos",
-      "status": "planned",
+      "status": "skip",
       "priority": 40,
       "impressions": 674,
       "related": [
         "best crypto wallet for casino deposits",
         "wallet for gambling crypto"
       ],
-      "found": "2026-10-26"
+      "found": "2026-10-26",
+      "intent": "general_crypto"
     },
     {
       "q": "what is bitcoin",
       "lang": "en",
       "tier": "mid",
       "slug": "guides/bitcoin-gambling-explained",
-      "status": "planned",
+      "status": "skip",
       "priority": 40,
       "impressions": 941,
       "related": [
@@ -462,7 +482,8 @@
         "how to gamble with bitcoin",
         "using btc at casinos"
       ],
-      "found": "2026-10-26"
+      "found": "2026-10-26",
+      "intent": "general_crypto"
     },
     {
       "q": "xrp crypto",
@@ -477,7 +498,8 @@
         "casinos that accept xrp",
         "ripple casino deposits"
       ],
-      "found": "2026-10-26"
+      "found": "2026-10-26",
+      "intent": "general_crypto"
     },
     {
       "q": "lumenbet",
