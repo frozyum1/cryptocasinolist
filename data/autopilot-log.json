@@ -88,5 +88,23 @@
     "outcome": "discarded",
     "score": null,
     "attempts": 1
+  },
+  {
+    "date": "2026-10-31",
+    "action": "new",
+    "q": "xrp crypto",
+    "file": "content/53-xrp-casinos.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/6",
+    "score": 7,
+    "attempts": 2
+  },
+  {
+    "date": "2026-10-31",
+    "action": "refresh",
+    "file": "content/14-review-roobet.html",
+    "reason": "thin content: 290 words",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/7",
+    "score": 8,
+    "attempts": 2
   }
 ]
