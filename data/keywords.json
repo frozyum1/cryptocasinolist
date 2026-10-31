@@ -364,7 +364,7 @@
       "lang": "en",
       "tier": "mid",
       "slug": "guides/fake-casino-sites",
-      "status": "planned",
+      "status": "skip",
       "priority": 40,
       "impressions": 1186,
       "related": [
@@ -372,7 +372,8 @@
         "clone casino sites",
         "how to spot a fake crypto casino"
       ],
-      "found": "2026-10-26"
+      "found": "2026-10-26",
+      "note": "autopilot 2026-10-31: APIStatusError: {'type': 'error', 'error': {'details': None, 'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgZcSBDtci3kMQ17nPBSZ'}"
     },
     {
       "q": "mines game",

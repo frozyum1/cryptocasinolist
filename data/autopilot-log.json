@@ -70,5 +70,23 @@
     "outcome": "published",
     "score": 9,
     "attempts": 2
+  },
+  {
+    "date": "2026-10-31",
+    "action": "new",
+    "q": "fake stake",
+    "file": "content/53-guides-fake-casino-sites.html",
+    "outcome": "skipped",
+    "score": null,
+    "attempts": 2
+  },
+  {
+    "date": "2026-10-31",
+    "action": "refresh",
+    "file": "content/12-review-bc-game.html",
+    "reason": "thin content: 284 words",
+    "outcome": "discarded",
+    "score": null,
+    "attempts": 1
   }
 ]
