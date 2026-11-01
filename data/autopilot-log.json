@@ -106,5 +106,23 @@
     "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/7",
     "score": 8,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-01",
+    "action": "new",
+    "q": "mines game",
+    "file": "content/53-guides-how-mines-works.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
+  },
+  {
+    "date": "2026-11-01",
+    "action": "refresh",
+    "file": "content/17-lumenbet-withdrawals.html",
+    "reason": "thin content: 427 words",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/8",
+    "score": 7,
+    "attempts": 2
   }
 ]
