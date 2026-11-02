@@ -124,5 +124,23 @@
     "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/8",
     "score": 7,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-02",
+    "action": "new",
+    "q": "plinko game",
+    "file": "content/54-guides-how-plinko-works.html",
+    "outcome": "skipped",
+    "score": null,
+    "attempts": 1
+  },
+  {
+    "date": "2026-11-02",
+    "action": "refresh",
+    "file": "content/16-lumenbet-bonus.html",
+    "reason": "thin content: 469 words",
+    "outcome": "discarded",
+    "score": null,
+    "attempts": 1
   }
 ]
