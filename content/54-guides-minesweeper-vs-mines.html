@@ -2,12 +2,12 @@
 slug: guides/minesweeper-vs-mines
 cluster: guides
 type: article
-title: Minesweeper vs Mines Casino Game: What Actually Differs
-description: Classic Minesweeper is a free logic puzzle; Mines is a crypto casino bet with a house edge. How the rules, odds, skill and payouts compare.
+title: "Minesweeper Online vs Casino Mines: Free Puzzle or Bet"
+description: Play Minesweeper free online or bet on casino Mines? Rules, controls, difficulty levels, odds, house edge and provably fair checks compared side by side.
 ---
 <div class="eyebrow">Guides · Games</div>
 <h1>Minesweeper vs the Mines casino game</h1>
-<p class="lede">Classic Minesweeper is a free single-player logic puzzle: numbered clues tell you exactly where the bombs are, and a careful player can clear most boards with pure deduction. Mines at a crypto casino borrows the grid and the bombs but deletes the clues — you stake money, flip blank tiles, and cash out before you hit one, which makes it a gambling game with a fixed house edge rather than a puzzle you can solve.</p>
+<p class="lede">Classic Minesweeper is a free single-player logic puzzle: numbered clues tell you exactly where the bombs are, and a careful player can clear most boards by deduction alone. Mines at a crypto casino borrows the grid and the bombs but deletes the clues — you stake money, flip blank tiles and cash out before you hit one, which makes it a gambling game with a fixed house edge rather than a puzzle you can solve. If you searched for Minesweeper online, free, you want the puzzle, and free browser versions of it cost nothing; this guide covers both so you do not end up in the wrong one by accident.</p>
 
 <h2>Side by side</h2>
 <div class="tbl">
@@ -24,11 +24,42 @@ description: Classic Minesweeper is a free logic puzzle; Mines is a crypto casin
 
 <h2>How classic Minesweeper works</h2>
 <p>You get a rectangular grid with a known number of hidden mines. Clicking a safe square reveals a number: how many mines touch that square among its eight neighbours. A blank square means zero neighbouring mines, so the game auto-opens the area around it. From those numbers you deduce which squares must be mines (flag them) and which must be safe. Hit a mine and the game ends.</p>
-<p>The standard difficulties most people know are beginner (9×9 with 10 mines), intermediate (16×16 with 40) and expert (30×16 with 99). Many modern versions also guarantee that your first click is never a mine, and some go further by guaranteeing a board that can be solved without guessing. Older implementations did neither, which is why "I lost on the first click" is a memory a lot of players share.</p>
-<p>Minesweeper is not a casino game and nothing in this guide should be read as a reason to pay for it. If you searched for free online Minesweeper, you want a browser puzzle version, not a casino lobby — plenty exist, they cost nothing, and they are the right place to practise deduction.</p>
+<p>A timer runs from your first click, and a counter shows mines left minus flags placed. Those two numbers are the whole scoring system, which is why the game has such a long speedrunning tradition: there is nothing to collect, unlock or buy, only a board and a clock.</p>
+
+<h2>Controls on desktop and mobile</h2>
+<p>The controls are the same almost everywhere. Left click opens a square. Right click places a flag on a square you believe hides a mine, and right-clicking again often cycles to a question mark. Middle click (or left and right buttons together) on an already-opened number is called chording: if you have flagged exactly as many neighbours as the number says, it opens all the remaining neighbours at once. Chording is where most of the speed in Minesweeper comes from.</p>
+<p>On phones and tablets a tap usually opens a square and a long press flags it, or there is a toggle button that switches between dig mode and flag mode. If a mobile version keeps blowing you up by accident, switch to the toggle — it is slower but far less error-prone than long presses.</p>
+
+<h2>Difficulty levels and board settings</h2>
+<p>The standard difficulties most people know are beginner (9×9 with 10 mines), intermediate (16×16 with 40) and expert (30×16 with 99). Mine density rises with each step, so expert is not just a bigger board — it is a tighter one.</p>
+<p>Two modern conveniences are worth looking for when you pick a version. Many implementations guarantee that your first click is never a mine. Some go further and guarantee a board that can be solved without guessing, which removes the coin-flip endings that older versions were famous for. A good free version states which of those it does, and lets you set a custom grid size and mine count.</p>
+
+<h2>Is Minesweeper a video game?</h2>
+<p>Yes, in the plain sense: it is a computer game with rules, a win state and a score. It became familiar to millions because it was bundled free with desktop operating systems for years, so a lot of people met it on an office machine rather than buying it. It is no longer preinstalled on a typical modern Windows computer, which is why most people now play it in a browser.</p>
+
+<h2>Where to play Minesweeper free online</h2>
+<p>You do not need to download anything or create an account to play the puzzle. Your options, roughly in order of how fast they are to reach:</p>
+<ul>
+  <li><strong>Search-engine versions.</strong> Some search engines show a playable board right inside the results page when you search for the game, with difficulty buttons and nothing to install. Whether it appears depends on your region, device and the search engine's current features, so if you do not see one, use an option below.</li>
+  <li><strong>Browser implementations.</strong> Dozens of free web versions exist, including open-source ones whose code you can read. The good ones let you pick a custom grid and mine count, and say whether the first click is guaranteed safe.</li>
+  <li><strong>Desktop and app-store versions.</strong> Free versions are available for Windows, macOS, Linux, Android and iOS. Check whether the app is ad-supported or sells extras before installing; the puzzle itself has no reason to cost money.</li>
+  <li><strong>Offline play.</strong> A browser version that has already loaded, or an installed app, will usually keep working without a connection. Nothing about Minesweeper needs a server.</li>
+</ul>
+<p>One warning that matters on this site: a handful of gambling products use the word "Minesweeper" or a mine-grid logo in their marketing. If a page asks you to deposit before you can click a tile, you are in a casino lobby, not a puzzle. The free puzzle never asks for a payment method, an ID document or a crypto wallet.</p>
+
+<h2>Minesweeper strategy that actually works</h2>
+<p>Because the puzzle gives you real information, strategy there is genuine — unlike in the casino version. The basics:</p>
+<ul>
+  <li><strong>Open a corner or an edge first.</strong> Edge squares have fewer neighbours, so the numbers you uncover constrain fewer unknowns and are easier to resolve.</li>
+  <li><strong>Count, do not guess.</strong> A number equals the mines around it. If the count of unopened neighbours equals the number, they are all mines. If the flags around it already equal the number, every other neighbour is safe.</li>
+  <li><strong>Learn the common patterns.</strong> A 1-2-1 along a wall always resolves to mine-safe-mine behind the 1s and 2; a 1-2-2-1 resolves to safe-mine-mine-safe. Recognising these on sight is most of what separates a fast player from a slow one.</li>
+  <li><strong>Use the global mine counter at the end.</strong> When few mines remain, the total left often decides an area that local numbers alone cannot.</li>
+  <li><strong>When you must guess, guess cheaply.</strong> On boards that are not guarantee-solvable, pick the square with the lowest probability of being a mine and, where probabilities tie, the one that reveals the most information.</li>
+</ul>
+<p>All of that is deduction, and none of it costs or wins money. Keep that distinction in mind for the next section.</p>
 
 <h2>How the casino Mines game works</h2>
-<p>Most casino versions use a 5×5 grid of twenty-five tiles. You choose how many mines to hide, usually anywhere from one to twenty-four, then place a bet. Each tile you open that is safe raises your multiplier; you may cash out after any pick. Open a mine and the stake is lost immediately.</p>
+<p>Most casino versions use a 5×5 grid of twenty-five tiles. You choose how many mines to hide, usually anywhere from one to twenty-four, then place a bet. Each safe tile you open raises your multiplier; you may cash out after any pick. Open a mine and the stake is lost immediately.</p>
 <p>There are no numbers, so there is nothing to deduce. Every unopened tile has the same chance of being a bomb at every moment. The only decisions that matter are how much you bet, how many mines you set, and when you stop. That is the whole game — and it is why Mines plays like a grid-shaped version of Crash rather than like a puzzle. We break the mechanics down further in <a href="/guides/how-mines-works/">how the Mines game works</a>.</p>
 
 <h2>The maths behind a Mines round</h2>
@@ -42,14 +73,26 @@ description: Classic Minesweeper is a free logic puzzle; Mines is a crypto casin
 <p>Gambling can be addictive. Set a session budget you would be fine losing before you open a single tile, and read <a href="/responsible-gambling/">responsible gambling</a> if play has stopped feeling optional.</p>
 
 <h2>Can skill transfer from one to the other?</h2>
-<p>Barely. The part of Minesweeper that makes you good — reading patterns like 1-2-1, counting flags against numbers, working edges first — depends entirely on information the casino version removes. What does transfer is discipline: puzzle players are used to acting on known odds instead of hunches, and in Mines the known odds say that each extra pick is a worse bet than the one before it, because you are risking a larger accumulated amount for a smaller relative gain.</p>
+<p>Barely. The part of Minesweeper that makes you good — reading patterns like 1-2-1, counting flags against numbers, working edges first — depends entirely on information the casino version removes.</p>
+<p>What does transfer is discipline: puzzle players are used to acting on known odds instead of hunches. In Mines the known odds are simple. Each additional pick carries the same percentage house edge as the first, so continuing is not a mathematically worse bet in edge terms. What changes is exposure: the amount riding on the next tile is your whole accumulated balance for that round, while the multiplier step it adds is proportionally smaller than the earlier ones. Deciding how much risk you want on the table is the only real decision you have.</p>
+<p>There is also a trap worth naming. Because the grid looks familiar, Mines feels like a skill game to people who grew up on the puzzle. That feeling is the product working as designed. A tile you "feel good about" has exactly the same chance of hiding a bomb as the one next to it.</p>
 
 <h2>Where to play each one</h2>
-<p>For the puzzle, use a free browser or desktop implementation. For the casino version, the thing worth checking first is whether the game is provably fair and whether the house edge is published. Here is how the casinos we track compare on verifiable games:</p>
+<p>For the puzzle, use a free browser or desktop implementation. For the casino version, the first things to check are whether the game is provably fair and whether the house edge is published. Here is how the casinos we track compare on verifiable games:</p>
 
 {{TABLE:fair}}
 
-<p>Lumenbet, which is run by the same team that runs this site, lists {{FACT:lumenbet.originals}} in-house originals including Mines, is provably fair, and publishes a 2% house edge on its Mines game. Be clear about the trade-offs before you deposit: it has no gambling licence ({{FACT:lumenbet.licence}}), it launched in {{FACT:lumenbet.launched}}, there is no sportsbook, and every withdrawal is approved by a staff member rather than paid out automatically — withdrawal speed is listed as {{FACT:lumenbet.withdrawal}}. Its welcome offer is {{FACT:lumenbet.bonus.summary}}, so the cap is modest at {{FACT:lumenbet.bonus.max}} {{FACT:lumenbet.bonus.currency}}, the wagering requirement is {{FACT:lumenbet.bonus.wagering}}x, the maximum bet while wagering is {{FACT:lumenbet.bonus.max_bet}} {{FACT:lumenbet.bonus.currency}} and you get {{FACT:lumenbet.bonus.days}} days to clear it. If you want licensed alternatives instead, the full comparison tables are on our <a href="/provably-fair-casinos/">provably fair casinos</a> page and the <a href="/bonuses/">bonus terms comparison</a>.</p>
+<p>Disclosure: Lumenbet is run by the same team that runs this site, so treat what follows as an interested recommendation and check it against the licensed options above.</p>
+<p>On the game itself, Lumenbet lists {{FACT:lumenbet.originals}} in-house originals including Mines, is provably fair, and publishes a 2% house edge on Mines. Its other published edges are 1% on Coinflip, 2% on Dice, Plinko and Limbo, 3% on Crash and 4% on Keno.</p>
+<p>The weaknesses are real and you should weigh them first:</p>
+<ul>
+  <li>No gambling licence ({{FACT:lumenbet.licence}}), so there is no regulator to complain to.</li>
+  <li>It launched in {{FACT:lumenbet.launched}}, so it has a short track record.</li>
+  <li>No sportsbook.</li>
+  <li>Every withdrawal is approved by a staff member rather than paid out automatically; the listed speed is {{FACT:lumenbet.withdrawal}}.</li>
+  <li>The welcome offer is {{FACT:lumenbet.bonus.summary}} — a modest cap of {{FACT:lumenbet.bonus.max}} {{FACT:lumenbet.bonus.currency}}, with a {{FACT:lumenbet.bonus.max_bet}} {{FACT:lumenbet.bonus.currency}} maximum bet while wagering and {{FACT:lumenbet.bonus.days}} days to clear it.</li>
+</ul>
+<p>The longer write-up, including what we could and could not verify, is in our <a href="/reviews/lumenbet/">Lumenbet review</a>. If you would rather have a licence, compare the alternatives on the <a href="/provably-fair-casinos/">provably fair casinos</a> page.</p>
 
 {{CTA}}
 
@@ -61,7 +104,7 @@ description: Classic Minesweeper is a free logic puzzle; Mines is a crypto casin
 <div class="faq">
   <details><summary>Is the casino Mines game the same as Minesweeper?</summary><p>No. They share a grid and bombs, nothing else. Minesweeper gives you numbered clues and can be solved by logic; casino Mines hides all information, so every unopened tile carries the same risk and the outcome is chance plus a house edge.</p></details>
   <details><summary>Can I win at Mines with Minesweeper skill?</summary><p>No. There are no clues to deduce from. The only levers are stake size, mine count and when you cash out, and none of them change the expected return.</p></details>
-  <details><summary>Where can I play Minesweeper free online?</summary><p>Free browser and desktop implementations of the classic puzzle are widely available and cost nothing. If a site asks you to deposit to play "Minesweeper", you are looking at the casino version, not the puzzle.</p></details>
+  <details><summary>Where can I play Minesweeper free online?</summary><p>Free browser and desktop implementations of the classic puzzle are widely available and cost nothing, and some search engines show a playable board directly in their results. If a site asks you to deposit to play "Minesweeper", you are looking at the casino version, not the puzzle.</p></details>
   <details><summary>What mine count gives the best odds?</summary><p>None of them, in percentage terms. Low mine counts give frequent small multipliers, high counts give rare large ones, and the house edge stays the same across settings on a given casino's table.</p></details>
   <details><summary>How do I check a Mines round was fair?</summary><p>Save the hashed server seed, your client seed and the nonce, rotate the seed to reveal the server seed, then re-hash them in our verifier and compare the resulting board with what you saw.</p></details>
 </div>
