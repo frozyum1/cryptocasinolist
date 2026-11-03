@@ -128,7 +128,16 @@ def step_new(log):
         path = draft.next_filename(pages, row["slug"])
         print(f"new: '{row['q']}' -> {path}")
         ok, rep, attempts = produce("page", path, lambda fb: draft.write_new(row, pages, fb))
-        if rep.get("stage") == "llm" or rep.get("verdict") == "reject":
+        if rep.get("stage") == "llm":
+            # The API failed (bad key, no credit, outage): nothing is wrong with
+            # the topic, so it stays planned and is tried again next run.
+            discard(path, existed=False)
+            outcome = "llm error"
+            print(f"::warning::Claude call failed, '{row['q']}' stays planned: {'; '.join(rep.get('problems', []))[:200]}")
+            log.append({"date": TODAY, "action": "new", "q": row["q"], "file": path, "outcome": outcome,
+                        "score": None, "attempts": attempts})
+            return
+        if rep.get("verdict") == "reject":
             discard(path, existed=False)
             row["status"] = "skip"
             row["note"] = f"autopilot {TODAY}: {rep.get('summary') or '; '.join(rep.get('problems', []))}"[:300]
@@ -167,7 +176,7 @@ def step_refresh(log):
         ok, rep, attempts = produce("refresh", path, lambda fb: draft.refresh(path, reason, draft.existing_pages(), fb), original)
         if rep.get("stage") == "llm" or rep.get("verdict") == "reject":
             discard(path, existed=True)
-            outcome = "discarded"
+            outcome = "llm error" if rep.get("stage") == "llm" else "discarded"
         else:
             title = re.search(r"^title:\s*(.*)$", open(os.path.join(ROOT, path), encoding="utf-8").read(), re.M).group(1)
             outcome = ship("refresh", path, title, ok, rep)
