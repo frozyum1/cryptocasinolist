@@ -178,5 +178,23 @@
     "outcome": "published",
     "score": 8,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-03",
+    "action": "new",
+    "q": "fake stake",
+    "file": "content/55-guides-fake-casino-sites.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/11",
+    "score": 7,
+    "attempts": 2
+  },
+  {
+    "date": "2026-11-03",
+    "action": "refresh",
+    "file": "content/54-guides-minesweeper-vs-mines.html",
+    "reason": "also cover these searches: minesweeper; minesweeper online; minesweeper game; minesweeper free; minesweeper online free; minesweeper free online; online minesweeper; minesweeper video game; google min",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
