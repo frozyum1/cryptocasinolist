@@ -26,8 +26,16 @@ _GAME = re.compile(r"crash|plinko|mines|dice|limbo|keno|slot|roulette|blackjack|
                    r"provably|house edge|краш|слот", re.I)
 
 
+# Games people play for free with no money on the line. "minesweeper" contains
+# "mines", so without this the free Windows game read as a casino game guide.
+_NOT_GAMBLING = re.compile(r"minesweeper|solitaire|sudoku|tetris|chess|google (game|doodle)|"
+                           r"unblocked|free online game|сапер", re.I)
+
+
 def classify(q):
     """Heuristic intent for rows that do not carry one (older rows, manual adds)."""
+    if _NOT_GAMBLING.search(q) and not (_CASINO.search(q) or _GAMBLING.search(q)):
+        return "other"
     if _BONUS.search(q):
         return "bonus"
     if _CASINO.search(q):
@@ -44,3 +52,11 @@ def classify(q):
 def score(row):
     intent = row.get("intent") or classify(row.get("q", ""))
     return (row.get("impressions") or 0) * WEIGHTS.get(intent, 0.3)
+
+
+def queries_score(queries, impressions):
+    """Weight a merged group by the share of its queries worth having."""
+    if not queries:
+        return 0.0
+    w = sum(WEIGHTS[classify(q)] for q in queries) / len(queries)
+    return impressions * w

@@ -25,6 +25,7 @@ import urllib.parse
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import intent  # noqa: E402
 import llm  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -140,9 +141,11 @@ guides/ for how-to and explainer topics and compare/ for X vs Y.
 
 Tag each page with the searcher's intent: choose_casino (picking, comparing, reviewing a casino), bonus,
 play (depositing, withdrawing, getting started at a crypto casino), game_guide (how a casino game works),
-general_crypto (crypto with no gambling angle: prices, wallets, "what is bitcoin"), or other. Drop
-general_crypto queries entirely unless the page can genuinely answer them for a gambler (e.g. "best crypto for
-casino deposits" is play, "xrp price" is dropped)."""
+general_crypto (crypto with no gambling angle: prices, wallets, "what is bitcoin"), or other (including free
+non-gambling games such as minesweeper, solitaire or "google minesweeper": the searcher wants to play for free,
+not to gamble). Drop general_crypto and other queries entirely, and never merge them into an existing page,
+unless the page can genuinely answer them for a gambler (e.g. "best crypto for casino deposits" is play, "xrp
+price" is dropped, "minesweeper online free" is dropped)."""
 
 TRIAGE_SCHEMA = {
     "type": "object",
@@ -177,6 +180,8 @@ def triage(candidates, keywords, pages):
     have_slugs = {k["slug"] for k in keywords["keywords"]} | {s for _, s, _ in pages}
     for p in result["pages"]:
         total = imp.get(p["q"].lower(), 0) + sum(imp.get(r.lower(), 0) for r in p["related"])
+        if p["intent"] in ("general_crypto", "other"):
+            continue  # not worth a page, and not worth bending an existing one towards
         if p["merge_into"]:
             merges.append({"slug": p["merge_into"].strip("/"), "queries": [p["q"]] + p["related"], "impressions": total})
         elif p["intent"] == "general_crypto":
@@ -210,6 +215,15 @@ def main():
         if m["slug"] in by_file:
             opportunities["refresh"].append({"file": by_file[m["slug"]], "impressions": m["impressions"],
                                              "reason": "also cover these searches: " + "; ".join(m["queries"][:10])})
+    # Search Console targets (real rankings) first, then merges by intent-weighted volume, dropping
+    # groups that are mostly non-gambling searches however big their volume.
+    gsc_targets = [o for o in opportunities["refresh"] if not o["reason"].startswith("also cover")]
+    merged = [o for o in opportunities["refresh"] if o["reason"].startswith("also cover")]
+    def worth(o):
+        qs = o["reason"].split(": ", 1)[1].split("; ")
+        return intent.queries_score(qs, o["impressions"])
+    merged = sorted((o for o in merged if worth(o) >= 0.5 * o["impressions"]), key=lambda o: -worth(o))
+    opportunities["refresh"] = gsc_targets + merged
     print(f"discover: {len(new_rows)} new page ideas, {len(opportunities['refresh'])} refresh targets")
     for r in new_rows[:10]:
         print(f"  + {r['q']} [{r['lang']}] -> /{r['slug']}/ ({r['impressions']} impr.)")
