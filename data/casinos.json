@@ -9,8 +9,18 @@
       "referral": true,
       "rating": 8.7,
       "launched": 2026,
-      "licence": {"en": "None", "ru": "Нет", "pt": "Nenhuma", "es": "Ninguna"},
-      "coins": {"en": "USDT (TRON), BTC, ETH, LTC + more", "ru": "USDT (TRON), BTC, ETH, LTC и другие", "pt": "USDT (TRON), BTC, ETH, LTC e mais", "es": "USDT (TRON), BTC, ETH, LTC y más"},
+      "licence": {
+        "en": "None",
+        "ru": "Нет",
+        "pt": "Nenhuma",
+        "es": "Ninguna"
+      },
+      "coins": {
+        "en": "USDT (TRON), BTC, ETH, LTC + more",
+        "ru": "USDT (TRON), BTC, ETH, LTC и другие",
+        "pt": "USDT (TRON), BTC, ETH, LTC e mais",
+        "es": "USDT (TRON), BTC, ETH, LTC y más"
+      },
       "coin_count": 6,
       "usdt_trc20": true,
       "originals": 12,
@@ -19,8 +29,18 @@
       "sportsbook": false,
       "prediction_markets": true,
       "kyc": "none",
-      "kyc_note": {"en": "Not required by default; risk-based checks", "ru": "По умолчанию не требуется; проверки по риску", "pt": "Não exigido por padrão; verificações por risco", "es": "No requerido por defecto; controles por riesgo"},
-      "withdrawal": {"en": "Minutes to a few hours (staff-approved)", "ru": "От минут до нескольких часов (одобряет сотрудник)", "pt": "Minutos a algumas horas (aprovação manual)", "es": "De minutos a pocas horas (aprobación manual)"},
+      "kyc_note": {
+        "en": "Not required by default; risk-based checks",
+        "ru": "По умолчанию не требуется; проверки по риску",
+        "pt": "Não exigido por padrão; verificações por risco",
+        "es": "No requerido por defecto; controles por riesgo"
+      },
+      "withdrawal": {
+        "en": "Minutes to a few hours (staff-approved)",
+        "ru": "От минут до нескольких часов (одобряет сотрудник)",
+        "pt": "Minutos a algumas horas (aprovação manual)",
+        "es": "De minutos a pocas horas (aprobación manual)"
+      },
       "withdrawal_rank": 3,
       "bonus": {
         "source": "lumenbet-api",
@@ -32,10 +52,26 @@
         "wagering": 30,
         "max_bet": 5,
         "days": 7,
-        "limited": {"total": 131, "remaining": 40},
-        "summary": {"en": "250% up to 250 USDT, 30x wagering", "ru": "250% до 250 USDT, вейджер x30", "pt": "250% até 250 USDT, rollover 30x", "es": "250% hasta 250 USDT, rollover 30x"},
+        "limited": {
+          "total": 131,
+          "remaining": 40
+        },
+        "summary": {
+          "en": "250% up to 250 USDT, 30x wagering",
+          "ru": "250% до 250 USDT, вейджер x30",
+          "pt": "250% até 250 USDT, rollover 30x",
+          "es": "250% hasta 250 USDT, rollover 30x"
+        },
         "verified_at": "2026-10-25",
-        "verified_source": "https://api.lumenbet.io/api/public/promotions/welcome-bonus/active"
+        "verified_source": "https://api.lumenbet.io/api/public/promotions/welcome-bonus/active",
+        "wagering_basis": "bonus",
+        "withdrawal_lock": {
+          "en": "Withdrawals are blocked while welcome-bonus wagering remains; finishing the wagering, the bonus expiring or forfeiting it lifts the block.",
+          "ru": "Вывод заблокирован, пока не отыгран приветственный бонус; блок снимается после отыгрыша, истечения бонуса или отказа от него.",
+          "pt": "Saques ficam bloqueados enquanto houver rollover do bônus de boas-vindas; concluir o rollover, o bônus expirar ou abrir mão dele libera o saque.",
+          "es": "Los retiros se bloquean mientras quede rollover del bono de bienvenida; completarlo, que el bono caduque o renunciar a él levanta el bloqueo."
+        },
+        "withdrawal_lock_source": "WithdrawalService.createWithdrawalRecord (backend), checked 2026-11-04"
       },
       "verified_at": "2026-10-25",
       "test_log": []
@@ -48,8 +84,18 @@
       "referral": false,
       "rating": 8.5,
       "launched": 2017,
-      "licence": {"en": "Curaçao", "ru": "Кюрасао", "pt": "Curaçao", "es": "Curazao"},
-      "coins": {"en": "20+ incl. BTC, ETH, USDT, LTC, DOGE, TRX, SOL", "ru": "20+, включая BTC, ETH, USDT, LTC, DOGE, TRX, SOL", "pt": "20+ incl. BTC, ETH, USDT, LTC, DOGE, TRX, SOL", "es": "20+ incl. BTC, ETH, USDT, LTC, DOGE, TRX, SOL"},
+      "licence": {
+        "en": "Curaçao",
+        "ru": "Кюрасао",
+        "pt": "Curaçao",
+        "es": "Curazao"
+      },
+      "coins": {
+        "en": "20+ incl. BTC, ETH, USDT, LTC, DOGE, TRX, SOL",
+        "ru": "20+, включая BTC, ETH, USDT, LTC, DOGE, TRX, SOL",
+        "pt": "20+ incl. BTC, ETH, USDT, LTC, DOGE, TRX, SOL",
+        "es": "20+ incl. BTC, ETH, USDT, LTC, DOGE, TRX, SOL"
+      },
       "coin_count": 20,
       "usdt_trc20": true,
       "originals": 15,
@@ -58,13 +104,28 @@
       "sportsbook": true,
       "prediction_markets": false,
       "kyc": "level",
-      "kyc_note": {"en": "Level-based; commonly required to withdraw", "ru": "По уровням; для вывода обычно требуется", "pt": "Por níveis; geralmente exigido para sacar", "es": "Por niveles; suele exigirse para retirar"},
-      "withdrawal": {"en": "Usually minutes", "ru": "Обычно минуты", "pt": "Geralmente minutos", "es": "Normalmente minutos"},
+      "kyc_note": {
+        "en": "Level-based; commonly required to withdraw",
+        "ru": "По уровням; для вывода обычно требуется",
+        "pt": "Por níveis; geralmente exigido para sacar",
+        "es": "Por niveles; suele exigirse para retirar"
+      },
+      "withdrawal": {
+        "en": "Usually minutes",
+        "ru": "Обычно минуты",
+        "pt": "Geralmente minutos",
+        "es": "Normalmente minutos"
+      },
       "withdrawal_rank": 1,
       "bonus": {
         "source": "manual",
         "kind": "vip",
-        "summary": {"en": "No standard welcome match; VIP rakeback and weekly promotions", "ru": "Нет стандартного приветственного бонуса; рейкбек VIP и еженедельные акции", "pt": "Sem bônus de boas-vindas padrão; rakeback VIP e promoções semanais", "es": "Sin bono de bienvenida estándar; rakeback VIP y promociones semanales"},
+        "summary": {
+          "en": "No standard welcome match; VIP rakeback and weekly promotions",
+          "ru": "Нет стандартного приветственного бонуса; рейкбек VIP и еженедельные акции",
+          "pt": "Sem bônus de boas-vindas padrão; rakeback VIP e promoções semanais",
+          "es": "Sin bono de bienvenida estándar; rakeback VIP y promociones semanales"
+        },
         "verified_at": null,
         "verified_source": null
       },
@@ -79,8 +140,18 @@
       "referral": false,
       "rating": 8.1,
       "launched": 2017,
-      "licence": {"en": "Curaçao", "ru": "Кюрасао", "pt": "Curaçao", "es": "Curazao"},
-      "coins": {"en": "50+", "ru": "50+", "pt": "50+", "es": "50+"},
+      "licence": {
+        "en": "Curaçao",
+        "ru": "Кюрасао",
+        "pt": "Curaçao",
+        "es": "Curazao"
+      },
+      "coins": {
+        "en": "50+",
+        "ru": "50+",
+        "pt": "50+",
+        "es": "50+"
+      },
       "coin_count": 50,
       "usdt_trc20": true,
       "originals": null,
@@ -89,13 +160,28 @@
       "sportsbook": true,
       "prediction_markets": false,
       "kyc": "often",
-      "kyc_note": {"en": "Often required for withdrawals", "ru": "Часто требуется для вывода", "pt": "Frequentemente exigido para saques", "es": "A menudo requerido para retirar"},
-      "withdrawal": {"en": "Minutes to hours", "ru": "От минут до часов", "pt": "Minutos a horas", "es": "De minutos a horas"},
+      "kyc_note": {
+        "en": "Often required for withdrawals",
+        "ru": "Часто требуется для вывода",
+        "pt": "Frequentemente exigido para saques",
+        "es": "A menudo requerido para retirar"
+      },
+      "withdrawal": {
+        "en": "Minutes to hours",
+        "ru": "От минут до часов",
+        "pt": "Minutos a horas",
+        "es": "De minutos a horas"
+      },
       "withdrawal_rank": 4,
       "bonus": {
         "source": "manual",
         "kind": "match",
-        "summary": {"en": "Multi-deposit welcome package; terms vary by region", "ru": "Пакет на несколько депозитов; условия зависят от региона", "pt": "Pacote em vários depósitos; termos variam por região", "es": "Paquete en varios depósitos; términos según la región"},
+        "summary": {
+          "en": "Multi-deposit welcome package; terms vary by region",
+          "ru": "Пакет на несколько депозитов; условия зависят от региона",
+          "pt": "Pacote em vários depósitos; termos variam por região",
+          "es": "Paquete en varios depósitos; términos según la región"
+        },
         "verified_at": null,
         "verified_source": null
       },
@@ -110,8 +196,18 @@
       "referral": false,
       "rating": 7.9,
       "launched": 2023,
-      "licence": {"en": "Curaçao", "ru": "Кюрасао", "pt": "Curaçao", "es": "Curazao"},
-      "coins": {"en": "15+", "ru": "15+", "pt": "15+", "es": "15+"},
+      "licence": {
+        "en": "Curaçao",
+        "ru": "Кюрасао",
+        "pt": "Curaçao",
+        "es": "Curazao"
+      },
+      "coins": {
+        "en": "15+",
+        "ru": "15+",
+        "pt": "15+",
+        "es": "15+"
+      },
       "coin_count": 15,
       "usdt_trc20": true,
       "originals": null,
@@ -120,13 +216,28 @@
       "sportsbook": true,
       "prediction_markets": false,
       "kyc": "often",
-      "kyc_note": {"en": "Often required for withdrawals", "ru": "Часто требуется для вывода", "pt": "Frequentemente exigido para saques", "es": "A menudo requerido para retirar"},
-      "withdrawal": {"en": "Usually minutes", "ru": "Обычно минуты", "pt": "Geralmente minutos", "es": "Normalmente minutos"},
+      "kyc_note": {
+        "en": "Often required for withdrawals",
+        "ru": "Часто требуется для вывода",
+        "pt": "Frequentemente exigido para saques",
+        "es": "A menudo requerido para retirar"
+      },
+      "withdrawal": {
+        "en": "Usually minutes",
+        "ru": "Обычно минуты",
+        "pt": "Geralmente minutos",
+        "es": "Normalmente minutos"
+      },
       "withdrawal_rank": 2,
       "bonus": {
         "source": "manual",
         "kind": "vip",
-        "summary": {"en": "Level-up rewards and a $100,000 weekly race", "ru": "Награды за уровни и еженедельная гонка на $100 000", "pt": "Recompensas por nível e corrida semanal de $100.000", "es": "Recompensas por nivel y carrera semanal de $100.000"},
+        "summary": {
+          "en": "Level-up rewards and a $100,000 weekly race",
+          "ru": "Награды за уровни и еженедельная гонка на $100 000",
+          "pt": "Recompensas por nível e corrida semanal de $100.000",
+          "es": "Recompensas por nivel y carrera semanal de $100.000"
+        },
         "verified_at": "2026-10-25",
         "verified_source": "https://shuffle.com/promotions"
       },
@@ -141,8 +252,18 @@
       "referral": false,
       "rating": 7.6,
       "launched": 2019,
-      "licence": {"en": "Curaçao", "ru": "Кюрасао", "pt": "Curaçao", "es": "Curazao"},
-      "coins": {"en": "10+", "ru": "10+", "pt": "10+", "es": "10+"},
+      "licence": {
+        "en": "Curaçao",
+        "ru": "Кюрасао",
+        "pt": "Curaçao",
+        "es": "Curazao"
+      },
+      "coins": {
+        "en": "10+",
+        "ru": "10+",
+        "pt": "10+",
+        "es": "10+"
+      },
       "coin_count": 10,
       "usdt_trc20": true,
       "originals": null,
@@ -151,13 +272,28 @@
       "sportsbook": true,
       "prediction_markets": false,
       "kyc": "required",
-      "kyc_note": {"en": "Required for most withdrawals", "ru": "Требуется для большинства выводов", "pt": "Exigido na maioria dos saques", "es": "Requerido en la mayoría de retiros"},
-      "withdrawal": {"en": "Minutes to hours", "ru": "От минут до часов", "pt": "Minutos a horas", "es": "De minutos a horas"},
+      "kyc_note": {
+        "en": "Required for most withdrawals",
+        "ru": "Требуется для большинства выводов",
+        "pt": "Exigido na maioria dos saques",
+        "es": "Requerido en la mayoría de retiros"
+      },
+      "withdrawal": {
+        "en": "Minutes to hours",
+        "ru": "От минут до часов",
+        "pt": "Minutos a horas",
+        "es": "De minutos a horas"
+      },
       "withdrawal_rank": 5,
       "bonus": {
         "source": "manual",
         "kind": "vip",
-        "summary": {"en": "Cashback-style rewards; no standard welcome match verified", "ru": "Кэшбэк-награды; стандартный приветственный бонус не подтверждён", "pt": "Recompensas tipo cashback; sem bônus de boas-vindas confirmado", "es": "Recompensas tipo cashback; sin bono de bienvenida confirmado"},
+        "summary": {
+          "en": "Cashback-style rewards; no standard welcome match verified",
+          "ru": "Кэшбэк-награды; стандартный приветственный бонус не подтверждён",
+          "pt": "Recompensas tipo cashback; sem bônus de boas-vindas confirmado",
+          "es": "Recompensas tipo cashback; sin bono de bienvenida confirmado"
+        },
         "verified_at": null,
         "verified_source": null
       },
