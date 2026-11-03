@@ -142,5 +142,23 @@
     "outcome": "discarded",
     "score": null,
     "attempts": 1
+  },
+  {
+    "date": "2026-11-03",
+    "action": "new",
+    "q": "wagering requirements explained",
+    "file": "content/54-guides-wagering-requirements.html",
+    "outcome": "skipped",
+    "score": null,
+    "attempts": 1
+  },
+  {
+    "date": "2026-11-03",
+    "action": "refresh",
+    "file": "content/15-lumenbet-legit.html",
+    "reason": "thin content: 509 words",
+    "outcome": "discarded",
+    "score": null,
+    "attempts": 1
   }
 ]
