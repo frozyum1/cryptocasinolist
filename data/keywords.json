@@ -541,7 +541,7 @@
       "lang": "en",
       "tier": "mid",
       "slug": "guides/usdt0-explained",
-      "status": "planned",
+      "status": "skip",
       "priority": 40,
       "impressions": 6271,
       "related": [
@@ -550,8 +550,9 @@
         "usdt0 crypto usdt0.today",
         "usdt0 for casino deposits"
       ],
-      "intent": "play",
-      "found": "2026-11-03"
+      "intent": "general_crypto",
+      "found": "2026-11-03",
+      "note": "stablecoin query, not casino intent (manual 2026-11-03)"
     }
   ]
 }
