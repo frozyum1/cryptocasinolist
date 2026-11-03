@@ -1,15 +1,30 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-11-03",
   "refresh": [
     {
       "file": "content/11-review-stake.html",
-      "impressions": 5007,
-      "reason": "also cover these searches: stake casino; stake online casino; stakes; stake crypto casino"
+      "impressions": 6423,
+      "reason": "also cover these searches: stake casino; stake online casino; stakes; stake; stake casino review"
     },
     {
-      "file": "content/40-bonuses.html",
-      "impressions": 825,
-      "reason": "also cover these searches: online casino bonus; casino bonus offers; crypto casino bonus"
+      "file": "content/52-compare-stake-us-vs-stake.html",
+      "impressions": 11372,
+      "reason": "also cover these searches: stake.us; stake us; stake usa; stakeus; stake us casino"
+    },
+    {
+      "file": "content/00-index.html",
+      "impressions": 17796,
+      "reason": "also cover these searches: casino; gambling; gamble; online casino"
+    },
+    {
+      "file": "content/53-guides-how-mines-works.html",
+      "impressions": 1201,
+      "reason": "also cover these searches: mines; mines game; mines casino game"
+    },
+    {
+      "file": "content/52-guides-swap-crypto-no-account.html",
+      "impressions": 7269,
+      "reason": "also cover these searches: changelly crypto; changenow crypto; simpleswap crypto exchange; fixedfloat crypto"
     }
   ]
 }

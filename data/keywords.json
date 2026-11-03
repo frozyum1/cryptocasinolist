@@ -515,6 +515,43 @@
       "slug": "reviews/lumenbet",
       "status": "live",
       "priority": 1
+    },
+    {
+      "q": "minesweeper vs mines casino game",
+      "lang": "en",
+      "tier": "head",
+      "slug": "guides/minesweeper-vs-mines",
+      "status": "live",
+      "priority": 40,
+      "impressions": 210362,
+      "related": [
+        "minesweeper",
+        "minesweeper online",
+        "minesweeper game",
+        "minesweeper free",
+        "online minesweeper",
+        "minesweeper online free",
+        "minesweeper free online"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-03"
+    },
+    {
+      "q": "usdt0 crypto",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/usdt0-explained",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 6271,
+      "related": [
+        "usdt0 official website",
+        "usdt0 usdt0.today",
+        "usdt0 crypto usdt0.today",
+        "usdt0 for casino deposits"
+      ],
+      "intent": "play",
+      "found": "2026-11-03"
     }
   ]
 }
