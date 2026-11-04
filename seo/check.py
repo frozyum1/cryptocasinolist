@@ -11,6 +11,7 @@ New pages (not yet committed) are held to the full bar.
 import datetime
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -18,6 +19,61 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MIN_WORDS = {"article": 600, "list": 500, "page": 120}
 STALE_DAYS = 60
 EXEMPT_THIN = {"privacy", "404", "responsible-gambling", "about"}
+
+# A first-person claim that we put money through a casino. review.py already
+# stops the autopilot ADDING one; nothing ever audited the pages that were
+# written by hand, which is how the homepage came to say "we deposited USDT
+# at each casino" while every test_log in the data file was empty and the
+# Roobet review said the opposite on the same site.
+FIRST_PERSON_TEST = re.compile(
+    r"\b(we|our team) (tested|deposited|withdrew|played|signed up|claimed|verified)\b"
+    r"|\bмы (протестировали|внесли|вывели)\b",
+    re.I,
+)
+# The same claim stretched over the whole list. Unprovable by construction:
+# it asserts something about casinos the page never names.
+BLANKET = re.compile(
+    r"\b(each|every|all (five|of the)) casino|\bat each\b"
+    r"|\b(кажд\w+|все) казино|\bem cada cassino\b|\ben cada casino\b",
+    re.I,
+)
+
+
+def sentences(text):
+    return [t.strip() for t in re.split(r"(?<=[.!?])\s+", text) if t.strip()]
+
+
+def audit_testing_claims(pages, data, errors, warnings):
+    """Every hands-on claim must name a casino whose test_log backs it."""
+    tested = {c["name"].lower() for c in data["casinos"] if c.get("test_log")}
+    names = {c["name"].lower() for c in data["casinos"]}
+    for p in pages:
+        src = os.path.join(ROOT, "content", os.path.basename(p["file"]))
+        body = open(src, encoding="utf-8").read() if os.path.exists(src) else ""
+        # The claim that shipped lived in the front-matter description as much
+        # as in the prose, so both are audited.
+        # The embedded JSON-LD is machine data, not prose, and it has no
+        # sentence punctuation — left in, it swallows the line after it.
+        body = "\n".join(l for l in body.splitlines() if not l.startswith("jsonld:"))
+        text = re.sub(r"<[^>]+>", " ", body)
+        text = " ".join([text, p.get("title") or "", p.get("description") or ""])
+        for sent in sentences(text):
+            m = FIRST_PERSON_TEST.search(sent)
+            if not m:
+                continue
+            # Quote around the claim itself, not the start of a long sentence.
+            a, b = max(0, m.start() - 40), min(len(sent), m.end() + 50)
+            quote = ("…" if a else "") + " ".join(sent[a:b].split()) + ("…" if b < len(sent) else "")
+            where = f"{p['file']}: \"{quote}\""
+            if BLANKET.search(sent):
+                errors.append(f"{where} — claims hands-on testing across the whole list; no page can support that")
+                continue
+            named = [n for n in names if n in sent.lower()]
+            unbacked = [n for n in named if n not in tested]
+            if unbacked:
+                errors.append(f"{where} — claims testing of {', '.join(sorted(unbacked))}, which has no test_log")
+            elif not named:
+                warnings.append(f"{where} — hands-on claim that names no casino; say which one")
 
 
 def committed(path):
@@ -74,7 +130,9 @@ def main():
         if not v or (today - datetime.date.fromisoformat(v)).days > STALE_DAYS:
             warnings.append(f"data: {c['name']} facts last verified {v or 'never'}; re-check on the casino itself")
         if not c.get("test_log"):
-            warnings.append(f"data: {c['name']} has no test_log entries, but the site says every casino was tested")
+            warnings.append(f"data: {c['name']} has no test_log entries, so no page may claim we deposited or withdrew there")
+
+    audit_testing_claims(pages, data, errors, warnings)
 
     if "--json" in sys.argv:
         print(json.dumps({"errors": errors, "warnings": warnings}, ensure_ascii=False, indent=1))
