@@ -1,0 +1,94 @@
+---
+slug: guides/how-plinko-works
+cluster: guides
+type: article
+title: How the Plinko Game Works: Odds, Risk Levels, Fair Play
+description: What the Plinko game is, how the ball's path is decided, why the centre pays least, and how the house edge and provably fair checks work.
+---
+<div class="eyebrow">Guides · Casino originals</div>
+<h1>How the Plinko game works</h1>
+<p class="lede">Plinko drops a ball down a triangle of pegs; it bounces left or right at every row and lands in a slot at the bottom that pays your bet multiplied by a fixed number. The maths is simple coin-flipping: the middle slots are hit most often and pay the least, the outer slots are rare and pay the most, and the multiplier table is built so the casino keeps a small percentage of every bet on average.</p>
+
+<h2>The board in plain terms</h2>
+<p>A crypto-casino Plinko board has three settings you control before you drop a ball:</p>
+<ul>
+  <li><strong>Rows.</strong> Usually somewhere between 8 and 16. More rows means more bounces, more slots at the bottom, and a bigger gap between the biggest and smallest multiplier.</li>
+  <li><strong>Risk level.</strong> <em>Low</em> flattens the payout curve: the centre slots pay close to your stake and the edges pay a modest multiple. <em>Medium</em> sits between the two — the centre pays less than your stake, and the outer slots pay enough to matter without needing a once-in-thousands drop. <em>High</em> pushes most of the money to the outer slots, so the centre returns a fraction of your stake and the edges carry the headline multiplier.</li>
+  <li><strong>Bet size.</strong> Per ball. Most versions also have an auto-bet mode that drops many balls in sequence.</li>
+</ul>
+<p>The ball itself is cosmetic. In a digital Plinko the result is decided by a random number first and then animated; there is no physics engine deciding where it lands, and nothing you do with the mouse changes the outcome.</p>
+
+<h2>Why the centre is crowded</h2>
+<p>Each row is one left-or-right decision with a 50/50 chance. With 16 rows the ball makes 16 of them, so the number of ways to land in a given slot is a line of Pascal's triangle, and the chance of a slot is that number divided by 2<sup>16</sup> = 65,536.</p>
+
+<div class="tbl">
+<table>
+  <tr><th>Slot (distance from centre, 16 rows)</th><th>Paths that reach it</th><th>Chance of one ball</th></tr>
+  <tr><td>Centre</td><td>12,870</td><td>19.6%</td></tr>
+  <tr><td>1 away</td><td>11,440</td><td>17.5% (each side)</td></tr>
+  <tr><td>2 away</td><td>8,008</td><td>12.2%</td></tr>
+  <tr><td>3 away</td><td>4,368</td><td>6.7%</td></tr>
+  <tr><td>4 away</td><td>1,820</td><td>2.8%</td></tr>
+  <tr><td>5 away</td><td>560</td><td>0.85%</td></tr>
+  <tr><td>6 away</td><td>120</td><td>0.18%</td></tr>
+  <tr><td>7 away</td><td>16</td><td>0.024%</td></tr>
+  <tr><td>Outer edge</td><td>1</td><td>0.0015%</td></tr>
+</table>
+</div>
+
+<p>That last line is the one people misread. On a 16-row board there is exactly one path out of 65,536 that reaches each far edge — roughly one ball in 65,000. A headline multiplier of, say, 1,000x on the edge is an illustrative number, not a prize you should plan around: at that frequency you would expect to wait tens of thousands of drops between hits, and those drops cost money.</p>
+
+<h2>The house edge, worked out</h2>
+<p>Expected return is just every slot's chance multiplied by its payout, added up. Take a simple 8-row board (9 slots, 256 paths) with an illustrative multiplier set of 4.4, 2.1, 1.1, 1.0, 0.5, 1.0, 1.1, 2.1, 4.4:</p>
+<ul>
+  <li>Edges: 2 × (1/256 × 4.4) = 0.034</li>
+  <li>Next in: 2 × (8/256 × 2.1) = 0.131</li>
+  <li>Next in: 2 × (28/256 × 1.1) = 0.241</li>
+  <li>Next in: 2 × (56/256 × 1.0) = 0.438</li>
+  <li>Centre: 70/256 × 0.5 = 0.137</li>
+</ul>
+<p>Total: about 0.98. So an average bet returns about 98% and the house keeps about 2% — the house edge. Change the multipliers and you change that number; the player does not choose the multipliers.</p>
+<p>In the common implementation, a casino scales the multiplier table for each row count and each risk level so that this sum lands on the same target return. That is why switching from low to high risk usually changes how your results are spread out — many small losses, occasional big wins — rather than how much you are expected to lose per 100 bets. It is worth checking the payout table on the game you are actually playing, because the arithmetic above is the only thing that decides it.</p>
+<p>For reference, Lumenbet publishes a 2% house edge on Plinko, the same figure it publishes for Dice, Mines and Limbo (Coinflip is 1%, Crash 3%, Keno 4%). That is the operator's own published number, not something we measured ourselves over a sample of drops. Crash works on the same principle with a different shape — see <a href="/guides/how-crash-works/">how Crash works</a> — and <a href="/guides/how-mines-works/">Mines</a> lets you see the odds change as you click.</p>
+
+<h2>Provably fair Plinko: what you can actually check</h2>
+<p>Plinko is one of the easiest games to verify because the result is a short list of left/right decisions. The standard setup works like this:</p>
+<ol>
+  <li>The casino generates a <strong>server seed</strong> and shows you its SHA-256 hash before you play. The hash commits it: the seed cannot be changed later without the hash breaking.</li>
+  <li>You set a <strong>client seed</strong> — any string you like. Your input is what stops the server from picking an outcome after seeing your bet.</li>
+  <li>Each bet gets a <strong>nonce</strong> that increases by one.</li>
+  <li>The game runs HMAC-SHA256 over the client seed and nonce using the server seed as the key, turns the output bytes into numbers, and uses one number per row to decide left or right.</li>
+  <li>When you rotate your seed, the casino reveals the old server seed. You hash it yourself and compare it to the hash you were shown, then replay the HMAC to reproduce every drop.</li>
+</ol>
+<p>You can run those two steps in our <a href="/tools/provably-fair-verifier/">provably fair verifier</a>. What verification proves is that the results were not altered after your bet. It does not prove the multiplier table is generous, and it does not prove the casino will pay you — those are separate questions.</p>
+
+<h2>Where to play Plinko</h2>
+<p>Plinko is an in-house "original" rather than a slot from a studio, so what the board looks like, which risk levels exist and what the top multiplier is differ from site to site. We do not list game-by-game catalogues for every operator here; the table below compares what each site documents about provable fairness, and the individual reviews go into detail.</p>
+
+{{TABLE:fair}}
+
+<p>Full disclosure: this site is run by the team behind Lumenbet, so treat the next paragraph as what it is. Lumenbet has {{FACT:lumenbet.originals}} in-house originals including Plinko, with provably fair verification, and its licence status is {{FACT:lumenbet.licence}} — there is no regulator to complain to if something goes wrong. It launched in {{FACT:lumenbet.launched}}, has no sportsbook, and every withdrawal is approved by a person rather than automatically. If you take the welcome bonus, withdrawals stay blocked until the wagering is done, the bonus expires or you forfeit it. Read <a href="/reviews/lumenbet/">our Lumenbet review</a> and the <a href="/provably-fair-casinos/">provably fair comparison</a> before deciding.</p>
+
+{{CTA}}
+
+<h2>Sensible ways to use the settings</h2>
+<p>No row count, risk level or bet pattern changes the expected return. What they change is how long your balance lasts and how wild the swings are. A few practical points:</p>
+<ul>
+  <li>High risk on a 16-row board is a lottery-shaped bet: most drops return a fraction of the stake while you wait for an outer slot.</li>
+  <li>Low risk returns something close to your stake most of the time, which feels steadier but still loses the house edge on every ball.</li>
+  <li>Auto-bet multiplies your exposure fast. One hundred automatic drops at the same stake is one hundred bets, not one.</li>
+  <li>Doubling after a loss does not beat the edge. It converts many small losses into one large one when you hit the table limit or run out of balance.</li>
+  <li>Set a loss limit in money and time before you start, and do not move it mid-session.</li>
+</ul>
+<p>Gambling can be addictive. Plinko's fast, repeatable drops make it easy to lose track of how much you have staked — if that sounds familiar, read our <a href="/responsible-gambling/">responsible gambling page</a>. For a broader look at what else sits in the originals menu, see our guide to <a href="/guides/crypto-casino-games/">crypto casino games</a>.</p>
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Is the Plinko ball's path really random?</summary><p>In a provably fair implementation the path comes from an HMAC-SHA256 output of the server seed, your client seed and the bet nonce. You can reproduce it yourself once the server seed is revealed. The animation is a drawing of a result that was already decided.</p></details>
+  <details><summary>Which risk level is best?</summary><p>None is. Low, medium and high usually share the same expected return in the common implementation and differ only in volatility — low gives frequent small results, high gives rare large ones. Pick the one matching how much swing you are comfortable with, not the one you think pays more.</p></details>
+  <details><summary>Does adding more rows improve my chances?</summary><p>It widens the spread. More rows mean more slots, a rarer outer edge and a bigger top multiplier, but the overall return is normally scaled to the same target. You are choosing shape, not advantage.</p></details>
+  <details><summary>Can I verify a Plinko round I already played?</summary><p>Yes, once you rotate your seed pair and the casino reveals the old server seed. Hash the revealed seed, check it matches the hash published beforehand, then replay the HMAC with your client seed and the nonce in our <a href="/tools/provably-fair-verifier/">verifier</a>.</p></details>
+  <details><summary>What is the house edge on Plinko?</summary><p>It depends on the multiplier table the casino sets, since the edge is simply 100% minus the sum of each slot's chance times its payout. Lumenbet publishes 2% for its Plinko; other operators publish their own figures, which you should check in the game's own info panel.</p></details>
+</div>
+
+{{RELATED}}
