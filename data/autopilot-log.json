@@ -214,5 +214,23 @@
     "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/13",
     "score": null,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-05",
+    "action": "new",
+    "q": "wagering requirements explained",
+    "file": "content/57-guides-wagering-requirements.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
+  },
+  {
+    "date": "2026-11-05",
+    "action": "refresh",
+    "file": "content/44-usdt.html",
+    "reason": "also cover these searches: usdt0 official website; usdt0 usdt0.today; usdt0 crypto usdt0.today",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
   }
 ]
