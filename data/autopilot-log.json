@@ -232,5 +232,23 @@
     "outcome": "published",
     "score": 9,
     "attempts": 1
+  },
+  {
+    "date": "2026-11-06",
+    "action": "new",
+    "q": "how provably fair works",
+    "file": "content/58-guides-provably-fair-explained.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
+  },
+  {
+    "date": "2026-11-06",
+    "action": "refresh",
+    "file": "content/53-guides-how-mines-works.html",
+    "reason": "also cover these searches: mines; mines game; mines casino game",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
   }
 ]
