@@ -2,12 +2,12 @@
 slug: guides/how-mines-works
 cluster: guides
 type: article
-title: How the Mines Game Works: Odds, Multipliers, Fair Play
-description: Mines explained: the grid, how the multiplier is calculated from the house edge, how to verify a round, and how Mines behaves under bonus wagering.
+title: How the Mines Casino Game Works: Odds and Multipliers
+description: Mines explained in full: the grid, mine counts, how multipliers come from the house edge, your real odds per pick, how to verify a round, and bonus rules.
 ---
 <div class="eyebrow">Guides · Casino originals</div>
 <h1>How the Mines game works</h1>
-<p class="lede">Mines is a grid game: you pick how many hidden bombs sit under a board of tiles, then click tiles one at a time. Every safe tile raises your multiplier, and you can cash out whenever you like — but one bomb ends the round and the stake is gone.</p>
+<p class="lede">Mines is a grid game: you pick how many hidden bombs sit under a board of tiles, then click tiles one at a time. Every safe tile raises your multiplier and you can cash out whenever you like — but one bomb ends the round and the stake is gone.</p>
 
 <h2>The rules in 30 seconds</h2>
 <ol>
@@ -18,6 +18,10 @@ description: Mines explained: the grid, how the multiplier is calculated from th
   <li>Click a mine and the round is over immediately. There is no partial payout.</li>
 </ol>
 <p>That is the whole game. There is no dealer, no spin, no opponent — only a probability that shrinks with every tile you open, and a multiplier that grows to match it.</p>
+
+<h2>Is the Mines casino game the same as Minesweeper?</h2>
+<p>No, and the difference matters. Minesweeper is a puzzle: the numbers revealed on the board tell you where the mines are, so skill and deduction decide whether you clear it. The Mines casino game strips that out. Nothing is revealed except "gem" or "bomb", so there is no information to deduce from — every unopened tile is equally likely to hide a mine, and the only choices you make are the mine count, the stake and when to stop. We pull the two apart in detail in <a href="/guides/minesweeper-vs-mines/">Minesweeper vs the Mines casino game</a>.</p>
+<p>Mines belongs to the "originals" family: in-house games built by the casino or a studio rather than slot suppliers, usually with a published house edge and provably fair seeds. Crash, Dice, Plinko, Limbo and Keno sit in the same bucket, and you can see how they compare in our <a href="/guides/crypto-casino-games/">crypto casino games guide</a>.</p>
 
 <h2>The grid and the mine count</h2>
 <p>In most implementations the board is 5×5, so 25 tiles, and you can set anywhere from 1 to 24 mines. That range is a genre convention rather than a universal spec: the exact grid size and mine limits are set by whichever studio built the version you are playing, so check the game's own settings before assuming.</p>
@@ -32,23 +36,45 @@ description: Mines explained: the grid, how the multiplier is calculated from th
 <div class="tbl">
 <table>
   <thead>
-    <tr><th>Mines</th><th>1 gem found</th><th>3 gems found</th><th>5 gems found</th></tr>
+    <tr><th>Mines</th><th>1 gem found</th><th>3 gems found</th><th>5 gems found</th><th>10 gems found</th></tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td>1.02×</td><td>1.11×</td><td>1.23×</td></tr>
-    <tr><td>3</td><td>1.11×</td><td>1.46×</td><td>1.98×</td></tr>
-    <tr><td>5</td><td>1.23×</td><td>1.98×</td><td>3.36×</td></tr>
-    <tr><td>10</td><td>1.63×</td><td>4.95×</td><td>17.34×</td></tr>
+    <tr><td>1</td><td>1.02×</td><td>1.11×</td><td>1.23×</td><td>1.63×</td></tr>
+    <tr><td>3</td><td>1.11×</td><td>1.46×</td><td>1.98×</td><td>4.95×</td></tr>
+    <tr><td>5</td><td>1.23×</td><td>1.98×</td><td>3.36×</td><td>17.34×</td></tr>
+    <tr><td>10</td><td>1.63×</td><td>4.95×</td><td>17.34×</td><td>1,066.7×</td></tr>
+    <tr><td>15</td><td>2.45×</td><td>18.78×</td><td>206.6×</td><td>≈3.2 million× (board cleared)</td></tr>
+    <tr><td>24</td><td>24.5×</td><td>—</td><td>—</td><td>—</td></tr>
   </tbody>
 </table>
 </div>
 
-<p>Two things fall out of this. First, the multiplier accelerates: each extra gem is riskier than the last, because the safe tiles are being used up while the mines stay put. Second, the multiplier is fully determined by mines and gems — not by which tiles you clicked, not by how long you waited.</p>
+<p>Three things fall out of this. First, the multiplier accelerates: each extra gem is riskier than the last, because the safe tiles are being used up while the mines stay put. Second, the multiplier is fully determined by mines and gems — not by which tiles you clicked, not by how long you waited. Third, the formula is symmetric: 5 mines with 10 gems pays the same 17.34× as 10 mines with 5 gems, because the combinatorics are identical.</p>
+<p>The bottom-right corner of that table is theory, not a payout you should expect to receive. Many games apply a maximum-win cap that bites long before a seven-figure multiplier, so read the rules panel of the version you are playing.</p>
+
+<h2>Your real odds, pick by pick</h2>
+<p>Multipliers look generous until you convert them back into probabilities. The same formula gives you the chance of reaching a cash-out:</p>
+<ul>
+  <li><strong>3 mines, 3 gems:</strong> about 67% — you get there two rounds in three, for 1.46×.</li>
+  <li><strong>5 mines, 5 gems:</strong> about 29% — roughly one round in 3.4, for 3.36×.</li>
+  <li><strong>10 mines, 3 gems:</strong> about 20%, for 4.95×.</li>
+  <li><strong>10 mines, 10 gems:</strong> under 0.1%, which is why the multiplier is four digits.</li>
+</ul>
+<p>Multiply any of those pairs together and you land on the same place: 98% of the stake. That is what a published 2% edge means in practice.</p>
 
 <h2>Why no mine setting is "better value"</h2>
 <p>A 2% house edge means the game is built to return 98% of wagered money over a very long run, and it applies to every configuration equally. One mine with a cash-out at 1.02× and ten mines with a cash-out at 17.34× have the same expected value: 98% of your stake. What changes is variance — how wildly your balance swings on the way to that number.</p>
 <p>So pick the setting that matches the session you want, not the one you think pays more. Low mine counts give long, slow sessions with frequent small wins. High mine counts give short, brutal sessions with rare big ones. Neither beats the edge, and no click pattern, tile order or "cold corner" changes the odds — the mines are already placed before your first click, and each remaining tile is equally likely to be one.</p>
-<p>Gambling can be addictive. If you are picking mine counts to chase back a loss, that is the moment to stop rather than the moment to raise the stake. Our <a href="/responsible-gambling/">responsible gambling page</a> lists the practical limits worth setting before you play.</p>
+
+<h2>The strategies you will see, and what they actually do</h2>
+<p>Mines attracts systems because it looks controllable. None of them change the maths; they only reshape the distribution of outcomes.</p>
+<ul>
+  <li><strong>Fixed-gem cash-out</strong> (always stop at 3 gems, say) is a discipline tool, not an edge. Its value is that it removes the in-round decision that costs most players their stake.</li>
+  <li><strong>Martingale</strong> — doubling after a loss — converts many small wins into one very large loss. With a 1.11× cash-out you need almost ten wins to recover one bust, and table or balance limits arrive faster than the recovery does.</li>
+  <li><strong>Pattern play</strong> (diagonals, corners, "the row that just paid") has no effect at all. The board is fixed before your first click and every unopened tile is identical.</li>
+  <li><strong>Auto-play with a stop-loss</strong> at least enforces a limit, but it also raises the amount wagered per hour, and the edge applies to every unit wagered.</li>
+</ul>
+<p>Gambling can be addictive. If you are picking mine counts to chase back a loss, that is the moment to stop rather than the moment to raise the stake. Decide a session budget and a loss limit before the first click, and treat the cash-out rule as the only "strategy" worth having. Our <a href="/responsible-gambling/">responsible gambling page</a> lists the practical limits worth setting before you play.</p>
 
 <h2>Provably fair: how to check a Mines round</h2>
 <p>Mines is one of the originals that can be verified, because the board layout comes from a seed, not from a server's goodwill. The standard scheme works like this:</p>
@@ -58,17 +84,17 @@ description: Mines explained: the grid, how the multiplier is calculated from th
   <li>Server seed + client seed + nonce are run through HMAC-SHA256, and the output bytes are converted into mine positions on the 25 tiles.</li>
   <li>When you rotate your seed, the old server seed is revealed. Hash it yourself: if it matches the hash you were shown, the board was fixed before your first click.</li>
 </ul>
-<p>Change your client seed before a session rather than after, and keep the hash. You can re-run the calculation in our <a href="/tools/provably-fair-verifier/">provably fair verifier</a>, and see which sites expose seeds for which games on the <a href="/provably-fair-casinos/">provably fair casinos</a> list.</p>
+<p>Change your client seed before a session rather than after, and keep the hash. Verification proves the board was not altered mid-round; it does not prove the house edge is what the casino says, and it cannot tell you whether the operator will pay a withdrawal. You can re-run the calculation in our <a href="/tools/provably-fair-verifier/">provably fair verifier</a>, see how the scheme works end to end in <a href="/guides/provably-fair-explained/">provably fair explained</a>, and check which sites expose seeds for which games on the <a href="/provably-fair-casinos/">provably fair casinos</a> list.</p>
 
 {{TABLE:fair}}
 
 <h2>Mines and bonus wagering</h2>
 <p>If you are clearing a welcome bonus on Mines, two terms matter more than the multipliers: how much you must wager, and the cap on how much you may bet per round. Those are casino-specific, so check the terms rather than guessing. For the offer at Lumenbet — the casino run by the same team as this site — the current terms are {{FACT:lumenbet.bonus.summary}}, with a minimum deposit of {{FACT:lumenbet.bonus.min_deposit}} {{FACT:lumenbet.bonus.currency}}, a maximum bet of {{FACT:lumenbet.bonus.max_bet}} {{FACT:lumenbet.bonus.currency}} per round and {{FACT:lumenbet.bonus.days}} days to finish. Full breakdown on the <a href="/lumenbet/bonus/">Lumenbet bonus page</a>.</p>
-<p>Whether a specific game counts toward wagering, and at what percentage, varies between casinos and is sometimes reduced for low-edge originals — read the bonus terms before you grind. To see what a rollover actually costs you on average, put the numbers into the <a href="/tools/wagering-calculator/">wagering calculator</a> first.</p>
+<p>Whether a specific game counts toward wagering, and at what percentage, varies between casinos and is sometimes reduced for low-edge originals — read the bonus terms before you grind. Note too that a low-variance Mines setting takes a long time to turn over a 30x requirement in 1.11× increments, while a high-variance setting can end the attempt in one click. To see what a rollover actually costs you on average, put the numbers into the <a href="/tools/wagering-calculator/">wagering calculator</a> first.</p>
 
 {{CTA}}
 
-<p>Fair warning if you do choose Lumenbet: it launched in 2026, it holds no gambling licence, there is no sportsbook, and every withdrawal is approved by a person rather than released automatically. Those are real trade-offs against the older licensed sites in the table above, and you should weigh them yourself.</p>
+<p>Fair warning if you do choose Lumenbet: it launched in 2026, it holds no gambling licence, there is no sportsbook, every withdrawal is approved by a person rather than released automatically, and withdrawals stay blocked while welcome-bonus wagering is still outstanding. Those are real trade-offs against the older licensed sites in the table above, and you should weigh them yourself.</p>
 
 <h2>Common mistakes</h2>
 <ul>
@@ -76,8 +102,9 @@ description: Mines explained: the grid, how the multiplier is calculated from th
   <li><strong>Assuming auto-play is safer.</strong> Auto-play just repeats your choices faster, which means the house edge applies to more money per hour.</li>
   <li><strong>Treating a cleared board as "due".</strong> Each round places mines fresh. Previous rounds carry no information.</li>
   <li><strong>Ignoring the seed.</strong> Verification only works if you captured the hash before playing.</li>
+  <li><strong>Forgetting the max-bet rule.</strong> Under a bonus, a single round above the cap can void the whole thing.</li>
 </ul>
-<p>If you like Mines, the two games closest to it are Crash and Limbo — the same cash-out-before-the-bust shape. We cover the first in <a href="/guides/how-crash-works/">how Crash works</a>, and the wider catalogue in our <a href="/guides/crypto-casino-games/">crypto casino games guide</a>.</p>
+<p>If you like Mines, the two games closest to it are Crash and Limbo — the same cash-out-before-the-bust shape. We cover the first in <a href="/guides/how-crash-works/">how Crash works</a>, and the falling-ball cousin in <a href="/guides/how-plinko-works/">how Plinko works</a>.</p>
 
 <h2>FAQ</h2>
 <div class="faq">
