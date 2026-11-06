@@ -9,12 +9,7 @@
       "referral": true,
       "rating": 8.7,
       "launched": 2026,
-      "licence": {
-        "en": "None",
-        "ru": "Нет",
-        "pt": "Nenhuma",
-        "es": "Ninguna"
-      },
+      "licence": null,
       "coins": {
         "en": "USDT (TRON), BTC, ETH, LTC + more",
         "ru": "USDT (TRON), BTC, ETH, LTC и другие",

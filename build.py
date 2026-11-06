@@ -180,11 +180,11 @@ PRESETS = {
     # preset: (columns, sort key, filter)
     "home": (["rank", "casino", "rating", "coins", "originals", "slots", "sportsbook", "kyc", "withdrawal"], lambda c: -c["rating"], None),
     "bonuses": (["casino", "offer", "wagering", "min_dep", "checked"], lambda c: -c["rating"], None),
-    "nokyc": (["casino", "kyc", "licence", "withdrawal"], lambda c: (KYC_ORDER[c["kyc"]], -c["rating"]), None),
+    "nokyc": (["casino", "kyc", "withdrawal"], lambda c: (KYC_ORDER[c["kyc"]], -c["rating"]), None),
     "withdrawal": (["casino", "withdrawal", "kyc", "coins"], lambda c: c["withdrawal_rank"], None),
     "usdt": (["casino", "usdt", "coins", "withdrawal"], lambda c: -c["rating"], lambda c: c.get("usdt_trc20")),
     "fair": (["casino", "originals", "slots", "pm"], lambda c: -c["rating"], lambda c: c.get("provably_fair")),
-    "alternatives": (["casino", "licence", "kyc", "sportsbook", "pm", "withdrawal"], lambda c: -c["rating"], lambda c: c["id"] != "stake"),
+    "alternatives": (["casino", "kyc", "sportsbook", "pm", "withdrawal"], lambda c: -c["rating"], lambda c: c["id"] != "stake"),
 }
 
 
@@ -230,7 +230,10 @@ def render_table(preset, lang):
 def render_versus(a_id, b_id, lang):
     a, b = CASINOS[a_id], CASINOS[b_id]
     rows = [("launched", str(a["launched"]), str(b["launched"])),
-            ("licence", t(a["licence"], lang), t(b["licence"], lang)),
+            # A licence row only when both casinos publish one: the site does
+            # not state Lumenbet's licensing status, so a comparison that
+            # includes it leaves the row out rather than printing a gap.
+            *([("licence", t(a["licence"], lang), t(b["licence"], lang))] if a.get("licence") and b.get("licence") else []),
             ("coins", t(a["coins"], lang), t(b["coins"], lang)),
             ("originals", str(a["originals"] or L[lang]["yes"]), str(b["originals"] or L[lang]["yes"])),
             ("slots", a["slots"], b["slots"]),

@@ -23,6 +23,8 @@ MAX_SIMILARITY = 0.30
 BANNED = [r"\bguarantee[ds]? (you |a |to )?(win|wins|profit|profits|returns|payouts?|money)\b", r"\bguaranteed (win|profit|returns?)\b",
           r"\brisk[- ]free (bet|bonus|play|money)", r"\bsure win\b", r"\bfoolproof\b",
           r"\bnever lose\b", r"\bsure[- ]fire\b", r"гарантированн\w* (выигрыш|прибыл)", r"\bбез риска\b"]
+# Lumenbet's licensing status is never stated on this site (owner decision 2026-11-06).
+LUMENBET_LICENCE = r"lumenbet[^.]{0,120}(no (gambling )?licen|unlicen|without a licen|holds no (gambling )?licen|licen[cs]e status)|(no (gambling )?licen|unlicen)[^.]{0,80}lumenbet|lumenbet\\.licence"
 FIRST_PERSON_TEST = r"\b(we|our team) (tested|deposited|withdrew|played|signed up|claimed|verified)\b|\bмы (протестировали|внесли|вывели)\b"
 
 REVIEW_SYSTEM = """You are the last check before a page on a gambling comparison site goes live with no human review. Be strict: a false claim here can mislead players and get the site penalised by Google.
@@ -30,9 +32,10 @@ REVIEW_SYSTEM = """You are the last check before a page on a gambling comparison
 You receive the casino data file (the only allowed source of casino-specific facts) and a page. Shortcodes like {{TABLE:...}}, {{FACT:...}}, {{VERSUS:...}} are filled from that data at build time and are always fine.
 
 Flag as unsupported: any casino-specific fact typed in prose that is not in the data or contradicts it (bonus sizes, licences, coin counts, game counts, withdrawal times, KYC rules, dates, rankings by others, awards, user counts); any claim of testing, deposits or screenshots; any invented statistic, quote, testimonial or study; any promise of winning or strategy claimed to beat the house edge.
+Also flag as a rule violation any statement about Lumenbet's licensing status (that it has no licence, is unlicensed, is licensed, or a licence is pending), including contrasts that make it obvious; the site does not state it.
 Allowed without data: general explanations of how gambling, wagering, provably fair hashing, blockchains and house edge work, and Lumenbet's published house edges (Coinflip 1%; Dice, Mines, Plinko, Limbo 2%; Crash 3%; Keno 4%).
 
-Score 0-10 for how well the page serves someone who searched its title's topic (depth, accuracy, clarity, honesty about Lumenbet's weaknesses where relevant, disclosure that the site is run by Lumenbet's team when it recommends Lumenbet). verdict: publish only if there is nothing unsupported and the score is 8 or more; revise if fixable; reject if the topic itself is a problem."""
+Score 0-10 for how well the page serves someone who searched its title's topic (depth, accuracy, clarity, honesty about Lumenbet's weaknesses where relevant (other than licensing, which is never mentioned), disclosure that the site is run by Lumenbet's team when it recommends Lumenbet). verdict: publish only if there is nothing unsupported and the score is 8 or more; revise if fixable; reject if the topic itself is a problem."""
 
 SCHEMA = {
     "type": "object",
@@ -71,6 +74,9 @@ def deterministic(path, original=None):
     old_tests = len(re.findall(FIRST_PERSON_TEST, body_text(original))) if original else 0
     if len(re.findall(FIRST_PERSON_TEST, text)) > old_tests:
         problems.append("claims first-person testing that the data does not record")
+
+    if re.search(LUMENBET_LICENCE, body_text(src), re.I):
+        problems.append("states Lumenbet's licensing status, which the site never does")
 
     mine = shingles(text)
     for name in os.listdir(os.path.join(ROOT, "content")):
