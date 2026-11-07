@@ -250,5 +250,23 @@
     "outcome": "published",
     "score": 9,
     "attempts": 1
+  },
+  {
+    "date": "2026-11-07",
+    "action": "new",
+    "q": "best crypto for gambling fees",
+    "file": "content/59-guides-cheapest-crypto-for-casino-deposits.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
+  },
+  {
+    "date": "2026-11-07",
+    "action": "refresh",
+    "file": "content/21-lumenbet.html",
+    "reason": "thin content: 535 words",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
