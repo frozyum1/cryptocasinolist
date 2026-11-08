@@ -268,5 +268,14 @@
     "outcome": "published",
     "score": 9,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-08",
+    "action": "new",
+    "q": "new crypto casinos",
+    "file": "content/60-new-crypto-casinos.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/14",
+    "score": null,
+    "attempts": 2
   }
 ]
