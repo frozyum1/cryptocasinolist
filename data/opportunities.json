@@ -1,30 +1,40 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-09",
   "refresh": [
     {
-      "file": "content/00-index.html",
-      "impressions": 17796,
-      "reason": "also cover these searches: casino; gambling; gamble"
+      "file": "content/44-usdt.html",
+      "impressions": 11029,
+      "reason": "also cover these searches: usdt0; usdt0 official website; usdt0 website; usdt0 usdt0.today"
     },
     {
       "file": "content/52-compare-stake-us-vs-stake.html",
-      "impressions": 11372,
-      "reason": "also cover these searches: stake.us; stake us casino; stake usa; stakeus"
+      "impressions": 9374,
+      "reason": "also cover these searches: stake.us; stake us; stake usa; stakeus; stake us casino; stake.us casino; stake us social casino"
     },
     {
       "file": "content/11-review-stake.html",
-      "impressions": 6423,
-      "reason": "also cover these searches: stake casino; stake online casino; stakes"
+      "impressions": 5147,
+      "reason": "also cover these searches: stake casino; stake online casino; stakes; stake crypto casino review"
     },
     {
-      "file": "content/44-usdt.html",
-      "impressions": 5196,
-      "reason": "also cover these searches: usdt0 official website; usdt0 usdt0.today; usdt0 crypto usdt0.today"
+      "file": "content/00-index.html",
+      "impressions": 846,
+      "reason": "also cover these searches: gamble; gambling sites crypto"
     },
     {
       "file": "content/53-guides-how-mines-works.html",
-      "impressions": 1201,
+      "impressions": 930,
       "reason": "also cover these searches: mines; mines game; mines casino game"
+    },
+    {
+      "file": "content/40-bonuses.html",
+      "impressions": 549,
+      "reason": "also cover these searches: online casino bonus; casino bonus offers"
+    },
+    {
+      "file": "content/03-es-index.html",
+      "impressions": 443,
+      "reason": "also cover these searches: casino online; casinos online cripto"
     }
   ]
 }

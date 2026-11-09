@@ -553,6 +553,20 @@
       "intent": "general_crypto",
       "found": "2026-11-03",
       "note": "stablecoin query, not casino intent (manual 2026-11-03)"
+    },
+    {
+      "q": "ruleta casino",
+      "lang": "es",
+      "tier": "long",
+      "slug": "es/guides/como-funciona-la-ruleta",
+      "status": "live",
+      "priority": 40,
+      "impressions": 462,
+      "related": [
+        "como funciona la ruleta de casino"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-09"
     }
   ]
 }

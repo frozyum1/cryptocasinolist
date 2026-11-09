@@ -277,5 +277,23 @@
     "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/14",
     "score": null,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-09",
+    "action": "new",
+    "q": "ruleta casino",
+    "file": "content/60-es-guides-como-funciona-la-ruleta.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
+  },
+  {
+    "date": "2026-11-09",
+    "action": "refresh",
+    "file": "content/03-es-index.html",
+    "reason": "also cover these searches: casino online; casinos online cripto",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
