@@ -85,7 +85,9 @@ def read(p):
 def parse(src):
     m = re.match(r"^---\n(.*?)\n---\n(.*)$", src, re.S)
     meta = dict(l.split(":", 1) for l in m.group(1).splitlines() if ":" in l)
-    meta = {k.strip(): v.strip() for k, v in meta.items()}
+    # A value the writer wrapped in quotes (YAML habit) would otherwise render
+    # as a literal "quoted" <title>; strip one matching pair.
+    meta = {k.strip(): re.sub(r'^(["\'])(.*)\1$', r"\2", v.strip()) for k, v in meta.items()}
     return meta, m.group(2)
 
 
