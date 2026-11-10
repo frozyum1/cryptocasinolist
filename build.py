@@ -253,7 +253,15 @@ def render_versus(a_id, b_id, lang):
     return "\n".join(out)
 
 
+# Facts the builder refuses to print even though they exist in the data on some
+# builds: `limited` is deleted whenever the live bonus fetch fails (geo-blocked
+# CI runners), so a page that prints it builds locally and breaks in CI.
+VOLATILE_FACTS = ("lumenbet.bonus.limited",)
+
+
 def render_fact(path, lang):
+    if path.startswith(VOLATILE_FACTS):
+        raise KeyError(f"fact {path} is build-time only and cannot be printed on a page")
     cid, *keys = path.split(".")
     v = CASINOS[cid]
     for k in keys:
