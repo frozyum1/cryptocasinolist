@@ -228,7 +228,7 @@
       "lang": "en",
       "tier": "mid",
       "slug": "no-deposit-bonus",
-      "status": "planned",
+      "status": "live",
       "priority": 17,
       "note": "Only if at least two listed casinos offer one; else skip.",
       "intent": "bonus"
