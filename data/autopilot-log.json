@@ -304,5 +304,14 @@
     "outcome": "published",
     "score": 9,
     "attempts": 1
+  },
+  {
+    "date": "2026-11-11",
+    "action": "new",
+    "q": "mines game strategy",
+    "file": "content/62-guides-mines-strategy.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
   }
 ]
