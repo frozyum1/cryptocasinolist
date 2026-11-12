@@ -1,0 +1,74 @@
+---
+slug: guides/plinko-odds
+cluster: guides
+type: article
+title: Plinko Odds Explained: Bucket Probabilities and House Edge
+description: The real odds of every Plinko bucket on an 8, 12 and 16-row board, how risk levels change payouts, and how to check the house edge yourself.
+---
+<div class="eyebrow">Guides · Plinko</div>
+<h1>Plinko odds</h1>
+<p class="lede">A Plinko drop is just a run of coin flips: on a 16-row board the ball makes 16 independent left-or-right decisions, so the odds of each bucket follow the binomial distribution over 65,536 equally likely paths. The centre bucket catches about 19.6% of drops, the outermost bucket on one side catches 1 in 65,536, and no risk level or drop pattern changes those path counts — only the multipliers printed under them change.</p>
+
+<h2>Why the odds are a row of coin flips</h2>
+<p>Each peg sends the ball one slot left or one slot right. With 16 rows there are 2<sup>16</sup> = 65,536 possible left/right sequences, and every one of them is equally likely if each bounce is a fair 50/50. A bucket is defined by how many rights the ball took, so the number of paths that reach it is the binomial coefficient C(16, k). That is why the outer buckets are so rare: there is exactly one sequence that goes right 16 times in a row, and 12,870 sequences that split 8–8.</p>
+<p>This model is the standard way digital Plinko is built, and it is what a provably fair implementation reproduces from the seeds. If a particular game draws its path from a physics simulation instead, the shape is similar but the exact numbers can drift, so always read that game's own paytable rather than assuming.</p>
+
+<h2>Bucket odds on a 16-row board</h2>
+<div class="tbl">
+<table>
+  <tr><th>Bucket (slots from centre)</th><th>Paths (of 65,536)</th><th>Chance, this bucket</th><th>Both sides combined</th></tr>
+  <tr><td>Centre</td><td>12,870</td><td>19.64% (1 in 5.1)</td><td>— (no twin)</td></tr>
+  <tr><td>1</td><td>11,440</td><td>17.46% (1 in 5.7)</td><td>34.91%</td></tr>
+  <tr><td>2</td><td>8,008</td><td>12.22% (1 in 8.2)</td><td>24.44%</td></tr>
+  <tr><td>3</td><td>4,368</td><td>6.66% (1 in 15)</td><td>13.33%</td></tr>
+  <tr><td>4</td><td>1,820</td><td>2.78% (1 in 36)</td><td>5.55%</td></tr>
+  <tr><td>5</td><td>560</td><td>0.85% (1 in 117)</td><td>1.71%</td></tr>
+  <tr><td>6</td><td>120</td><td>0.18% (1 in 546)</td><td>0.37%</td></tr>
+  <tr><td>7</td><td>16</td><td>0.024% (1 in 4,096)</td><td>0.049%</td></tr>
+  <tr><td>8 (edge)</td><td>1</td><td>0.0015% (1 in 65,536)</td><td>0.0031%</td></tr>
+</table>
+</div>
+<p>The centre row shows a dash in the last column because the centre bucket is a single slot with no mirror image; every other bucket exists twice, once on each side.</p>
+
+<h2>What those numbers actually mean</h2>
+<ul>
+  <li><strong>The middle three buckets</strong> (centre plus one slot either side) take 35,750 of 65,536 paths — about 54.5% of drops.</li>
+  <li><strong>The middle five buckets</strong> (centre plus two either side) take 51,766 paths — about 79% of drops. Four drops in five land in that narrow band.</li>
+  <li><strong>The four outermost buckets on each side</strong> — eight buckets in total, the ones carrying the big multipliers — share 1,394 paths, about 2.1% of drops.</li>
+  <li><strong>The single edge bucket</strong> on one side turns up once per 65,536 drops on average. At one drop per second you would expect to wait roughly 18 hours, and "on average" hides enormous variation.</li>
+</ul>
+
+<h2>Fewer rows means flatter odds</h2>
+<p>Dropping to 12 rows gives 4,096 paths and a centre bucket of C(12,6) = 924, or 22.6%. An 8-row board has 256 paths and a centre bucket of C(8,4) = 70, or 27.3%, with the edge bucket at 1 in 256 instead of 1 in 65,536. Fewer rows concentrates results and makes the extremes reachable; more rows stretches the tail and makes the top multiplier a lottery ticket. Neither setting is better value on its own — the paytable is adjusted to keep the return the same.</p>
+
+<h2>Risk levels change payouts, not paths</h2>
+<p>Low, medium and high risk do not move the ball. The path distribution above is fixed by the number of rows. What changes is the multiplier written under each bucket: high risk strips value out of the centre and piles it into the rare outer buckets, low risk does the opposite. Because the expected return is held roughly constant, a high-risk board means most of your drops return less than your stake, with the shortfall funding a payout you will hit about 2% of the time. That is a variance choice, not an odds improvement.</p>
+
+<h2>Work out the house edge yourself</h2>
+<p>Expected return per unit staked is the sum of each bucket's probability times its multiplier. A tiny worked example with invented numbers shows the method: a 4-row board has 16 paths split 1 / 4 / 6 / 4 / 1. Give it multipliers of 4.6 at each edge, 0.5 either side of centre and 0.4 in the centre: (2 × 1 × 4.6) + (2 × 4 × 0.5) + (6 × 0.4) = 15.6, divided by 16 paths = 0.975. That board returns 97.5% and keeps a 2.5% house edge.</p>
+<p>Do the same arithmetic with a real paytable and you get that game's number. Lumenbet publishes a 2% house edge on Plinko, the same as its Dice, Mines and Limbo, with Coinflip at 1%, Crash at 3% and Keno at 4%. Whatever the figure, it applies to every drop independently; a losing streak does not make the next drop more generous.</p>
+
+<h2>Can you improve your Plinko odds?</h2>
+<p>No betting pattern changes the binomial distribution or the house edge. Alternating risk levels, chasing after a run of centre hits, doubling after losses — each of these only reshapes how fast your balance moves, not its expected direction. Martingale-style doubling on a board where the common outcome pays under 1x is particularly brutal, because it compounds losses faster than you can recover them with a 2% hit on every drop.</p>
+<p>The only decisions with real effect are the size of your bet, how many drops you make, and when you stop. Pick a loss limit before you open the game. Gambling can be addictive; if it stops being entertainment, read our <a href="/responsible-gambling/">responsible gambling</a> notes and use the site's own limit and self-exclusion tools. The same logic applies to bonus play — run the numbers in the <a href="/tools/wagering-calculator/">wagering calculator</a> before you assume a rollover is clearable.</p>
+
+<h2>Verifying that a drop was fair</h2>
+<p>Provably fair Plinko derives the left/right sequence from a server seed, your client seed and a nonce. Before you play, the casino publishes a hash of its server seed; afterwards it reveals the seed itself, and you can hash the revealed seed to confirm it matches the commitment and then regenerate every path. That proves the results were not altered after your bets, though it says nothing about the paytable, which you still have to check yourself. Our <a href="/guides/provably-fair-explained/">provably fair explainer</a> covers the mechanics, and the <a href="/tools/provably-fair-verifier/">verifier tool</a> re-runs individual rounds.</p>
+
+{{TABLE:fair}}
+
+<h2>Where we'd point you</h2>
+<p>A fair disclosure first: this site is run by the team behind Lumenbet, so treat the next paragraph as what it is. Lumenbet runs {{FACT:lumenbet.originals}} in-house originals including Plinko at the 2% house edge noted above, with provably fair verification and {{FACT:lumenbet.coins}} supported. It launched in {{FACT:lumenbet.launched}}, has no sportsbook, and every withdrawal is approved by a person rather than automatically — withdrawals are listed as {{FACT:lumenbet.withdrawal}}. Its welcome offer is {{FACT:lumenbet.bonus.summary}} and is limited to a set number of players; while that bonus still has wagering left, withdrawals are blocked until you finish it, forfeit it or let it expire. We have no published test log for Plinko specifically, so treat the game details as published facts rather than something we have measured.</p>
+
+{{CTA}}
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>What are the odds of hitting the highest Plinko multiplier?</summary><p>On a 16-row board the outermost bucket on one chosen side is reached by exactly one of 65,536 paths. Counting both edges together, a top-multiplier hit comes up about once per 32,768 drops on average.</p></details>
+  <details><summary>Does a higher risk level give better odds?</summary><p>No. The ball's path distribution depends only on the number of rows. High risk moves payout value from the common centre buckets to the rare outer ones, which raises variance while leaving the expected return and house edge where they were.</p></details>
+  <details><summary>Is Plinko better with 8 rows or 16?</summary><p>Eight rows gives a flatter spread — a 27.3% centre bucket and a 1-in-256 edge — while 16 rows gives a 19.6% centre and a 1-in-65,536 edge. The paytable is rebalanced for each setting, so the choice is about how you want results to feel, not about value.</p></details>
+  <details><summary>Can previous drops tell me where the ball will land next?</summary><p>No. Each drop is independent. In a provably fair game the outcome comes from the seed pair and a nonce, and past results carry no information about the next one.</p></details>
+  <details><summary>How do I check a Plinko game's house edge?</summary><p>Multiply each bucket's probability by its multiplier and add the results. That gives the return to player; subtract it from 100% for the house edge. The probabilities for a 16-row board are in the table above.</p></details>
+</div>
+
+{{RELATED}}
