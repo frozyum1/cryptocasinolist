@@ -313,5 +313,14 @@
     "outcome": "published",
     "score": 9,
     "attempts": 1
+  },
+  {
+    "date": "2026-11-12",
+    "action": "new",
+    "q": "plinko odds",
+    "file": "content/63-guides-plinko-odds.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
