@@ -322,5 +322,14 @@
     "outcome": "published",
     "score": 9,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-13",
+    "action": "new",
+    "q": "dice gambling strategy",
+    "file": "content/64-guides-dice-strategy.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
