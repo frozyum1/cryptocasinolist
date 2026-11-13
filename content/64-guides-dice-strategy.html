@@ -1,0 +1,87 @@
+---
+slug: guides/dice-strategy
+cluster: guides
+type: article
+title: Dice Gambling Strategy: What the Maths Actually Says
+description: Martingale, flat betting and target selection on crypto dice, with the real probabilities, the house edge maths and the bankroll rules that matter.
+---
+<div class="eyebrow">Guides · Dice</div>
+<h1>Dice gambling strategy</h1>
+<p class="lede">No dice strategy changes the house edge. On a 2% dice game every bet returns 98% of its stake on average, whatever target you pick and whatever betting pattern you lay on top, so "strategy" in dice means choosing your variance, sizing your bets and deciding when to stop — not finding an edge, because there isn't one to find.</p>
+
+<p>That sounds negative, but it is the only honest starting point, and it is also useful. Once you accept that the expected value is fixed, the questions that remain are real ones: how big a swing do you want, how long do you want a bankroll to last, and how do you avoid the bet-sizing patterns that turn a normal losing streak into a wiped account? This guide covers the maths behind crypto dice, the popular systems and what each one actually does to your risk profile.</p>
+
+<h2>How crypto dice works</h2>
+<p>You pick a target number and a direction (roll under or roll over). The game draws a number — usually from 0.00 to 99.99 — and you win if it lands on your side of the target. Your win chance and your payout move in lockstep through one formula:</p>
+
+<p><strong>payout multiplier = (1 − house edge) ÷ win probability</strong></p>
+
+<p>At a 2% edge, a 50% win chance pays 1.96x, not 2.00x. That missing 0.04x is the entire house edge: the hit rate is exactly what the target says it is, and the edge is taken out of the payout. People sometimes describe a 1.96x dice bet as "49%" — it isn't. It is a 50/50 roll that pays slightly less than even money.</p>
+
+<div class="tbl">
+<table>
+<thead><tr><th>Win chance</th><th>Payout at a 2% edge</th><th>Expected return per 100 staked</th></tr></thead>
+<tbody>
+<tr><td>90%</td><td>1.0888x</td><td>98</td></tr>
+<tr><td>75%</td><td>1.3067x</td><td>98</td></tr>
+<tr><td>50%</td><td>1.96x</td><td>98</td></tr>
+<tr><td>25%</td><td>3.92x</td><td>98</td></tr>
+<tr><td>10%</td><td>9.8x</td><td>98</td></tr>
+<tr><td>2%</td><td>49x</td><td>98</td></tr>
+<tr><td>1%</td><td>98x</td><td>98</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The right-hand column is the point of the whole table. Low-target "safe" rolls and 98x moonshots have identical expected value. What changes is the shape of the ride: at 90% you win constantly and lose in sudden chunks; at 1% you lose almost every roll and occasionally get a big one. Pick the shape you can sit through without raising your stakes out of frustration.</p>
+
+{{CTA}}
+
+<h2>Martingale: the maths, done properly</h2>
+<p>Martingale means doubling after every loss so that one win recovers everything. On a coin-flip game that pays exactly 2x it is self-consistent. On dice at a 2% edge it is worse than people assume, for two separate reasons.</p>
+
+<p><strong>First, doubling is not enough.</strong> A 1.96x payout returns only 0.96 of your stake as profit. To recover your losses and finish one unit ahead, each new stake has to be about 2.04 times the previous one, not 2.0. The ladder climbs faster than the classic version of the system.</p>
+
+<p><strong>Second, the streak probabilities.</strong> At a 50% win chance, the chance of losing a given roll is 50%, so ten losses in a row is 0.5<sup>10</sup> = 1 in 1,024, and thirteen in a row is about 1 in 8,192. Those look remote per sequence, but you are not rolling ten times — you are rolling hundreds or thousands of times, and streaks of eight or more losses are an ordinary feature of a long session rather than a freak event.</p>
+
+<p>Put the two together. After ten straight losses, the next stake in a 1.96x Martingale is more than 1,000 times your opening bet, and it is chasing a one-unit profit. The system does not fail because you are unlucky; it fails because it converts a small, frequent win into a rare, enormous loss while leaving the expected value untouched at 98%. Table limits and bonus max-bet rules usually cut the ladder off before your balance does — if you are playing through a welcome bonus with a per-bet cap, Martingale is mathematically impossible past a few steps anyway.</p>
+
+<p>Reverse Martingale (doubling after wins) has the mirror shape: many small losing sessions, occasional large wins, same 98% return. D'Alembert and Fibonacci soften the curve by stepping up more slowly. None of them moves the house edge by a fraction of a percent, because the edge applies to each bet independently and no sequence of independent bets can average out to more than the average of one bet.</p>
+
+<h2>What actually helps</h2>
+<ul>
+  <li><strong>Flat betting a fixed fraction.</strong> Staking a small, constant share of your starting bankroll — many players use 0.5% to 1% — makes your session length predictable and stops a streak from compounding. It does not make you a winner; it makes your losses slow and survivable.</li>
+  <li><strong>Choosing your target deliberately.</strong> If you want a long session on a small bankroll, high win chances at low multipliers do that. If you want a shot at a big multiplier and accept that most rolls lose, pick the low win chance and size down accordingly.</li>
+  <li><strong>Setting a loss limit before you start.</strong> Decide the amount you are willing to lose for the session, and treat it as spent money the moment you deposit it.</li>
+  <li><strong>Setting a time limit.</strong> Autobet makes thousands of rolls trivially easy, and the more rolls you make, the closer your result converges on that 2% edge. Volume is the house's friend, not yours.</li>
+  <li><strong>Ignoring streak-reading.</strong> Each roll uses a fresh result from the same seed pair; "the number is due" is the gambler's fallacy with a crypto skin. Switching seeds, changing targets after a losing run and "hot number" tracking change nothing about the next roll's probability.</li>
+</ul>
+
+<p>Gambling can be addictive, and dice is one of the fastest-cycling games there is — a bad half hour can involve more bets than a whole night of poker. If stakes are creeping up to recover losses, that is the signal to stop, not to switch systems. Our <a href="/responsible-gambling/">responsible gambling page</a> lists the limits and support options worth setting up before you need them.</p>
+
+<h2>Verify the rolls instead of trusting them</h2>
+<p>The one check that genuinely protects you is provably fair verification. Dice results are derived from a server seed (hashed and shown to you in advance), your client seed and a nonce that increases with each roll. After you rotate the seed, the casino reveals the server seed, you hash it, compare it to the commitment you were given, and recompute every roll yourself. If the hash matches and the numbers reproduce, the results were fixed before you bet.</p>
+
+<p>Our <a href="/tools/provably-fair-verifier/">provably fair verifier</a> does the recomputation for dice, crash and mines, and <a href="/guides/provably-fair-explained/">how provably fair works</a> walks through the seed-and-hash cycle step by step. Verification proves the rolls were not tampered with; it does not change the house edge, and no casino's fairness proof makes a system profitable.</p>
+
+<h2>Dice at the casinos in our data</h2>
+<p>Provably fair dice is standard across the sites we track — you can see which casinos publish verifiable originals, and what their verification covers, on <a href="/provably-fair-casinos/">provably fair crypto casinos</a>.
+
+{{TABLE:fair}}
+
+<p>Full disclosure: this site is run by the team behind Lumenbet, so treat what follows as interested. Lumenbet runs {{FACT:lumenbet.originals}} in-house originals including dice, with a published 2% dice house edge (Coinflip is 1%, Crash 3%, Keno 4%), KYC that is {{FACT:lumenbet.kyc_note}} and withdrawals in {{FACT:lumenbet.withdrawal}}. The caveats matter for a dice player: it launched in {{FACT:lumenbet.launched}}, so there is little history to judge, there is no sportsbook, and every withdrawal is approved by a person rather than automatically.</p>
+
+<p>The bonus interacts with dice strategy directly. The offer is {{FACT:lumenbet.bonus.summary}}, with a maximum bet of {{FACT:lumenbet.bonus.max_bet}} {{FACT:lumenbet.bonus.currency}} per spin or roll while wagering runs and {{FACT:lumenbet.bonus.days}} days to clear it — which rules out any escalating stake system. More importantly: {{FACT:lumenbet.bonus.withdrawal_lock}} Run the numbers in the <a href="/tools/wagering-calculator/">wagering calculator</a> and read the full terms on the <a href="/lumenbet/bonus/">Lumenbet bonus page</a> before you accept it, because a {{FACT:lumenbet.bonus.wagering}}x requirement on dice means a lot of rolls at a 2% edge.</p>
+
+{{CTA}}
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Is there a dice strategy that beats the house edge?</summary><p>No. Every bet on a 2% dice game returns 98% of its stake on average, and betting systems only rearrange when wins and losses arrive. A system can change your chance of a short winning session, but it cannot change the long-run expectation.</p></details>
+  <details><summary>Does Martingale work on dice?</summary><p>It produces many small wins and occasional very large losses. At 1.96x you need to stake about 2.04 times more after each loss, and ten losses in a row — a 1 in 1,024 sequence that shows up regularly across thousands of rolls — pushes the next bet past 1,000 times your opening stake. Table limits or bonus max-bet caps usually stop the ladder first.</p></details>
+  <details><summary>Is a 90% win chance safer than a 1% one?</summary><p>Safer per roll, identical in expectation. High win chances give small, frequent wins and rarer large losses; low win chances do the reverse. Both return 98% on average at a 2% edge, so choose by the volatility you can tolerate, then size your bets for it.</p></details>
+  <details><summary>Can I predict the next dice roll from past results?</summary><p>No. Each roll is derived from the server seed, your client seed and an incrementing nonce, and past outcomes do not shift the next one. Changing your seed gives you a different sequence, not a better one.</p></details>
+  <details><summary>How much of my bankroll should one dice bet be?</summary><p>There is no correct number, but a small fixed fraction — often quoted as 0.5% to 1% of the amount you brought — keeps a losing streak from ending the session instantly. Decide the total you are prepared to lose first, then divide.</p></details>
+</div>
+
+{{RELATED}}
