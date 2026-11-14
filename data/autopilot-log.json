@@ -331,5 +331,14 @@
     "outcome": "published",
     "score": 9,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-14",
+    "action": "new",
+    "q": "stake vs bc.game",
+    "file": "content/65-compare-stake-vs-bc-game.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 2
   }
 ]
