@@ -340,5 +340,14 @@
     "outcome": "published",
     "score": 9,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-15",
+    "action": "new",
+    "q": "stake vs roobet",
+    "file": "content/66-compare-stake-vs-roobet.html",
+    "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/16",
+    "score": 7,
+    "attempts": 2
   }
 ]
