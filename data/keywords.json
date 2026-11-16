@@ -567,6 +567,20 @@
       ],
       "intent": "game_guide",
       "found": "2026-11-09"
+    },
+    {
+      "q": "casino slots",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/crypto-slots",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 7115,
+      "related": [
+        "online casino slots"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-16"
     }
   ]
 }

@@ -2,24 +2,30 @@
   "updated": "2026-11-16",
   "refresh": [
     {
-      "file": "content/44-usdt.html",
-      "impressions": 24482,
-      "reason": "also cover these searches: usdt0; usdt0 website; usdt0 official website"
+      "file": "content/52-guides-crypto-casino-games.html",
+      "impressions": 13758,
+      "queries": [
+        "casino games",
+        "casino games online"
+      ],
+      "reason": "also cover these searches: casino games; casino games online"
     },
     {
-      "file": "content/52-compare-stake-us-vs-stake.html",
-      "impressions": 8580,
-      "reason": "also cover these searches: stake.us; stake usa; stakeus; stake us casino"
+      "file": "content/61-no-deposit-bonus.html",
+      "impressions": 5164,
+      "queries": [
+        "online casino real money no deposit"
+      ],
+      "reason": "also cover these searches: online casino real money no deposit"
     },
     {
       "file": "content/11-review-stake.html",
-      "impressions": 5118,
-      "reason": "also cover these searches: stake casino; stake online casino; stakes"
-    },
-    {
-      "file": "content/53-guides-how-mines-works.html",
-      "impressions": 916,
-      "reason": "also cover these searches: mines"
+      "impressions": 3771,
+      "queries": [
+        "stake casino",
+        "stake online casino"
+      ],
+      "reason": "also cover these searches: stake casino; stake online casino"
     }
   ]
 }

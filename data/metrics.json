@@ -1,0 +1,97 @@
+[
+  {
+    "date": "2026-11-16",
+    "window_days": 28,
+    "pages": 52,
+    "google": {
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 4.9,
+      "queries": [
+        {
+          "key": "crypto casino toplist",
+          "clicks": 0,
+          "impressions": 4,
+          "position": 9.8
+        }
+      ],
+      "pages": [
+        {
+          "key": "/",
+          "clicks": 0,
+          "impressions": 9,
+          "position": 4.9
+        }
+      ]
+    },
+    "sitemap": "submitted",
+    "index": {
+      "checked": 52,
+      "indexed": 1,
+      "states": {
+        "Submitted and indexed": 1,
+        "Discovered - currently not indexed": 31,
+        "URL is unknown to Google": 20
+      },
+      "not_indexed": [
+        "/about/",
+        "/bonuses/",
+        "/compare/lumenbet-vs-stake/",
+        "/compare/stake-us-vs-stake/",
+        "/compare/stake-vs-bc-game/",
+        "/compare/stake-vs-roobet/",
+        "/compare/stake-vs-shuffle/",
+        "/es/",
+        "/es/guides/como-funciona-la-ruleta/",
+        "/es/lumenbet/",
+        "/fast-withdrawal-casinos/",
+        "/guides/cheapest-crypto-for-casino-deposits/",
+        "/guides/crypto-casino-games/",
+        "/guides/dice-strategy/",
+        "/guides/fake-casino-sites/",
+        "/guides/how-crash-works/",
+        "/guides/how-mines-works/",
+        "/guides/how-plinko-works/",
+        "/guides/mines-strategy/",
+        "/guides/minesweeper-vs-mines/",
+        "/guides/plinko-odds/",
+        "/guides/prediction-markets-vs-sportsbooks/",
+        "/guides/provably-fair-explained/",
+        "/guides/swap-crypto-no-account/",
+        "/guides/wagering-requirements/",
+        "/guides/withdraw-usdt-in-minutes/",
+        "/lumenbet/",
+        "/lumenbet/bonus/",
+        "/lumenbet/is-lumenbet-legit/",
+        "/lumenbet/withdrawals/",
+        "/new-crypto-casinos/",
+        "/no-deposit-bonus/",
+        "/no-kyc-casinos/",
+        "/provably-fair-casinos/",
+        "/pt/",
+        "/pt/lumenbet/",
+        "/responsible-gambling/",
+        "/reviews/bc-game/",
+        "/reviews/lumenbet/",
+        "/reviews/roobet/",
+        "/reviews/shuffle/",
+        "/reviews/stake/",
+        "/ru/",
+        "/ru/bonuses/",
+        "/ru/no-kyc-casinos/",
+        "/stake-alternatives/",
+        "/tazzoro/",
+        "/tools/provably-fair-verifier/",
+        "/tools/wagering-calculator/",
+        "/usdt-casinos/",
+        "/xrp-casinos/"
+      ]
+    },
+    "bing": {
+      "clicks": 0,
+      "impressions": 0,
+      "queries": []
+    }
+  }
+]
