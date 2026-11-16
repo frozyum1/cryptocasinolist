@@ -121,8 +121,8 @@
           "pt": "Sem bônus de boas-vindas padrão; rakeback VIP e promoções semanais",
           "es": "Sin bono de bienvenida estándar; rakeback VIP y promociones semanales"
         },
-        "verified_at": null,
-        "verified_source": null
+        "verified_at": "2026-11-16",
+        "verified_source": "https://help.stake.com/en/articles/4942138-what-are-the-promotions-and-bonuses-that-stake-offers"
       },
       "verified_at": "2026-09-05",
       "test_log": []
@@ -136,11 +136,12 @@
       "rating": 8.1,
       "launched": 2017,
       "licence": {
-        "en": "Curaçao",
-        "ru": "Кюрасао",
-        "pt": "Curaçao",
-        "es": "Curazao"
+        "en": "Anjouan",
+        "ru": "Анжуан",
+        "pt": "Anjouan",
+        "es": "Anjouan"
       },
+      "licence_source": "https://bc.game footer names Twocent Technology Limited, Anjouan licence ALSI-202410011-FI1; read 2026-11-16",
       "coins": {
         "en": "50+",
         "ru": "50+",
@@ -233,7 +234,7 @@
           "pt": "Recompensas por nível e corrida semanal de $100.000",
           "es": "Recompensas por nivel y carrera semanal de $100.000"
         },
-        "verified_at": "2026-10-25",
+        "verified_at": "2026-11-16",
         "verified_source": "https://shuffle.com/promotions"
       },
       "verified_at": "2026-09-05",
