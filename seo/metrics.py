@@ -79,19 +79,38 @@ def gsc_performance(session, today):
     return out
 
 
+def describe_sitemap(entry, resubmitted):
+    """One line for the report from Search Console's record of our sitemap."""
+    if entry is None:
+        return "NOT submitted" + (" (submitted now)" if resubmitted else " and it could not be submitted from here")
+    read = (entry.get("lastDownloaded") or "")[:10] or "never"
+    parts = ["submitted, last read by Google %s" % read]
+    if entry.get("isPending"):
+        parts.append("still pending")
+    if int(entry.get("errors") or 0) or int(entry.get("warnings") or 0):
+        parts.append("%s errors, %s warnings" % (entry.get("errors", 0), entry.get("warnings", 0)))
+    parts.append("re-read requested" if resubmitted else "re-read could not be requested (the service account needs Full permission)")
+    return ", ".join(parts)
+
+
 def gsc_sitemap(session):
-    """'submitted', 'submitted now', or the reason it is not. Google never learns of new pages from IndexNow."""
+    """Sitemap state, and a request to read it again.
+
+    Google never hears about new pages from IndexNow, and the sitemap ping endpoint is gone,
+    so re-submitting the sitemap is the one supported way to say "there are new URLs". On
+    2026-11-16, 20 of 52 pages were still "URL is unknown to Google".
+    """
     resp = session.get(_site_path() + "/sitemaps", timeout=60)
     resp.raise_for_status()
-    if any(s.get("path") == SITEMAP for s in resp.json().get("sitemap", [])):
-        return "submitted"
-    try:  # submitting needs the full scope and at least "Full" permission on the property
-        full = _gsc_session("webmasters")
-        r = full.put(_site_path() + "/sitemaps/" + urllib.parse.quote(SITEMAP, safe=""), timeout=60)
+    entry = next((s for s in resp.json().get("sitemap", []) if s.get("path") == SITEMAP), None)
+    resubmitted = False
+    try:  # needs the full scope and "Full" permission on the property
+        r = _gsc_session("webmasters").put(_site_path() + "/sitemaps/" + urllib.parse.quote(SITEMAP, safe=""), timeout=60)
         r.raise_for_status()
-        return "submitted now"
-    except Exception as e:  # noqa: BLE001
-        return "NOT submitted (could not submit it: %s)" % type(e).__name__
+        resubmitted = True
+    except Exception:  # noqa: BLE001
+        pass
+    return describe_sitemap(entry, resubmitted)
 
 
 def summarise_index(results):
