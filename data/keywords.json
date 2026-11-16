@@ -670,6 +670,138 @@
       ],
       "intent": "play",
       "found": "2026-11-16"
+    },
+    {
+      "q": "baccarat casino game",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/how-baccarat-works",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 59,
+      "related": [
+        "baccarat online casino",
+        "how baccarat works"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "crash games",
+      "lang": "pt",
+      "tier": "mid",
+      "slug": "pt/guides/como-funciona-o-crash",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 102,
+      "related": [
+        "jogo crash",
+        "jogos crash cassino"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "stake vip calculator",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/stake-vip-levels",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 79,
+      "related": [
+        "stake vip levels",
+        "stake rakeback"
+      ],
+      "intent": "bonus",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "free spins no deposit casino",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "free-spins-no-deposit",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 253,
+      "related": [
+        "free spins no deposit bonus",
+        "free spins no wagering uk",
+        "casino free spins",
+        "free spin casino",
+        "casino rewards free spins",
+        "admiral casino free spins"
+      ],
+      "intent": "bonus",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "crash jogo",
+      "lang": "pt",
+      "tier": "mid",
+      "slug": "pt/guias/como-funciona-o-crash",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 125,
+      "related": [
+        "crash game",
+        "crash coupons"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "usdc vs usdt",
+      "lang": "en",
+      "tier": "long",
+      "slug": "compare/usdc-vs-usdt",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 29,
+      "related": [],
+      "intent": "play",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "cassino fake",
+      "lang": "pt",
+      "tier": "long",
+      "slug": "pt/guias/cassinos-falsos",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 28,
+      "related": [],
+      "intent": "choose_casino",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "bonos sin depósito casino",
+      "lang": "es",
+      "tier": "mid",
+      "slug": "es/bonos-sin-deposito",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 18,
+      "related": [
+        "casino bonos sin deposito cripto"
+      ],
+      "intent": "bonus",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "best crypto casino bitcraps",
+      "lang": "en",
+      "tier": "long",
+      "slug": "guides/crypto-craps",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 36,
+      "related": [
+        "best bitcoin slots bitcraps",
+        "bitcoin craps"
+      ],
+      "intent": "choose_casino",
+      "found": "2026-11-16"
     }
   ]
 }

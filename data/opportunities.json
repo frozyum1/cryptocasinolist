@@ -2,133 +2,323 @@
   "updated": "2026-11-16",
   "refresh": [
     {
-      "file": "content/11-review-stake.html",
-      "impressions": 2289,
+      "file": "content/52-guides-crypto-casino-games.html",
+      "impressions": 683,
       "queries": [
-        "stakes",
-        "stake casino",
-        "donut stake"
+        "online casino games",
+        "online virtual casino games",
+        "online gambling games",
+        "online casino game and gambling",
+        "casino game gambling online",
+        "online casino game site",
+        "casino game internet",
+        "casino game online",
+        "online casino gambling games",
+        "best casino game online site"
       ],
-      "reason": "also cover these searches: stakes; stake casino; donut stake"
-    },
-    {
-      "file": "content/00-index.html",
-      "impressions": 1683,
-      "queries": [
-        "casinos",
-        "gamble",
-        "casino"
-      ],
-      "reason": "also cover these searches: casinos; gamble; casino"
+      "reason": "also cover these searches: online casino games; online virtual casino games; online gambling games; online casino game and gambling; casino game gambling online; online casino game site; casino game internet; casino game online; online casino gambling games; best casino game online site"
     },
     {
       "file": "content/52-guides-crypto-casino-games.html",
-      "impressions": 759,
+      "impressions": 488,
       "queries": [
-        "gambling games",
-        "casino games"
+        "most popular online casino games",
+        "new casino game online",
+        "online casino game play",
+        "casino game gambling",
+        "internet casino game online",
+        "internet casino gambling game online",
+        "gambling online game",
+        "gamble online game"
       ],
-      "reason": "also cover these searches: gambling games; casino games"
+      "reason": "also cover these searches: most popular online casino games; new casino game online; online casino game play; casino game gambling; internet casino game online; internet casino gambling game online; gambling online game; gamble online game"
+    },
+    {
+      "file": "content/11-review-stake.html",
+      "impressions": 307,
+      "queries": [
+        "stake com",
+        "stakee",
+        "my stake",
+        "stake casino uk",
+        "stake poker"
+      ],
+      "reason": "also cover these searches: stake com; stakee; my stake; stake casino uk; stake poker"
+    },
+    {
+      "file": "content/02-pt-index.html",
+      "impressions": 223,
+      "queries": [
+        "cassinos online",
+        "cassino brasil",
+        "cassinos"
+      ],
+      "reason": "also cover these searches: cassinos online; cassino brasil; cassinos"
     },
     {
       "file": "content/03-es-index.html",
-      "impressions": 420,
+      "impressions": 159,
       "queries": [
-        "casino online",
-        "casino online cripto"
+        "casinos online",
+        "casinos"
       ],
-      "reason": "also cover these searches: casino online; casino online cripto"
+      "reason": "also cover these searches: casinos online; casinos"
+    },
+    {
+      "file": "content/52-compare-stake-us-vs-stake.html",
+      "impressions": 142,
+      "queries": [
+        "stake us reddit",
+        "reddit stake us"
+      ],
+      "reason": "also cover these searches: stake us reddit; reddit stake us"
+    },
+    {
+      "file": "content/02-pt-index.html",
+      "impressions": 122,
+      "queries": [
+        "jogos de cassino online",
+        "jogos cassino",
+        "casinos online",
+        "casinos"
+      ],
+      "reason": "also cover these searches: jogos de cassino online; jogos cassino; casinos online; casinos"
+    },
+    {
+      "file": "content/44-usdt.html",
+      "impressions": 122,
+      "queries": [
+        "buy usdt",
+        "usdt meaning",
+        "buy usdt for casino deposit"
+      ],
+      "reason": "also cover these searches: buy usdt; usdt meaning; buy usdt for casino deposit"
+    },
+    {
+      "file": "content/40-bonuses.html",
+      "impressions": 109,
+      "queries": [
+        "free spins casino",
+        "bonus dei crypto casino",
+        "crypto casino bonus"
+      ],
+      "reason": "also cover these searches: free spins casino; bonus dei crypto casino; crypto casino bonus"
+    },
+    {
+      "file": "content/52-compare-stake-us-vs-stake.html",
+      "impressions": 105,
+      "queries": [
+        "stake usa casino",
+        "us stake",
+        "stake us codes"
+      ],
+      "reason": "also cover these searches: stake usa casino; us stake; stake us codes"
     },
     {
       "file": "content/00-index.html",
-      "impressions": 419,
+      "impressions": 95,
       "queries": [
-        "crypto casino",
-        "casino casino",
-        "gambling game",
-        "gamble games"
+        "crypto casinos",
+        "crypto online gambling",
+        "online gambling with crypto",
+        "crypto casino vergleich",
+        "best bitcoin casino"
       ],
-      "reason": "also cover these searches: crypto casino; casino casino; gambling game; gamble games"
+      "reason": "also cover these searches: crypto casinos; crypto online gambling; online gambling with crypto; crypto casino vergleich; best bitcoin casino"
     },
     {
       "file": "content/11-review-stake.html",
-      "impressions": 414,
+      "impressions": 88,
       "queries": [
-        "stake gambling",
-        "stake engine"
+        "stake casino slots",
+        "stake games",
+        "stake betting",
+        "stake bet",
+        "my stake casino",
+        "stake community",
+        "stakecasino"
       ],
-      "reason": "also cover these searches: stake gambling; stake engine"
-    },
-    {
-      "file": "content/02-pt-index.html",
-      "impressions": 363,
-      "queries": [
-        "cassino online",
-        "casino"
-      ],
-      "reason": "also cover these searches: cassino online; casino"
-    },
-    {
-      "file": "content/64-guides-dice-strategy.html",
-      "impressions": 458,
-      "queries": [
-        "dice game",
-        "dice online"
-      ],
-      "reason": "also cover these searches: dice game; dice online"
-    },
-    {
-      "file": "content/40-bonuses.html",
-      "impressions": 302,
-      "queries": [
-        "bonus",
-        "casino bonus"
-      ],
-      "reason": "also cover these searches: bonus; casino bonus"
-    },
-    {
-      "file": "content/40-bonuses.html",
-      "impressions": 282,
-      "queries": [
-        "casino welcome bonus",
-        "casino welcome bonus"
-      ],
-      "reason": "also cover these searches: casino welcome bonus; casino welcome bonus"
+      "reason": "also cover these searches: stake casino slots; stake games; stake betting; stake bet; my stake casino; stake community; stakecasino"
     },
     {
       "file": "content/56-guides-how-plinko-works.html",
-      "impressions": 373,
+      "impressions": 115,
       "queries": [
-        "plinko board"
+        "plinko gambling game",
+        "free plinko",
+        "plinko balls"
       ],
-      "reason": "also cover these searches: plinko board"
+      "reason": "also cover these searches: plinko gambling game; free plinko; plinko balls"
     },
     {
-      "file": "content/11-review-stake.html",
-      "impressions": 228,
+      "file": "content/55-guides-fake-casino-sites.html",
+      "impressions": 80,
       "queries": [
-        "stake codes",
-        "stake codes"
+        "fake gambling games",
+        "fake casino games",
+        "fake stake site"
       ],
-      "reason": "also cover these searches: stake codes; stake codes"
-    },
-    {
-      "file": "content/02-pt-index.html",
-      "impressions": 204,
-      "queries": [
-        "casino online",
-        "casino online",
-        "cassino online"
-      ],
-      "reason": "also cover these searches: casino online; casino online; cassino online"
+      "reason": "also cover these searches: fake gambling games; fake casino games; fake stake site"
     },
     {
       "file": "content/01-ru-index.html",
-      "impressions": 172,
+      "impressions": 75,
       "queries": [
-        "казино онлайн"
+        "онлайн казино",
+        "казино демо"
       ],
-      "reason": "also cover these searches: казино онлайн"
+      "reason": "also cover these searches: онлайн казино; казино демо"
+    },
+    {
+      "file": "content/61-no-deposit-bonus.html",
+      "impressions": 58,
+      "queries": [
+        "casino free spins no deposit",
+        "no deposit casino bonus",
+        "online casino free spins",
+        "no deposit bonus casino free spins",
+        "free spins no wagering",
+        "casino sign up bonus"
+      ],
+      "reason": "also cover these searches: casino free spins no deposit; no deposit casino bonus; online casino free spins; no deposit bonus casino free spins; free spins no wagering; casino sign up bonus"
+    },
+    {
+      "file": "content/11-review-stake.html",
+      "impressions": 55,
+      "queries": [
+        "stake casino sign up",
+        "stake reddit"
+      ],
+      "reason": "also cover these searches: stake casino sign up; stake reddit"
+    },
+    {
+      "file": "content/61-no-deposit-bonus.html",
+      "impressions": 54,
+      "queries": [
+        "online casino with free real money",
+        "free real money casino no deposit"
+      ],
+      "reason": "also cover these searches: online casino with free real money; free real money casino no deposit"
+    },
+    {
+      "file": "content/44-usdt.html",
+      "impressions": 59,
+      "queries": [
+        "usdt trc20",
+        "usdt bep20"
+      ],
+      "reason": "also cover these searches: usdt trc20; usdt bep20"
+    },
+    {
+      "file": "content/56-guides-how-plinko-works.html",
+      "impressions": 72,
+      "queries": [
+        "what is plinko",
+        "plinko simulator",
+        "plinko game online",
+        "free plinko game"
+      ],
+      "reason": "also cover these searches: what is plinko; plinko simulator; plinko game online; free plinko game"
+    },
+    {
+      "file": "content/40-bonuses.html",
+      "impressions": 44,
+      "queries": [
+        "casino bonuses",
+        "bonuses"
+      ],
+      "reason": "also cover these searches: casino bonuses; bonuses"
+    },
+    {
+      "file": "content/52-guides-swap-crypto-no-account.html",
+      "impressions": 44,
+      "queries": [
+        "buy crypto no kyc"
+      ],
+      "reason": "also cover these searches: buy crypto no kyc"
+    },
+    {
+      "file": "content/53-guides-how-mines-works.html",
+      "impressions": 35,
+      "queries": [
+        "mines gambling"
+      ],
+      "reason": "also cover these searches: mines gambling"
+    },
+    {
+      "file": "content/55-guides-fake-casino-sites.html",
+      "impressions": 21,
+      "queries": [
+        "stakecasinouk.top",
+        "fake casino games"
+      ],
+      "reason": "also cover these searches: stakecasinouk.top; fake casino games"
+    },
+    {
+      "file": "content/52-guides-crypto-casino-games.html",
+      "impressions": 21,
+      "queries": [
+        "online casino game",
+        "casino game",
+        "casino games list"
+      ],
+      "reason": "also cover these searches: online casino game; casino game; casino games list"
+    },
+    {
+      "file": "content/52-compare-stake-us-vs-stake.html",
+      "impressions": 18,
+      "queries": [
+        "stake casino usa"
+      ],
+      "reason": "also cover these searches: stake casino usa"
+    },
+    {
+      "file": "content/40-bonuses.html",
+      "impressions": 15,
+      "queries": [
+        "casino bonus"
+      ],
+      "reason": "also cover these searches: casino bonus"
+    },
+    {
+      "file": "content/20-guide-crash.html",
+      "impressions": 13,
+      "queries": [
+        "aviator casino game"
+      ],
+      "reason": "also cover these searches: aviator casino game"
+    },
+    {
+      "file": "content/60-new-crypto-casinos.html",
+      "impressions": 11,
+      "queries": [
+        "new crypto casino"
+      ],
+      "reason": "also cover these searches: new crypto casino"
+    },
+    {
+      "file": "content/01-ru-index.html",
+      "impressions": 11,
+      "queries": [
+        "online casino"
+      ],
+      "reason": "also cover these searches: online casino"
+    },
+    {
+      "file": "content/43-fast-withdrawal.html",
+      "impressions": 5,
+      "queries": [
+        "crypto casino instant withdrawal"
+      ],
+      "reason": "also cover these searches: crypto casino instant withdrawal"
+    },
+    {
+      "file": "content/41-no-kyc.html",
+      "impressions": 5,
+      "queries": [
+        "no verification casino"
+      ],
+      "reason": "also cover these searches: no verification casino"
     }
   ]
 }

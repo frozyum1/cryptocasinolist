@@ -25,14 +25,14 @@
         }
       ]
     },
-    "sitemap": "submitted, last read by Google 2026-11-13, re-read requested",
+    "sitemap": "submitted, last read by Google 2026-11-16, re-read requested",
     "index": {
       "checked": 56,
       "indexed": 1,
       "states": {
         "Submitted and indexed": 1,
-        "Discovered - currently not indexed": 37,
-        "URL is unknown to Google": 18
+        "URL is unknown to Google": 27,
+        "Discovered - currently not indexed": 28
       },
       "not_indexed": [
         "/about/",
