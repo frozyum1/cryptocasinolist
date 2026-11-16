@@ -34,11 +34,19 @@ GSC_PROPERTY = os.environ.get("GSC_PROPERTY", "sc-domain:cryptocasinolist.io")
 MARKETS = [("us", "en-US", "en"), ("gb", "en-GB", "en"), ("ru", "ru-RU", "ru"), ("br", "pt-BR", "pt"), ("es", "es-ES", "es")]
 SEEDS = {
     "en": ["crypto casino", "bitcoin casino", "crypto casino bonus", "no kyc casino", "usdt casino",
-           "provably fair", "crash gambling", "stake alternative", "crypto gambling", "plinko", "mines game"],
-    "ru": ["крипто казино", "биткоин казино", "казино без верификации", "краш игра"],
-    "pt": ["cassino cripto", "cassino bitcoin", "crash aposta"],
-    "es": ["casino cripto", "casino bitcoin", "juego crash"],
+           "provably fair", "crash gambling", "stake alternative", "crypto gambling", "plinko", "mines game",
+           # Added 2026-11-16: the original eleven seeds were exhausted (0-1 new ideas a week).
+           "dice gambling", "limbo casino game", "keno crypto", "crypto slots", "bitcoin roulette",
+           "crypto blackjack", "casino free spins crypto", "crypto casino withdrawal", "casino wagering",
+           "bitcoin dice", "casino house edge", "crypto casino vs"],
+    "ru": ["крипто казино", "биткоин казино", "казино без верификации", "краш игра",
+           "бонус крипто казино", "казино usdt", "вывод из казино на криптокошелек"],
+    "pt": ["cassino cripto", "cassino bitcoin", "crash aposta", "bônus cassino cripto", "cassino usdt", "jogo mines"],
+    "es": ["casino cripto", "casino bitcoin", "juego crash", "bono casino cripto", "casino usdt", "juego mines"],
 }
+SEEN = "data/seen-queries.json"
+SEEN_DAYS = 90      # a query Claude has already triaged is not sent again for this long
+TRIAGE_BATCH = 150
 RELEVANT = re.compile(r"casino|cassino|казино|gambl|bet|slot|crash|plinko|mines|dice|limbo|keno|poker|roulette|blackjack|"
                       r"bonus|bônus|бонус|kyc|provably|stake|usdt|bitcoin|btc|crypto|cripto|крипто|wager|rtp|jackpot", re.I)
 
@@ -163,11 +171,33 @@ TRIAGE_SCHEMA = {
 }
 
 
-def triage(candidates, keywords, pages):
-    known = {k["q"].lower() for k in keywords["keywords"]}
-    fresh = [c for c in candidates if c["q"].lower() not in known]
-    fresh.sort(key=lambda c: -c.get("impressions", 0))
-    fresh = fresh[:150]
+def seen_key(c):
+    return f"{c['q'].lower()}|{c['lang']}"
+
+
+def fresh_candidates(candidates, keywords, seen, today):
+    """The next batch for triage: unknown to the plan, not triaged recently, worth most first.
+
+    Without the 'seen' filter every weekly run sent Claude the same 150 highest-volume
+    queries, which it had already merged or dropped, so discovery found nothing new and
+    the long tail (where a ten-week-old site can rank) was never looked at.
+    """
+    known = set()
+    for k in keywords["keywords"]:
+        known.add(k["q"].lower())
+        known.update(r.lower() for r in k.get("related", []))
+    cutoff = (today - datetime.timedelta(days=SEEN_DAYS)).isoformat()
+    fresh = [c for c in candidates
+             if c["q"].lower() not in known and seen.get(seen_key(c), "") < cutoff
+             and intent.WEIGHTS[intent.classify(c["q"])] >= 0.3]
+    fresh.sort(key=lambda c: -intent.score(c))
+    return fresh[:TRIAGE_BATCH]
+
+
+def triage(candidates, keywords, pages, seen=None, today=None):
+    today = today or datetime.date.today()
+    seen = {} if seen is None else seen
+    fresh = fresh_candidates(candidates, keywords, seen, today)
     if not fresh:
         return [], []
     listing = "\n".join(f"{c['q']} [{c['lang']}] {c.get('impressions', '?')} impr." for c in fresh)
@@ -175,6 +205,8 @@ def triage(candidates, keywords, pages):
     result = llm.call(TRIAGE_SYSTEM, ["Existing pages:\n" + existing,
                                       "Candidate queries (impressions are monthly):\n" + listing + "\n\nGroup them."],
                       effort="medium", schema=TRIAGE_SCHEMA, max_tokens=32000)
+    for c in fresh:  # only once Claude has answered: a failed call leaves them for the next run
+        seen[seen_key(c)] = today.isoformat()
     imp = {c["q"].lower(): c.get("impressions", 0) for c in fresh}
     new_rows, merges = [], []
     have_slugs = {k["slug"] for k in keywords["keywords"]} | {s for _, s, _ in pages}
@@ -207,14 +239,17 @@ def main():
     gsc = gsc_rows()
     candidates = from_bing() + [{"q": r["q"], "lang": "en", "impressions": r["impressions"], "source": "gsc"}
                                 for r in gsc if r["position"] > 10]
-    new_rows, merges = triage(candidates, keywords, pages) if candidates else ([], [])
+    seen = load_json(SEEN) if os.path.exists(os.path.join(ROOT, SEEN)) else {}
+    new_rows, merges = triage(candidates, keywords, pages, seen) if candidates else ([], [])
 
     by_file = {p["slug"]: p["file"] for p in manifest["pages"]}
     opportunities = {"updated": datetime.date.today().isoformat(), "refresh": refresh_targets(gsc, manifest)}
     for m in merges:
-        if m["slug"] in by_file:
+        queries = intent.worth_covering(m["queries"])  # drop logins, official-site and bare-crypto searches
+        if m["slug"] in by_file and queries:
             opportunities["refresh"].append({"file": by_file[m["slug"]], "impressions": m["impressions"],
-                                             "reason": "also cover these searches: " + "; ".join(m["queries"][:10])})
+                                             "queries": queries[:10],
+                                             "reason": "also cover these searches: " + "; ".join(queries[:10])})
     # Search Console targets (real rankings) first, then merges by intent-weighted volume, dropping
     # groups that are mostly non-gambling searches however big their volume.
     gsc_targets = [o for o in opportunities["refresh"] if not o["reason"].startswith("also cover")]
@@ -230,6 +265,8 @@ def main():
     if args.dry_run:
         return
     keywords["keywords"].extend(new_rows)
+    cutoff = (datetime.date.today() - datetime.timedelta(days=SEEN_DAYS)).isoformat()
+    save_json(SEEN, {k: v for k, v in sorted(seen.items()) if v >= cutoff})
     save_json("data/keywords.json", keywords)
     save_json("data/opportunities.json", opportunities)
 

@@ -31,6 +31,15 @@ Non-negotiable rules:
 - Use {{CTA}} at most twice. Link to 3-6 existing pages from the list given (relative URLs like /bonuses/). Tools exist at /tools/wagering-calculator/ and /tools/provably-fair-verifier/. End the page with {{RELATED}}.
 - Write the whole page in the target language.
 
+What the reviewer rejected most often in earlier drafts (each of these cost a rewrite or the page):
+- A casino's games, studios, features, promotion types or product behaviour named in prose when the data holds only a count or nothing ("Crash and Mines" as a casino's originals, "live dealer tables", "reloads and races", "no fiat wallet"). If the data has a count, print the count through a shortcode and stop there; if a field is null, say it is not verified.
+- Comparatives and superlatives between casinos ("more games", "the bigger in-house set", "widest coin support") where the data does not hold both values or holds equal ones. Compare only fields present for both casinos, and scope "most/fastest/widest" to the casinos on this page.
+- Blanket or prevalence claims with no source ("every casino we list forbids VPNs", "most US-facing sites are sweepstakes"). Say "many" or "check the operator's terms" instead.
+- Wording that implies hands-on testing ("facts we checked ourselves"). Say the facts are verified and date-stamped, and print the date with {{FACT:<id>.verified_at}}; when a sentence covers two casinos, use each casino's own shortcode, never one date for both.
+- A technical explanation stated backwards or loosely. Re-read every explanation of hashing, odds, house edge and wagering maths before you finish: each number must follow from the one before it.
+- Unclosed HTML tags. Close every <p>, <li>, <details> and <div>.
+- A title that promises more than the data can deliver. If the data cannot support a head-to-head, frame the title around what the page does answer.
+
 Output format: exactly one page file, nothing before or after it:
 ---
 slug: <slug>
@@ -70,8 +79,9 @@ def pick(keywords, pages, slug=None):
     if slug:
         return next((k for k in rows if k["slug"] == slug), None)
     # Rank by casino-intent-weighted volume, not raw volume (see seo/intent.py).
+    # A topic that already failed review waits behind every untried one.
     todo = sorted((k for k in rows if k["status"] == "planned" and k["slug"] not in have),
-                  key=lambda k: (-intent.score(k), k["priority"]))
+                  key=lambda k: (k.get("fails", 0), -intent.score(k), k["priority"]))
     return todo[0] if todo else None
 
 
@@ -96,7 +106,7 @@ def write_new(row, pages, feedback=None):
              f"Search impressions (Bing, monthly, if known): {row.get('impressions', 'unknown')}\n"
              f"Related queries to cover in the same page: {', '.join(row.get('related', [])) or 'none'}\n"
              f"Notes: {row.get('note', 'none')}\n\nExisting pages you may link to:\n{page_list(pages)}")
-    ask = brief + ("\n\nA reviewer rejected the previous draft. Fix every point:\n" + feedback if feedback else "") + "\n\nWrite the page now."
+    ask = brief + ("\n\nA reviewer rejected an earlier draft of this page. Avoid every point:\n" + feedback if feedback else "") + "\n\nWrite the page now."
     text = llm.call(RULES, ["Casino data (the only source of casino facts):\n" + load("data/casinos.json"),
                             "Example page for format and tone:\n" + load(EXAMPLE_PAGE), ask])
     return extract_page(text, row["slug"])
@@ -110,7 +120,7 @@ def refresh(path, reason, pages, feedback=None):
            "own test descriptions exactly as they are, and keep the URL's topic. Expand it to the length in the rules "
            "with the sections a searcher expects, fix anything thin or vague, and improve title and description for "
            "click-through without clickbait.\n\nExisting pages you may link to:\n" + page_list(pages)
-           + ("\n\nA reviewer rejected the previous rewrite. Fix every point:\n" + feedback if feedback else "")
+           + ("\n\nA reviewer rejected an earlier rewrite of this page. Avoid every point:\n" + feedback if feedback else "")
            + "\n\nCurrent page:\n" + current + "\n\nReturn the full improved page.")
     text = llm.call(RULES, ["Casino data (the only source of casino facts):\n" + load("data/casinos.json"),
                             "Example page for format and tone:\n" + load(EXAMPLE_PAGE), ask])

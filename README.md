@@ -13,8 +13,10 @@ Referral links are generated from `{{REF}}` in content: `https://lumenbet.io/ref
 | `build.py` | Pulls the live Lumenbet welcome bonus (falls back to the data file if the API is unreachable), expands shortcodes, generates BreadcrumbList / Article / ItemList / FAQPage / WebSite JSON-LD, related-page links, hreflang, and a sitemap whose `lastmod` is each page's real last change (git), not the build date. |
 | `seo/check.py` | Quality gate: duplicate titles/descriptions, title and description length, thin content, broken internal links, unknown shortcodes, stale facts, empty test logs. New pages must pass fully; existing pages only warn. |
 | `seo/indexnow.py` | Pings Bing/Yandex (IndexNow) with the URLs that changed today. |
-| `seo/autopilot.py` | Daily orchestrator: discovery (Mondays), one new page, one refreshed page, review, publish or PR, weekly report issue. |
-| `seo/discover.py` | Keyword research from Bing Webmaster (related queries with impressions, 5 markets) and Google Search Console (page-2 rankings). Claude groups queries into pages. |
+| `seo/autopilot.py` | Daily orchestrator: discovery (Mondays, and whenever fewer than 7 topics are planned), one new page, one refreshed page, review with up to three drafts, publish or hold back for another day, weekly results snapshot, weekly report issue. |
+| `seo/discover.py` | Keyword research from Bing Webmaster (related queries with impressions, 5 markets) and Google Search Console (page-2 rankings). Claude groups queries into pages. Queries already triaged are remembered in `data/seen-queries.json` for 90 days, so each run looks at the next 150 instead of the same ones. |
+| `seo/intent.py` | Weighs a search by how likely the searcher is to pick a casino. Logins, official-site and app searches, and crypto with no gambling angle are worth nothing. |
+| `seo/metrics.py` | Results: Google and Bing clicks and impressions for 28 days, top queries and pages, pages Google has indexed, sitemap status. Appends a weekly snapshot to `data/metrics.json`; the Monday report prints it against the previous one. |
 | `seo/draft.py` | Writes new pages and rewrites existing ones with Claude (`claude-opus-5`), facts only via shortcodes. |
 | `seo/review.py` | Publish gate: banned claims, invented first-person tests, duplicate content (5-gram similarity), the quality gate, then an independent Claude fact-check against `data/casinos.json` (score 8/10 or more to publish). |
 | `seo/llm.py` | Shared Claude call: streaming, adaptive thinking, refusal fallback, prompt caching. |
@@ -23,7 +25,7 @@ Referral links are generated from `{{REF}}` in content: `https://lumenbet.io/ref
 ## Schedules (`.github/workflows/`)
 
 - **pages.yml**: on every push to `main` and daily at 05:17 UTC: build, gate, deploy, IndexNow. The daily run rolls month-dated titles over on the 1st and re-reads the Lumenbet offer.
-- **autopilot.yml**: daily 03:30 UTC. Publishes pages that pass review straight to `main` and triggers a deploy; anything that fails review becomes a PR. Repo variable `AUTOPILOT` = `on` (default), `pr-only` (every page waits for a merge) or `off`. `AUTOPILOT_NEW_PER_RUN` / `AUTOPILOT_REFRESH_PER_RUN` (default 1 each), `AUTOPILOT_MIN_SCORE` (default 8).
+- **autopilot.yml**: daily 03:30 UTC. Publishes pages that pass review straight to `main` and triggers a deploy. A page that fails review after three drafts is thrown away; the reviewer's findings are kept in `data/autopilot-log.json` and given to the next attempt, and nothing waits for a person. A new topic that fails on two days is marked `skip`; a refresh that fails is retried after a week, three times at most. Repo variable `AUTOPILOT` = `on` (default), `pr-only` (every page waits for a merge) or `off`. `AUTOPILOT_NEW_PER_RUN` / `AUTOPILOT_REFRESH_PER_RUN` (default 1 each), `AUTOPILOT_MIN_SCORE` (default 8).
 - **facts-review.yml**: 1st of each month: opens an issue listing every casino fact to re-verify.
 
 Setup once: secrets `ANTHROPIC_API_KEY` (required), `BING_WEBMASTER_API_KEY` and `GSC_SERVICE_ACCOUNT_JSON` (optional, for discovery; add the service account's email as a user on the Search Console property), and Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests".
@@ -33,5 +35,7 @@ Setup once: secrets `ANTHROPIC_API_KEY` (required), `BING_WEBMASTER_API_KEY` and
 - Only add a `test_log` entry for a test that really happened, with its real date and numbers.
 - Competitor facts are re-checked by hand; anything older than a month is labelled "not verified this month" automatically.
 - No fabricated ratings, reviews or testimonials, and keep the ownership disclosure in the footer.
+
+Tests for the autopilot's decisions (no network or keys): `python3 -m unittest discover -s seo -p 'test_*.py'`.
 
 Local preview: `python3 build.py && python3 seo/check.py && python3 -m http.server -d dist 8000`.
