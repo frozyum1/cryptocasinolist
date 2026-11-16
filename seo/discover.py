@@ -47,6 +47,7 @@ SEEDS = {
 SEEN = "data/seen-queries.json"
 SEEN_DAYS = 90      # a query Claude has already triaged is not sent again for this long
 TRIAGE_BATCH = 150
+TRIAGE_BATCHES = 3  # per run; ~1,500 relevant queries come back, so the backlog clears in about a month
 RELEVANT = re.compile(r"casino|cassino|казино|gambl|bet|slot|crash|plinko|mines|dice|limbo|keno|poker|roulette|blackjack|"
                       r"bonus|bônus|бонус|kyc|provably|stake|usdt|bitcoin|btc|crypto|cripto|крипто|wager|rtp|jackpot", re.I)
 
@@ -240,7 +241,18 @@ def main():
     candidates = from_bing() + [{"q": r["q"], "lang": "en", "impressions": r["impressions"], "source": "gsc"}
                                 for r in gsc if r["position"] > 10]
     seen = load_json(SEEN) if os.path.exists(os.path.join(ROOT, SEEN)) else {}
-    new_rows, merges = triage(candidates, keywords, pages, seen) if candidates else ([], [])
+    new_rows, merges = [], []
+    for _ in range(TRIAGE_BATCHES if candidates else 0):
+        try:
+            rows, more = triage(candidates, {"keywords": keywords["keywords"] + new_rows}, pages, seen)
+        except llm.LLMError as e:  # keep what the earlier batches found
+            print(f"discover: triage batch failed: {e}")
+            break
+        taken = {r["slug"] for r in new_rows}
+        new_rows += [r for r in rows if r["slug"] not in taken]
+        merges += more
+        if not rows and not more:
+            break
 
     by_file = {p["slug"]: p["file"] for p in manifest["pages"]}
     opportunities = {"updated": datetime.date.today().isoformat(), "refresh": refresh_targets(gsc, manifest)}

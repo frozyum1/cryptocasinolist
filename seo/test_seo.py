@@ -73,6 +73,31 @@ class Discovery(unittest.TestCase):
         self.assertNotIn("bitcoin price", [c["q"] for c in fresh])
 
 
+class DiscoveryBatches(unittest.TestCase):
+    def test_each_batch_sees_new_queries_and_results_are_combined(self):
+        calls = []
+
+        def fake_call(system, blocks, **kw):
+            listing = blocks[1].split("\n")[1:-2]
+            calls.append(len([l for l in listing if l.strip()]))
+            first = listing[0].split(" [")[0]
+            return {"pages": [{"q": first, "lang": "en", "slug": "guides/" + first.replace(" ", "-"), "tier": "long",
+                               "intent": "game_guide", "merge_into": "", "related": []}]}
+        cands = [{"q": f"casino topic {i:03d}", "lang": "en", "impressions": 1000 - i} for i in range(discover.TRIAGE_BATCH * 2 + 10)]
+        seen, keywords, real = {}, {"keywords": []}, discover.llm.call
+        discover.llm.call = fake_call
+        try:
+            found = []
+            for _ in range(3):
+                rows, _m = discover.triage(cands, {"keywords": keywords["keywords"] + found}, [], seen, D)
+                found += rows
+        finally:
+            discover.llm.call = real
+        self.assertEqual(calls, [discover.TRIAGE_BATCH, discover.TRIAGE_BATCH, 10])
+        self.assertEqual([r["q"] for r in found], ["casino topic 000", "casino topic 150", "casino topic 300"])
+        self.assertEqual(len(seen), len(cands))
+
+
 class Drafting(unittest.TestCase):
     def test_failed_topics_wait_behind_untried_ones(self):
         kw = {"keywords": [
@@ -194,6 +219,14 @@ class Metrics(unittest.TestCase):
         self.assertIn("| mines game | 20 | 1 | 18.0 |", text)
         self.assertIn("Not measured: bing: HTTPError", text)
         self.assertIn("No snapshot yet", "\n".join(metrics.report_lines([])))
+
+    def test_sitemap_line(self):
+        entry = {"path": metrics.SITEMAP, "lastDownloaded": "2026-11-10T04:12:00.000Z", "errors": "0", "warnings": "0"}
+        self.assertEqual(metrics.describe_sitemap(entry, True), "submitted, last read by Google 2026-11-10, re-read requested")
+        self.assertIn("needs Full permission", metrics.describe_sitemap(entry, False))
+        self.assertIn("2 errors", metrics.describe_sitemap(dict(entry, errors="2"), True))
+        self.assertEqual(metrics.describe_sitemap(None, True), "NOT submitted (submitted now)")
+        self.assertIn("could not be submitted", metrics.describe_sitemap(None, False))
 
     def test_missing_credentials_are_noted_not_fatal(self):
         saved = {k: os.environ.pop(k, None) for k in ("GSC_SERVICE_ACCOUNT_JSON", "BING_WEBMASTER_API_KEY")}
