@@ -19,6 +19,7 @@ API shapes checked 2026-11-16 against:
   https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect  (webmasters.readonly is enough)
   https://developers.google.com/webmaster-tools/v1/sitemaps/submit              (needs the full webmasters scope)
   https://learn.microsoft.com/en-us/dotnet/api/microsoft.bing.webmaster.api.interfaces.iwebmasterapi.getrankandtrafficstats
+  https://learn.microsoft.com/en-us/dotnet/api/microsoft.bing.webmaster.api.interfaces.iwebmasterapi.getusersites
 """
 import datetime
 import json
@@ -139,8 +140,8 @@ def gsc_index(session, urls):
 
 # ── Bing Webmaster ─────────────────────────────────────────────────────────
 
-def _bing(method, key, **params):
-    params.update(apikey=key, siteUrl=SITE)
+def _bing(method, key, site=True, **params):
+    params.update(apikey=key, **({"siteUrl": SITE} if site else {}))
     req = urllib.request.Request(BING_API + method + "?" + urllib.parse.urlencode(params),
                                  headers={"Content-Type": "application/json; charset=utf-8"})
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -174,8 +175,27 @@ def summarise_bing(traffic, queries, today):
             "queries": sorted(agg.values(), key=lambda a: -a["impressions"])[:10]}
 
 
+def bing_site_status(sites):
+    """Whether this site is added and verified in the Bing Webmaster account behind the key.
+
+    Zero Bing impressions mean nothing until this says "verified": an unverified or missing
+    site reports no data at all. Shape per GetUserSites: [{"Url": ..., "IsVerified": bool}].
+    """
+    host = urllib.parse.urlparse(SITE).netloc.lower()
+    for s in sites or []:
+        url = str(s.get("Url") or "")
+        if urllib.parse.urlparse(url if "//" in url else "//" + url).netloc.lower().removeprefix("www.") == host:
+            return "verified" if s.get("IsVerified") else "added but NOT verified"
+    return "NOT added to the Bing Webmaster account"
+
+
 def bing_performance(key, today):
-    return summarise_bing(_bing("GetRankAndTrafficStats", key), _bing("GetQueryStats", key), today)
+    out = summarise_bing(_bing("GetRankAndTrafficStats", key), _bing("GetQueryStats", key), today)
+    try:
+        out["site"] = bing_site_status(_bing("GetUserSites", key, site=False))
+    except Exception as e:  # noqa: BLE001 - the traffic numbers are still worth keeping
+        out["site"] = "unknown (%s)" % type(e).__name__
+    return out
 
 
 # ── Snapshots ──────────────────────────────────────────────────────────────
@@ -262,6 +282,8 @@ def report_lines(history):
                          + (" and %d more" % (len(idx["not_indexed"]) - 15) if len(idx["not_indexed"]) > 15 else ""))
     if cur.get("sitemap"):
         lines.append("- Sitemap in Search Console: %s." % cur["sitemap"])
+    if (cur.get("bing") or {}).get("site"):
+        lines.append("- Site in Bing Webmaster Tools: %s." % cur["bing"]["site"])
     for name, label in (("google", "Google"), ("bing", "Bing")):
         top = (cur.get(name) or {}).get("queries") or []
         if top:

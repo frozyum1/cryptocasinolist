@@ -16,7 +16,7 @@ import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MIN_WORDS = {"article": 600, "list": 500, "page": 120}
+MIN_WORDS = {"article": 600, "list": 500, "page": 120, "hub": 0}  # hubs are generated link lists
 STALE_DAYS = 60
 EXEMPT_THIN = {"privacy", "404", "responsible-gambling", "about"}
 

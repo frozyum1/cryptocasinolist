@@ -123,7 +123,7 @@ def gsc_rows():
 
 def refresh_targets(rows, manifest):
     """Pages on positions 5-30 with real impressions: the cheapest traffic to win."""
-    by_url = {p["url"]: p for p in manifest["pages"]}
+    by_url = {p["url"]: p for p in manifest["pages"] if p["file"].startswith("content/")}  # never generated hubs
     agg = {}
     for r in rows:
         if 5 <= r["position"] <= 30 and r["page"] in by_url:
@@ -254,7 +254,7 @@ def main():
         if not rows and not more:
             break
 
-    by_file = {p["slug"]: p["file"] for p in manifest["pages"]}
+    by_file = {p["slug"]: p["file"] for p in manifest["pages"] if p["file"].startswith("content/")}
     opportunities = {"updated": datetime.date.today().isoformat(), "refresh": refresh_targets(gsc, manifest)}
     for m in merges:
         queries = intent.worth_covering(m["queries"])  # drop logins, official-site and bare-crypto searches

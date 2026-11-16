@@ -18,6 +18,10 @@ place and every page that prints it follows on the next build:
 Front-matter keys: slug, title, description, lang, i18n (translation group),
 cluster (related-links group), type (article|list|page), date (fixed lastmod),
 noindex, jsonld (extra JSON-LD, raw).
+
+Section index pages (/reviews/, /guides/, /compare/, /tools/) are generated here from
+HUBS, not written in content/: each lists every page under it, so the list can never
+fall behind. The build also writes /feed.xml (Atom, newest pages first).
 """
 import datetime
 import html
@@ -91,6 +95,16 @@ def parse(src):
     return meta, m.group(2)
 
 
+def git_first_date(path):
+    """Date the file was first committed (ISO): the page's real publication date."""
+    try:
+        out = subprocess.run(["git", "log", "--diff-filter=A", "--format=%cs", "--", path], cwd=ROOT,
+                             capture_output=True, text=True, timeout=10).stdout.split()
+        return out[-1] if out else None
+    except (OSError, subprocess.SubprocessError):
+        return None
+
+
 def git_date(*paths):
     """Last commit date touching any of paths (ISO), or None outside git / for new files."""
     try:
@@ -136,7 +150,7 @@ def refresh_lumenbet_bonus():
     return "live"
 
 
-BONUS_STATUS = refresh_lumenbet_bonus()
+BONUS_STATUS = "not fetched"  # set by main(); importing this module must not touch the network
 
 
 def t(value, lang):
@@ -328,22 +342,87 @@ def url_of(slug):
     return SITE + ("/" if not slug else f"/{slug}/")
 
 
-def jsonld_blocks(meta, body, lang, slug, ctx, lastmod):
+# Section index pages: (section, language) -> (title, description). A hub is built only
+# when no content page already owns the URL and at least two pages sit under it.
+HUBS = {
+    ("reviews", "en"): ("Crypto Casino Reviews: Every Casino We Cover",
+                        "Every crypto casino review on this site in one place: games, KYC rules, withdrawal speed "
+                        "and bonus terms for each casino we cover."),
+    ("guides", "en"): ("Crypto Casino Guides: Games, Bonuses and Payments",
+                       "Plain-language guides to crypto casino games, bonus terms, deposits and withdrawals, "
+                       "and how to check that a game is provably fair."),
+    ("compare", "en"): ("Crypto Casino Comparisons: Head-to-Head Facts",
+                        "Side-by-side comparisons of crypto casinos on the facts that decide where to play: KYC, "
+                        "withdrawal speed, games and bonus terms."),
+    ("tools", "en"): ("Free Crypto Casino Tools and Calculators",
+                      "Free tools for crypto casino players: work out what a bonus really costs to clear, "
+                      "and verify a provably fair game result yourself."),
+}
+HUB_MIN_PAGES = 2
+
+
+def hub_entries(entries):
+    """(meta, body) for each section index page, built from the pages under it."""
+    taken = {m["slug"].strip("/") for m, _ in entries}
+    out = []
+    for (section, lang), (title, desc) in HUBS.items():
+        slug = section if lang == "en" else f"{lang}/{section}"
+        kids = [m for m, _ in entries if m["slug"].strip("/").startswith(slug + "/") and m.get("lang", "en") == lang
+                and not m.get("redirect") and m.get("noindex") != "true"]
+        if slug in taken or len(kids) < HUB_MIN_PAGES:
+            continue
+        cards = "".join(
+            f'<a href="/{k["slug"].strip("/")}/"><b>{html.escape(expand(k["title"], k, lang, k["slug"], {}))}</b>'
+            f'{html.escape(expand(k["description"], k, lang, k["slug"], {}))}</a>' for k in kids)
+        body = f'<h1>{html.escape(title)}</h1>\n<p class="lede">{html.escape(desc)}</p>\n<div class="guides">{cards}</div>\n'
+        files = [k["_file"] for k in kids if k.get("_file")]
+        out.append(({"slug": slug, "title": title, "description": desc, "lang": lang, "type": "hub", "_file": "build.py",
+                     "date": (git_date(*files) if files else None) or TODAY.isoformat()}, body))
+    return out
+
+
+def breadcrumb(meta, lang, slug, known):
+    """BreadcrumbList items for a page. A level is listed only when its URL exists."""
+    root = lang if lang != "en" and slug.split("/")[0] == lang else ""
+    parts = [p for p in slug[len(root):].strip("/").split("/") if p]
+    items = [{"@type": "ListItem", "position": 1, "name": L.get(lang, L["en"])["home"], "item": url_of(root)}]
+    for i in range(len(parts)):
+        sub = "/".join(([root] if root else []) + parts[: i + 1])
+        last = i == len(parts) - 1
+        if not last and sub not in known:
+            continue
+        name = meta["title"] if last else parts[i].replace("-", " ").title()
+        items.append({"@type": "ListItem", "position": len(items) + 1, "name": name, "item": url_of(sub)})
+    return items
+
+
+def atom_feed(pages, limit=20):
+    """Atom feed of the newest pages, so crawlers and readers can follow what is published."""
+    esc = lambda s: html.escape(s, quote=False)
+    posts = sorted((p for p in pages if p["indexable"] and p["type"] not in ("hub", "redirect") and p["slug"]),
+                   key=lambda p: (p["published"], p["lastmod"]), reverse=True)[:limit]
+    updated = max([p["lastmod"] for p in posts] or [TODAY.isoformat()])
+    out = ['<?xml version="1.0" encoding="UTF-8"?>', '<feed xmlns="http://www.w3.org/2005/Atom">',
+           f"  <title>{esc(SITE_NAME)}</title>", f'  <link href="{SITE}/"/>', f'  <link rel="self" href="{SITE}/feed.xml"/>',
+           f"  <id>{SITE}/</id>", f"  <updated>{updated}T00:00:00Z</updated>", f"  <author><name>{esc(SITE_NAME)} team</name></author>"]
+    for p in posts:
+        out += ["  <entry>", f"    <title>{esc(p['title'])}</title>", f'    <link href="{p["url"]}"/>', f"    <id>{p['url']}</id>",
+                f"    <published>{p['published']}T00:00:00Z</published>", f"    <updated>{p['lastmod']}T00:00:00Z</updated>",
+                f"    <summary>{esc(p['description'])}</summary>", "  </entry>"]
+    out.append("</feed>")
+    return "\n".join(out) + "\n"
+
+
+def jsonld_blocks(meta, body, lang, slug, ctx, lastmod, known=frozenset(), published=None):
     blocks = []
     if slug and slug != "404":
-        root = lang if lang != "en" and slug.split("/")[0] == lang else ""
-        parts = [p for p in slug[len(root):].strip("/").split("/") if p]
-        items = [{"@type": "ListItem", "position": 1, "name": L.get(lang, L["en"])["home"], "item": url_of(root)}]
-        for i in range(len(parts)):
-            sub = "/".join(([root] if root else []) + parts[: i + 1])
-            name = meta["title"] if i == len(parts) - 1 else parts[i].replace("-", " ").title()
-            items.append({"@type": "ListItem", "position": len(items) + 1, "name": name, "item": url_of(sub)})
+        items = breadcrumb(meta, lang, slug, known)
         if len(items) > 1:
             blocks.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items})
     if meta.get("type") == "article":
         blocks.append({"@context": "https://schema.org", "@type": "Article", "headline": meta["title"],
                        "description": meta["description"], "inLanguage": lang, "dateModified": lastmod,
-                       "datePublished": meta.get("published", lastmod), "mainEntityOfPage": url_of(slug),
+                       "datePublished": meta.get("published") or published or lastmod, "mainEntityOfPage": url_of(slug),
                        "author": {"@type": "Organization", "name": f"{SITE_NAME} team", "url": url_of("about")},
                        "publisher": {"@type": "Organization", "name": SITE_NAME, "url": SITE}})
     if ctx.get("list") and "ItemList" not in meta.get("jsonld", ""):
@@ -363,6 +442,8 @@ def jsonld_blocks(meta, body, lang, slug, ctx, lastmod):
 
 
 def main():
+    global BONUS_STATUS
+    BONUS_STATUS = refresh_lumenbet_bonus()
     layout = read(os.path.join(ROOT, "layout.html"))
     entries = []
     for name in sorted(os.listdir(os.path.join(ROOT, "content"))):
@@ -370,6 +451,8 @@ def main():
             meta, body = parse(read(os.path.join(ROOT, "content", name)))
             meta["_file"] = os.path.join("content", name)
             entries.append((meta, body))
+    entries += hub_entries(entries)
+    known = {m["slug"].strip("/") for m, _ in entries if not m.get("redirect")}
 
     groups = {}
     for meta, _ in entries:
@@ -421,6 +504,7 @@ def main():
         if "{{MONTH}}" in read(os.path.join(ROOT, meta["_file"])):
             candidates.append(TODAY.replace(day=1).isoformat())
         lastmod = meta.get("date") or max(candidates)
+        published = min(meta.get("published") or git_first_date(meta["_file"]) or lastmod, lastmod)
 
         hreflang = ""
         g = meta.get("i18n")
@@ -430,7 +514,7 @@ def main():
             links.append(f'<link rel="alternate" hreflang="x-default" href="{default}">')
             hreflang = "\n".join(links)
 
-        jsonld = "\n".join(x for x in [meta.get("jsonld", ""), jsonld_blocks(meta, body, lang, slug, ctx, lastmod)] if x)
+        jsonld = "\n".join(x for x in [meta.get("jsonld", ""), jsonld_blocks(meta, body, lang, slug, ctx, lastmod, known, published)] if x)
         robots = '<meta name="robots" content="noindex">' if meta.get("noindex") == "true" else ""
         page = layout
         for k, v in {"TITLE": html.escape(title, quote=False), "DESC": html.escape(desc), "BODY": body, "LANG": lang,
@@ -448,7 +532,7 @@ def main():
         text = re.sub(r"<[^>]+>", " ", body)
         manifest.append({
             "slug": slug, "url": url_of(slug), "file": meta["_file"], "lang": lang, "title": title, "description": desc,
-            "lastmod": lastmod, "words": len(text.split()), "cluster": meta.get("cluster"), "type": meta.get("type", "page"),
+            "lastmod": lastmod, "published": published, "words": len(text.split()), "cluster": meta.get("cluster"), "type": meta.get("type", "page"),
             "indexable": slug != "404" and meta.get("noindex") != "true",
             "links": sorted(set(re.findall(r'href="(/[^"#?]*)', body))), "unexpanded": re.findall(r"\{\{[A-Z]+[^}]*\}\}", body),
         })
@@ -460,6 +544,8 @@ def main():
             if p["indexable"]:
                 f.write(f'  <url><loc>{p["url"]}</loc><lastmod>{p["lastmod"]}</lastmod></url>\n')
         f.write("</urlset>\n")
+    with open(os.path.join(DIST, "feed.xml"), "w", encoding="utf-8") as f:
+        f.write(atom_feed(manifest))
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     with open(os.path.join(ROOT, "build-manifest.json"), "w", encoding="utf-8") as f:

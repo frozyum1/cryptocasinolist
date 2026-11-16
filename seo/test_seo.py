@@ -9,6 +9,8 @@ import sys
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import build  # noqa: E402
 import autopilot  # noqa: E402
 import discover  # noqa: E402
 import draft  # noqa: E402
@@ -239,6 +241,56 @@ class Metrics(unittest.TestCase):
         self.assertEqual(snap["pages"], 1)
         self.assertEqual(len(snap["notes"]), 2)
         self.assertNotIn("google", snap)
+
+    def test_bing_site_status(self):
+        self.assertEqual(metrics.bing_site_status([{"Url": "https://cryptocasinolist.io/", "IsVerified": True}]), "verified")
+        self.assertEqual(metrics.bing_site_status([{"Url": "http://www.cryptocasinolist.io", "IsVerified": False}]),
+                         "added but NOT verified")
+        self.assertIn("NOT added", metrics.bing_site_status([{"Url": "https://example.com/", "IsVerified": True}]))
+        self.assertIn("NOT added", metrics.bing_site_status([]))
+        text = "\n".join(metrics.report_lines([{"date": "2026-11-16", "bing": {"clicks": 0, "impressions": 0, "site": "verified"}}]))
+        self.assertIn("Site in Bing Webmaster Tools: verified.", text)
+
+
+class Site(unittest.TestCase):
+    def page(self, slug, **kw):
+        return ({"slug": slug, "title": "T " + slug, "description": "D " + slug, **kw}, "")
+
+    def test_hub_lists_every_page_under_it(self):
+        entries = [self.page("reviews/a"), self.page("reviews/b"), self.page("reviews/old", redirect="reviews/a"),
+                   self.page("reviews/hidden", noindex="true"), self.page("es/reviews/c", lang="es")]
+        hubs = build.hub_entries(entries)
+        self.assertEqual([m["slug"] for m, _ in hubs], ["reviews"])
+        meta, body = hubs[0]
+        self.assertEqual(meta["type"], "hub")
+        self.assertIn('href="/reviews/a/"', body)
+        self.assertIn('href="/reviews/b/"', body)
+        for absent in ("old", "hidden", "/es/"):
+            self.assertNotIn(absent, body)
+
+    def test_no_hub_for_one_page_or_a_taken_url(self):
+        self.assertEqual(build.hub_entries([self.page("guides/a")]), [])
+        self.assertEqual(build.hub_entries([self.page("guides"), self.page("guides/a"), self.page("guides/b")]), [])
+
+    def test_breadcrumb_only_names_urls_that_exist(self):
+        meta = {"title": "Stake review"}
+        with_hub = build.breadcrumb(meta, "en", "reviews/stake", {"reviews", "reviews/stake"})
+        self.assertEqual([i["item"] for i in with_hub], [build.SITE + "/", build.SITE + "/reviews/", build.SITE + "/reviews/stake/"])
+        self.assertEqual([i["position"] for i in with_hub], [1, 2, 3])
+        without = build.breadcrumb({"title": "Ruleta"}, "es", "es/guides/ruleta", {"es", "es/guides/ruleta"})
+        self.assertEqual([i["item"] for i in without], [build.SITE + "/es/", build.SITE + "/es/guides/ruleta/"])
+        self.assertEqual([i["position"] for i in without], [1, 2])
+
+    def test_feed_is_newest_first_without_hubs_or_hidden_pages(self):
+        def p(slug, published, **kw):
+            return {"slug": slug, "url": build.url_of(slug), "title": "A & B " + slug, "description": "d", "lastmod": published,
+                    "published": published, "type": "article", "indexable": True, **kw}
+        feed = build.atom_feed([p("old", "2026-09-04"), p("new", "2026-11-16"), p("guides", "2026-11-16", type="hub"),
+                                p("secret", "2026-11-16", indexable=False), p("", "2026-11-16")])
+        self.assertLess(feed.index("/new/"), feed.index("/old/"))
+        self.assertEqual(feed.count("<entry>"), 2)
+        self.assertIn("A &amp; B new", feed)
+        self.assertNotIn("secret", feed)
 
 
 if __name__ == "__main__":
