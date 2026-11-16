@@ -581,6 +581,95 @@
       ],
       "intent": "game_guide",
       "found": "2026-11-16"
+    },
+    {
+      "q": "stake casino",
+      "lang": "es",
+      "tier": "mid",
+      "slug": "es/stake",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 509,
+      "related": [
+        "stake casino opiniones",
+        "stake es confiable"
+      ],
+      "intent": "choose_casino",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "real money casino games",
+      "lang": "en",
+      "tier": "head",
+      "slug": "real-money-casino-games",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 1401,
+      "related": [
+        "casino games that pay money",
+        "win real money online casino",
+        "real casino game real money",
+        "online casino game real money",
+        "free online casino games win real money no deposit"
+      ],
+      "intent": "play",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "keno game",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "guides/how-keno-works",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 474,
+      "related": [
+        "free keno games"
+      ],
+      "intent": "game_guide",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "stake meaning",
+      "lang": "en",
+      "tier": "long",
+      "slug": "guides/what-does-stake-mean-in-gambling",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 191,
+      "related": [],
+      "intent": "game_guide",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "plinko casino game real money",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "plinko-casinos",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 238,
+      "related": [
+        "plinko casino game real money",
+        "plinko real money sites"
+      ],
+      "intent": "choose_casino",
+      "found": "2026-11-16"
+    },
+    {
+      "q": "cassino pix",
+      "lang": "pt",
+      "tier": "mid",
+      "slug": "pt/guides/cassino-pix",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 180,
+      "related": [
+        "cassino pix",
+        "deposito pix cassino cripto"
+      ],
+      "intent": "play",
+      "found": "2026-11-16"
     }
   ]
 }

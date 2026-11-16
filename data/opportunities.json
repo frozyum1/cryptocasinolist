@@ -2,30 +2,133 @@
   "updated": "2026-11-16",
   "refresh": [
     {
-      "file": "content/52-guides-crypto-casino-games.html",
-      "impressions": 13758,
+      "file": "content/11-review-stake.html",
+      "impressions": 2289,
       "queries": [
-        "casino games",
-        "casino games online"
+        "stakes",
+        "stake casino",
+        "donut stake"
       ],
-      "reason": "also cover these searches: casino games; casino games online"
+      "reason": "also cover these searches: stakes; stake casino; donut stake"
     },
     {
-      "file": "content/61-no-deposit-bonus.html",
-      "impressions": 5164,
+      "file": "content/00-index.html",
+      "impressions": 1683,
       "queries": [
-        "online casino real money no deposit"
+        "casinos",
+        "gamble",
+        "casino"
       ],
-      "reason": "also cover these searches: online casino real money no deposit"
+      "reason": "also cover these searches: casinos; gamble; casino"
+    },
+    {
+      "file": "content/52-guides-crypto-casino-games.html",
+      "impressions": 759,
+      "queries": [
+        "gambling games",
+        "casino games"
+      ],
+      "reason": "also cover these searches: gambling games; casino games"
+    },
+    {
+      "file": "content/03-es-index.html",
+      "impressions": 420,
+      "queries": [
+        "casino online",
+        "casino online cripto"
+      ],
+      "reason": "also cover these searches: casino online; casino online cripto"
+    },
+    {
+      "file": "content/00-index.html",
+      "impressions": 419,
+      "queries": [
+        "crypto casino",
+        "casino casino",
+        "gambling game",
+        "gamble games"
+      ],
+      "reason": "also cover these searches: crypto casino; casino casino; gambling game; gamble games"
     },
     {
       "file": "content/11-review-stake.html",
-      "impressions": 3771,
+      "impressions": 414,
       "queries": [
-        "stake casino",
-        "stake online casino"
+        "stake gambling",
+        "stake engine"
       ],
-      "reason": "also cover these searches: stake casino; stake online casino"
+      "reason": "also cover these searches: stake gambling; stake engine"
+    },
+    {
+      "file": "content/02-pt-index.html",
+      "impressions": 363,
+      "queries": [
+        "cassino online",
+        "casino"
+      ],
+      "reason": "also cover these searches: cassino online; casino"
+    },
+    {
+      "file": "content/64-guides-dice-strategy.html",
+      "impressions": 458,
+      "queries": [
+        "dice game",
+        "dice online"
+      ],
+      "reason": "also cover these searches: dice game; dice online"
+    },
+    {
+      "file": "content/40-bonuses.html",
+      "impressions": 302,
+      "queries": [
+        "bonus",
+        "casino bonus"
+      ],
+      "reason": "also cover these searches: bonus; casino bonus"
+    },
+    {
+      "file": "content/40-bonuses.html",
+      "impressions": 282,
+      "queries": [
+        "casino welcome bonus",
+        "casino welcome bonus"
+      ],
+      "reason": "also cover these searches: casino welcome bonus; casino welcome bonus"
+    },
+    {
+      "file": "content/56-guides-how-plinko-works.html",
+      "impressions": 373,
+      "queries": [
+        "plinko board"
+      ],
+      "reason": "also cover these searches: plinko board"
+    },
+    {
+      "file": "content/11-review-stake.html",
+      "impressions": 228,
+      "queries": [
+        "stake codes",
+        "stake codes"
+      ],
+      "reason": "also cover these searches: stake codes; stake codes"
+    },
+    {
+      "file": "content/02-pt-index.html",
+      "impressions": 204,
+      "queries": [
+        "casino online",
+        "casino online",
+        "cassino online"
+      ],
+      "reason": "also cover these searches: casino online; casino online; cassino online"
+    },
+    {
+      "file": "content/01-ru-index.html",
+      "impressions": 172,
+      "queries": [
+        "казино онлайн"
+      ],
+      "reason": "also cover these searches: казино онлайн"
     }
   ]
 }

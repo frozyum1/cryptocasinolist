@@ -2,7 +2,7 @@
   {
     "date": "2026-11-16",
     "window_days": 28,
-    "pages": 52,
+    "pages": 56,
     "google": {
       "clicks": 0,
       "impressions": 9,
@@ -25,18 +25,19 @@
         }
       ]
     },
-    "sitemap": "submitted",
+    "sitemap": "submitted, last read by Google 2026-11-13, re-read requested",
     "index": {
-      "checked": 52,
+      "checked": 56,
       "indexed": 1,
       "states": {
         "Submitted and indexed": 1,
-        "Discovered - currently not indexed": 31,
-        "URL is unknown to Google": 20
+        "Discovered - currently not indexed": 37,
+        "URL is unknown to Google": 18
       },
       "not_indexed": [
         "/about/",
         "/bonuses/",
+        "/compare/",
         "/compare/lumenbet-vs-stake/",
         "/compare/stake-us-vs-stake/",
         "/compare/stake-vs-bc-game/",
@@ -46,6 +47,7 @@
         "/es/guides/como-funciona-la-ruleta/",
         "/es/lumenbet/",
         "/fast-withdrawal-casinos/",
+        "/guides/",
         "/guides/cheapest-crypto-for-casino-deposits/",
         "/guides/crypto-casino-games/",
         "/guides/dice-strategy/",
@@ -72,6 +74,7 @@
         "/pt/",
         "/pt/lumenbet/",
         "/responsible-gambling/",
+        "/reviews/",
         "/reviews/bc-game/",
         "/reviews/lumenbet/",
         "/reviews/roobet/",
@@ -82,6 +85,7 @@
         "/ru/no-kyc-casinos/",
         "/stake-alternatives/",
         "/tazzoro/",
+        "/tools/",
         "/tools/provably-fair-verifier/",
         "/tools/wagering-calculator/",
         "/usdt-casinos/",
@@ -91,7 +95,8 @@
     "bing": {
       "clicks": 0,
       "impressions": 0,
-      "queries": []
+      "queries": [],
+      "site": "verified"
     }
   }
 ]
