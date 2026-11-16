@@ -349,5 +349,14 @@
     "outcome": "PR https://github.com/frozyum1/cryptocasinolist/pull/16",
     "score": 7,
     "attempts": 2
+  },
+  {
+    "date": "2026-11-16",
+    "action": "new",
+    "q": "stake vs shuffle",
+    "file": "content/66-compare-stake-vs-shuffle.html",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1
   }
 ]
