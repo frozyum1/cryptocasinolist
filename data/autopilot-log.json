@@ -358,5 +358,26 @@
     "outcome": "published",
     "score": 9,
     "attempts": 1
+  },
+  {
+    "date": "2026-11-17",
+    "action": "refresh",
+    "file": "content/52-guides-crypto-casino-games.html",
+    "reason": "also cover these searches: online casino games; online virtual casino games; online gambling games; online casino game and gambling; casino game gambling online; online casino game site; casino game i",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1,
+    "queries": [
+      "online casino games",
+      "online virtual casino games",
+      "online gambling games",
+      "online casino game and gambling",
+      "casino game gambling online",
+      "online casino game site",
+      "casino game internet",
+      "casino game online",
+      "online casino gambling games",
+      "best casino game online site"
+    ]
   }
 ]
