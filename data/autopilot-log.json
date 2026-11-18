@@ -379,5 +379,21 @@
       "online casino gambling games",
       "best casino game online site"
     ]
+  },
+  {
+    "date": "2026-11-18",
+    "action": "refresh",
+    "file": "content/11-review-stake.html",
+    "reason": "also cover these searches: stake com; stakee; my stake; stake casino uk; stake poker",
+    "outcome": "published",
+    "score": 8,
+    "attempts": 1,
+    "queries": [
+      "stake com",
+      "stakee",
+      "my stake",
+      "stake casino uk",
+      "stake poker"
+    ]
   }
 ]
