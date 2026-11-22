@@ -415,5 +415,21 @@
       "The page relies on the reader inferring the Lumenbet limited-bonus mechanic (\"limitada a um número fixo de jogadores\") without surfacing the available remaining/total counters from the data; either pull them through a shortcode or soften the claim so it clearly rests on published terms.",
       "Minor: the \"Como pesamos as notas\" weightings are presented as a precise 30/20/20/15/15 methodology but no worked link between those weights and the printed 0-10 ratings is shown, which is a transparency gap on a page whose top pick is run by the site's own team."
     ]
+  },
+  {
+    "date": "2026-11-22",
+    "action": "refresh",
+    "file": "content/00-index.html",
+    "reason": "also cover these searches: crypto casinos; crypto online gambling; online gambling with crypto; crypto casino vergleich; best bitcoin casino",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1,
+    "queries": [
+      "crypto casinos",
+      "crypto online gambling",
+      "online gambling with crypto",
+      "crypto casino vergleich",
+      "best bitcoin casino"
+    ]
   }
 ]
