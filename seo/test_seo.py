@@ -295,3 +295,17 @@ class Site(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EmptySlugRead(unittest.TestCase):
+    """The homepage's slug is empty. Reading it must not swallow the next front-matter line."""
+
+    def test_refresh_reads_empty_slug_as_empty(self):
+        import re as _re
+        page = "---\nslug:\ni18n: home\ntitle: T\n---\nbody\n"
+        self.assertEqual(_re.search(r"^slug:[ \t]*(.*)$", page, _re.M).group(1).strip().strip("/"), "")
+
+    def test_extract_page_keeps_root_slug(self):
+        import draft
+        out = draft.extract_page("---\nslug: whatever\ni18n: home\n---\nbody\n", "")
+        self.assertIn("\nslug: \ni18n: home\n", out)

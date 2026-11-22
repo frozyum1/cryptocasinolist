@@ -63,7 +63,7 @@ def existing_pages():
     pages = []
     for name in sorted(os.listdir(os.path.join(ROOT, "content"))):
         src = load(os.path.join("content", name))
-        slug = re.search(r"^slug:\s*(.*)$", src, re.M).group(1).strip().strip("/")
+        slug = re.search(r"^slug:[ \t]*(.*)$", src, re.M).group(1).strip().strip("/")
         title = re.search(r"^title:\s*(.*)$", src, re.M).group(1).strip()
         pages.append((name, slug, title))
     return pages
@@ -114,7 +114,7 @@ def write_new(row, pages, feedback=None):
 
 def refresh(path, reason, pages, feedback=None):
     current = load(path)
-    slug = re.search(r"^slug:\s*(.*)$", current, re.M).group(1).strip().strip("/")
+    slug = re.search(r"^slug:[ \t]*(.*)$", current, re.M).group(1).strip().strip("/")
     ask = (f"Improve this existing page. Reason it was selected: {reason}\n"
            "Keep its slug, language, cluster and every true statement, keep all shortcodes, keep the author's "
            "own test descriptions exactly as they are, and keep the URL's topic. Expand it to the length in the rules "
