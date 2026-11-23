@@ -802,6 +802,97 @@
       ],
       "intent": "choose_casino",
       "found": "2026-11-16"
+    },
+    {
+      "q": "no wagering free spins",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "no-wagering-bonuses",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 37,
+      "related": [
+        "free spins no deposit no wagering"
+      ],
+      "intent": "bonus",
+      "found": "2026-11-23"
+    },
+    {
+      "q": "usdt vs usdc",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "compare/usdt-vs-usdc",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 26,
+      "related": [],
+      "intent": "play",
+      "found": "2026-11-23"
+    },
+    {
+      "q": "cassino tigrinho",
+      "lang": "pt",
+      "tier": "long",
+      "slug": "pt/guides/jogo-do-tigrinho",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 19,
+      "related": [],
+      "intent": "game_guide",
+      "found": "2026-11-23"
+    },
+    {
+      "q": "crypto slots",
+      "lang": "en",
+      "tier": "mid",
+      "slug": "crypto-slots",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 8,
+      "related": [
+        "slots at crypto casinos",
+        "bitcoin slots"
+      ],
+      "intent": "choose_casino",
+      "found": "2026-11-23"
+    },
+    {
+      "q": "cassino saque rapido dinheiro",
+      "lang": "pt",
+      "tier": "mid",
+      "slug": "pt/saques-rapidos",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 36,
+      "related": [
+        "cassino paga rapidamente",
+        "cassino que paga pix",
+        "cassino pagamento seguro online",
+        "cassino pagamento online",
+        "cassino reais pagamento",
+        "cassino saldo pendente",
+        "cassino reclamacao saque",
+        "cassino site pagamentos",
+        "cassino para dinheiro"
+      ],
+      "intent": "play",
+      "found": "2026-11-23"
+    },
+    {
+      "q": "cassino online novo",
+      "lang": "pt",
+      "tier": "mid",
+      "slug": "pt/novos-cassinos",
+      "status": "planned",
+      "priority": 40,
+      "impressions": 16,
+      "related": [
+        "cassino direto e novo",
+        "cassino do momento",
+        "cassino ultima hora"
+      ],
+      "intent": "choose_casino",
+      "found": "2026-11-23"
     }
   ]
 }
