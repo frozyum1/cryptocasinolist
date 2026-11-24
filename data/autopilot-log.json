@@ -443,5 +443,19 @@
     "queries": [
       "fair payout casinos canada"
     ]
+  },
+  {
+    "date": "2026-11-24",
+    "action": "refresh",
+    "file": "content/12-review-bc-game.html",
+    "reason": "also cover these searches: bc game casino; bc casino; bc games casino",
+    "outcome": "published",
+    "score": 8,
+    "attempts": 1,
+    "queries": [
+      "bc game casino",
+      "bc casino",
+      "bc games casino"
+    ]
   }
 ]
