@@ -457,5 +457,17 @@
       "bc casino",
       "bc games casino"
     ]
+  },
+  {
+    "date": "2026-11-25",
+    "action": "refresh",
+    "file": "content/01-ru-index.html",
+    "reason": "also cover these searches: best casino",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1,
+    "queries": [
+      "best casino"
+    ]
   }
 ]
