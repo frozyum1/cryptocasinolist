@@ -469,5 +469,24 @@
     "queries": [
       "best casino"
     ]
+  },
+  {
+    "date": "2026-11-26",
+    "action": "refresh",
+    "file": "content/02-pt-index.html",
+    "reason": "also cover these searches: cassino online brasil; cassino bet; cassino seguro online; cassino de confiança; cassino regulador autorizado; cassino direto autorizado; jogo de cassino; casino gambling",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1,
+    "queries": [
+      "cassino online brasil",
+      "cassino bet",
+      "cassino seguro online",
+      "cassino de confiança",
+      "cassino regulador autorizado",
+      "cassino direto autorizado",
+      "jogo de cassino",
+      "casino gambling"
+    ]
   }
 ]
