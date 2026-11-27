@@ -488,5 +488,17 @@
       "jogo de cassino",
       "casino gambling"
     ]
+  },
+  {
+    "date": "2026-11-27",
+    "action": "refresh",
+    "file": "content/56-guides-how-plinko-works.html",
+    "reason": "also cover these searches: plinko ball",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1,
+    "queries": [
+      "plinko ball"
+    ]
   }
 ]
