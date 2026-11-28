@@ -500,5 +500,21 @@
     "queries": [
       "plinko ball"
     ]
+  },
+  {
+    "date": "2026-11-28",
+    "action": "refresh",
+    "file": "content/61-no-deposit-bonus.html",
+    "reason": "also cover these searches: no deposit casino free spins; free spins slots; free no deposit bonus; casino free spins without deposit; free spins bonus",
+    "outcome": "published",
+    "score": 9,
+    "attempts": 1,
+    "queries": [
+      "no deposit casino free spins",
+      "free spins slots",
+      "free no deposit bonus",
+      "casino free spins without deposit",
+      "free spins bonus"
+    ]
   }
 ]
